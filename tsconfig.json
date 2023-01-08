@@ -1,3 +1,7 @@
+// #TODO тут помилки, через видалений мною файл Compute.vue з папки components, там було наступне
+// <template>
+// <slot v-bind="$attrs" />
+// </template>
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
