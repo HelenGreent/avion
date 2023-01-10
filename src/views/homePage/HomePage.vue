@@ -4,7 +4,7 @@
     pr-20 flex items-center justify-end"
   >
     <div
-      class="md:pt-[47px] md:px-6 md:pb-8 md:min-h-0 md:block flex flex-col justify-between items-start
+      class="md:px-6 md:pb-8 md:pt-0 md:min-h-0 md:block flex flex-col justify-between items-start
       h-[444px] max-w-[630px] pl-[56px] pr-[61px] py-[47px] bg-white-color"
     >
       <div class="md:mb-5">
@@ -18,7 +18,7 @@
       <div class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
         <router-link to="/" class="text-violet-color hover:underline">View collection</router-link>
       </div>
-      <img src="@/assets/image/hero.jpg" alt="hero image" class="md:block md:mt-8 hidden">
+      <img src="@/assets/image/hero.jpg" alt="hero image" class="md:block md:mt-8 h-[304px] object-cover hidden">
     </div>
   </section>
 
