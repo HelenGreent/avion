@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-violet-color text-white-color">
-    <div class="pt-[58px] px-[82px] pb-[25px]">
+    <div class="md:py-10 md:px-6 pt-[58px] px-[82px] pb-[25px]">
       <div class="footer-top">
         <div class="footer-menu">
           <div>
@@ -29,19 +29,22 @@
             <router-link to="/" class="menu__link">Returns policy</router-link>
           </div>
         </div>
-        <div>
+        <div class="md:mt-10">
           <span class="font-clash">Join our mailing list</span>
-          <form class="flex justify-center mt-4">
-            <input type="text" placeholder="your@email.com" class="h-[56px] grow bg-white-opacity px-8 border-none">
-            <div class="w-[118px] h-[56px] flex justify-center items-center bg-white-color cursor-pointer">
+          <form class="flex justify-center mt-4 w-full">
+            <input
+              type="text"
+              placeholder="your@email.com"
+              class="sm:w-full h-[56px] grow bg-white-opacity px-8 border-none">
+            <div class=" w-[118px] h-[56px] flex justify-center items-center bg-white-color cursor-pointer">
               <button type="submit" class="text-violet-color">Sign up</button>
             </div>
           </form>
         </div>
       </div>
-      <div class="flex justify-between pt-[24px]">
+      <div class="md:block md:text-center md:pt-5 flex justify-between pt-6">
         <span class="font-sm">Copyright 2022 Avion LTD</span>
-        <div class="flex items-center">
+        <div class="md:block  md:mt-2 flex items-center">
           <a href="#" class="mx-3 hover:opacity-80">
             <img src="@/assets/icons/linkedin.svg" alt="linkedin">
           </a>
@@ -75,9 +78,32 @@
   border-bottom: 1px solid #4E4D93;
 }
 
+@media screen and (max-width: 1150px) {
+  .footer-top {
+    grid-template-columns: 450px 1fr;
+    column-gap: 10px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media screen and (max-width: 767px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    padding-bottom: 16px;
+  }
+}
+
 .footer-menu {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+}
+@media screen and (max-width: 1024px) {
+  .footer-menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .menu-title {

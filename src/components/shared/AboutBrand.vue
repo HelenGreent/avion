@@ -1,13 +1,15 @@
 <template>
-  <section class="p-20 text-violet-color">
-    <h3 class="mb-9 font-normal text-center text-2xl">What makes our brand different</h3>
+  <section class="md:p-6 md:pt-36 p-20 text-violet-color">
+    <h3 class="sm:text-left md:text-xl mb-9 font-clash font-normal text-center text-2xl">
+      What makes our brand different
+    </h3>
     <div class="grid-card">
-      <div v-for="(item, index) in aboutBrands" :key="index">
+      <div v-for="(item, index) in aboutBrands" :key="index" class="md:px-6 md:py-9 bg-light-grey p-12">
         <div>
           <img :src="item.img" :alt="item.alt" class="block mb-3">
         </div>
         <h4 class="mb-3 text-xl"> {{ item.title }}</h4>
-        <span class="leading-4"> {{ item.description }}</span>
+        <span class="text-base"> {{ item.description }}</span>
       </div>
     </div>
   </section>
@@ -51,7 +53,22 @@ const aboutBrands: IAboutBrand[] = [{
 <style lang="scss" scoped>
 .grid-card {
   display: grid;
-  grid-template-columns: repeat(4, 210px);
+  grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
+  column-gap: 18px;
+}
+@media screen and (max-width: 1024px) {
+  .grid-card {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .grid-card {
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+  }
 }
 </style>

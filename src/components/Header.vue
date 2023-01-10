@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <div class="h-[62px] flex justify-center items-center">
+    <div class="md:hidden h-[62px] flex justify-center items-center">
       <router-link
         v-for="(item, index) in menu"
         :key="index"
@@ -27,6 +27,15 @@
       >
         {{ item.name }}
       </router-link>
+    </div>
+    <div class="md:flex md:justify-center h-[62px] hidden">
+      <button type="submit">
+<!-- #TODO why img don't work -->
+        <!-- <img src="@/assets/icons/burger.svg" alt="burger icon"> -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#726E8D" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
     </div>
   </header>
 </template>

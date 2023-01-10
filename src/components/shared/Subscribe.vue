@@ -1,17 +1,17 @@
 <template>
-  <section class="bg-[url('@/assets/image/subscribeBG.jpg')] bg-cover pt-[97px] pb-[86px]">
-    <div class="max-w-[500px] m-auto text-white-color text-center">
-      <h3 class="block mb-3 font-normal text-3xl font-clash">Join the club and get the benefits</h3>
-      <span class="block text-lg mb-[30px]">
+  <section class="md:p-0 bg-[url('@/assets/image/subscribeBG.jpg')] bg-cover pt-[97px] pb-[86px]">
+    <div class="md:p-6 md:text-left max-w-[500px] m-auto text-white-color text-center">
+      <h3 class="md:text-2xl block mb-3 font-normal text-3xl font-clash">Join the club and get the benefits</h3>
+      <span class="md:text-sm md:mb-5 block text-lg mb-[30px]">
         Sign up for our newsletter and receive exclusive offers on new ranges,
         sales, pop up stores and more
       </span>
-      <div class="flex justify-center mb-[40px]">
+      <div class="md:flex-col md:mb-8 flex justify-center mb-10">
         <div class="subscribe-check">
           <img src="@/assets/icons/check.svg" alt="check icon" class="subscribe-check-icon">
           <span>Exclusive offers</span>
         </div>
-        <div class="subscribe-check mx-9">
+        <div class="md:mx-0 md:py-2 subscribe-check mx-9">
           <img src="@/assets/icons/check.svg" alt="check icon" class="subscribe-check-icon">
           <span>Free events</span>
         </div>

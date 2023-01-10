@@ -10,7 +10,11 @@
         :price="product.price"
       />
     </div>
-    <a href="#" class="block text-center text-violet-color hover:underline" />
+    <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
+      <div class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
+        <router-link to="/" class="text-violet-color hover:underline">View collection</router-link>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -59,5 +63,19 @@ const products = ref<IProducts[]>([
   column-gap: 20px;
   padding: 0 80px;
   margin-bottom: 64px;
+}
+
+@media screen and (max-width: 1024px) {
+  .grid-card {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    padding: 0 20px;
+    margin-bottom: 40px;
+  }
+}
+@media screen and (max-width: 639px) {
+  .grid-card {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
