@@ -1,9 +1,15 @@
 <template>
   <div class="max-w-[1440px] m-auto">
-    <header class="text-xl">header</header>
+    <Header />
     <main>
       <router-view />
     </main>
-    <footer class="text-xl">footer</footer>
+    <Footer />
   </div>
 </template>
+
+<script lang="ts" setup>
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
+
+</script>
