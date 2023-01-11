@@ -7,40 +7,40 @@
       <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">All products</h2>
     </div>
     <div class=" lg:h-[270px] flex justify-evenly h-16 text-violet-color">
-      <div class="lg:flex lg:flex-col py-2">
-        <select class="h-[48px] w-[137px] mx-3">
-          <option value="volvo">Categories</option>
-          <option value="saab">S</option>
-          <option value="opel">W</option>
-          <option value="audi">P</option>
+      <div class="lg:flex lg:flex-col py-2 space-x-3">
+        <select class="h-[48px] w-[137px]">
+          <option>Categories</option>
+          <option>S</option>
+          <option>W</option>
+          <option>P</option>
         </select>
-        <select class="h-[48px] w-[137px] mx-3">
-          <option value="volvo">Product type</option>
-          <option value="saab">S</option>
-          <option value="opel">W</option>
-          <option value="audi">P</option>
+        <select class="h-[48px] w-[137px]">
+          <option>Product type</option>
+          <option>S</option>
+          <option>W</option>
+          <option>P</option>
         </select>
-        <select class="h-[48px] w-[137px] mx-3">
-          <option value="volvo">Price</option>
-          <option value="saab">S</option>
-          <option value="opel">W</option>
-          <option value="audi">P</option>
+        <select class="h-[48px] w-[137px]">
+          <option>Price</option>
+          <option>S</option>
+          <option>W</option>
+          <option>P</option>
         </select>
-        <select class="h-[48px] w-[137px] mx-3">
-          <option value="volvo">Brand</option>
-          <option value="saab">S</option>
-          <option value="opel">W</option>
-          <option value="audi">P</option>
+        <select class="h-[48px] w-[137px]">
+          <option>Brand</option>
+          <option>S</option>
+          <option>W</option>
+          <option>P</option>
         </select>
       </div>
 
       <div class="flex flex-row py-2">
         <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
         <select name="date" class="h-[48px] w-[137px] mx-3">
-          <option value="volvo">Date added</option>
-          <option value="saab">S</option>
-          <option value="opel">W</option>
-          <option value="audi">P</option>
+          <option>Date added</option>
+          <option>S</option>
+          <option>W</option>
+          <option>P</option>
         </select>
       </div>
     </div>
