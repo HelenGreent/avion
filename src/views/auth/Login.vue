@@ -8,10 +8,9 @@
 
         <el-form
           label-position="top"
-          :rules="formRules"
           @submit.prevent
         >
-          <el-form-item label="Email" prop="email">
+          <el-form-item label="Email">
             <el-input
               v-model="formModel.email"
               type="email" placeholder="Please enter password"
@@ -19,7 +18,7 @@
             />
           </el-form-item>
 
-          <el-form-item label="Password" prop="password">
+          <el-form-item label="Password">
             <el-input
               v-model="formModel.password"
               type="password" placeholder="Please enter password" show-password
@@ -30,7 +29,7 @@
           <p class="pb-2.5 text-sm font-normal">
             Need an account?
             <router-link
-              class="text-sky-600 uppercase hover:underline ease-in-out duration-300"
+              class="form-link uppercase hover:underline ease-in-out duration-300"
               :to="{ name: $routeNames.register }"
             >
               Sign Up
@@ -48,22 +47,16 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { FormRules } from 'element-plus'
 
 const formModel = ref({
   email: '',
   password: ''
 })
 const loading = ref(false)
-
-const formRules: FormRules = {
-  email: [
-    { required: true, message: 'This field is required', trigger: 'change' },
-    { type: 'email', message: 'Email is invalid', trigger: 'change' }
-  ],
-  password: [
-    { required: true, message: 'This field is required', trigger: 'change' },
-    { min: 6, message: 'Min length should be more than 6 characters ', trigger: 'change' }
-  ]
-}
 </script>
+
+<style lang="scss" scoped>
+.form-link {
+  color: #1f5c98;
+}
+</style>

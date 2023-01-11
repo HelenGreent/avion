@@ -6,7 +6,14 @@
           <p class="font-clash font-medium text-3xl text-violet-color">Sign Up</p>
         </template>
 
-        <el-form label-position="top" @submit.prevent>
+        <el-form
+          ref="ruleFormRef"
+          label-position="top"
+          :rules="formRules"
+          :model="formModel"
+          status-icon
+          @submit.prevent
+        >
           <el-form-item label="Email" prop="email">
             <el-input
               v-model="formModel.email"
@@ -16,19 +23,21 @@
             />
           </el-form-item>
 
-          <el-form-item label="Password" class="font-satoshi text-violet-color text-2xl">
+          <el-form-item label="Password" prop="password">
             <el-input
               v-model="formModel.password"
               type="password"
+              autocomplete="off"
               placeholder="Please enter password" show-password
               class="h-[52px]"
             />
           </el-form-item>
 
-          <el-form-item label="Confirm password" prop="password">
+          <el-form-item label="Confirm password" prop="checkPassword">
             <el-input
-              v-model="formModel.confirmPassword"
+              v-model="formModel.checkPassword"
               type="password"
+              autocomplete="off"
               placeholder="Please confirm password" show-password
               class="h-[52px]"
             />
@@ -37,7 +46,7 @@
           <p class="pb-2.5 text-sm font-normal">
             Already a user?
             <router-link
-              class="text-sky-700 uppercase hover:underline ease-in-out duration-300"
+              class="form-link uppercase hover:underline ease-in-out duration-300"
               :to="{ name: $routeNames.login }"
             >
               Login
@@ -48,6 +57,7 @@
             native-type="submit"
             :type="$elComponentType.primary"
             class="font-satoshi font-normal text-base"
+            @click="submitForm(ruleFormRef)"
           >
             Sign Up
           </el-button>
@@ -58,13 +68,70 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
+import type { FormRules, FormInstance } from 'element-plus'
 
-const formModel = ref({
-  email: '',
-  password: '',
-  confirmPassword: ''
-})
+const ruleFormRef = ref<FormInstance>()
+
 const loading = ref(false)
 
+const validatePassword = (rule: any, value: any, callback: any) => {
+  if (value === '') {
+    callback(new Error('Please input the password'))
+  } else {
+    if (formModel.checkPassword !== '') {
+      if (!ruleFormRef.value) return
+      ruleFormRef.value.validateField('checkPassword', () => null)
+    }
+    callback()
+  }
+}
+const validatePassword2 = (rule: any, value: any, callback: any) => {
+  if (value === '') {
+    callback(new Error('Please input the password again'))
+  } else if (value !== formModel.password) {
+    callback(new Error("Two inputs don't match!"))
+  } else {
+    callback()
+  }
+}
+
+const formRules: FormRules = {
+  email: [
+    { required: true, message: 'This field is required', trigger: 'change' },
+    { type: 'email', message: 'Email is invalid', trigger: 'change' }
+  ],
+  password: [
+    { required: true, message: 'This field is required', validator: validatePassword, trigger: 'change' },
+    { min: 6, message: 'Min length should be more than 6 characters ', trigger: 'change' }
+  ],
+  checkPassword: [
+    { required: true, message: 'This field is required', validator: validatePassword2, trigger: 'change' }
+  ]
+}
+
+const formModel = reactive({
+  email: '',
+  password: '',
+  checkPassword: ''
+})
+
+const submitForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.validate((valid) => {
+    if (valid) {
+      console.log('submit!')
+    } else {
+      console.log('error submit!')
+      return false
+    }
+  })
+}
+
 </script>
+
+<style lang="scss" scoped>
+.form-link {
+  color: #1f5c98;
+}
+</style>
