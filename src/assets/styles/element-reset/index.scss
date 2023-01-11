@@ -1,21 +1,38 @@
 @use "../variables/colors";
 
-@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
   $colors: (
-    'primary': (
-      'base': colors.$primary, // todo: this MUST be a valid 6-digit HEX color in order to make it correctly work
+    "primary": (
+      "base": colors.$primary,
     ),
+  ),
+  $button-border-radius: (
+    "default": none,
+  ),
+  $button-padding-vertical: (
+    'default': 24px,
+  ),
+  $button-padding-horizontal: (
+    'default': 32px,
+  ),
+  $input: 
+  (
+    'text-color': colors.$primary,
+    'focus-border': colors.$primary,
+    'border-radius': none,
+    'border': none,
+    'bg-color': colors.$input,
+    'placeholder-color': colors.$input-placeholder,
   )
 );
 
 @use "element-plus/theme-chalk/src/base";
 @use "element-plus/theme-chalk/src/button";
-@use "element-plus/theme-chalk/src/message";
 @use "element-plus/theme-chalk/src/select";
-@use "element-plus/theme-chalk/src/input";
 @use "element-plus/theme-chalk/src/option";
-@use "element-plus/theme-chalk/src/popper";
 @use "element-plus/theme-chalk/src/loading";
 @use "element-plus/theme-chalk/src/form";
 @use "element-plus/theme-chalk/src/form-item";
+@use "element-plus/theme-chalk/src/input";
 @use "element-plus/theme-chalk/src/card";
