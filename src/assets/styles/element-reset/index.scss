@@ -21,7 +21,6 @@
     'text-color': colors.$primary,
     'focus-border': colors.$primary,
     'border-radius': none,
-    'border': none,
     'bg-color': colors.$input,
     'placeholder-color': colors.$input-placeholder,
   )
@@ -36,3 +35,6 @@
 @use "element-plus/theme-chalk/src/form-item";
 @use "element-plus/theme-chalk/src/input";
 @use "element-plus/theme-chalk/src/card";
+
+@import './form.scss';
+@import './input.scss'

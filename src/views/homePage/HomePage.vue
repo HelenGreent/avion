@@ -23,7 +23,9 @@
   </section>
 
   <AboutBrand />
-  <ProductsCollection />
+  <div class="lg:px-5 px-20">
+    <ProductsCollection />
+  </div>
 
   <section class="grid-card">
     <div

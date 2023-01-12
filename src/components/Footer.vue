@@ -31,7 +31,7 @@
         </div>
         <div class="md:mt-10">
           <span class="font-clash">Join our mailing list</span>
-          <form class="flex justify-center mt-4 w-full">
+          <!-- <form class="flex justify-center mt-4 w-full">
             <input
               type="text"
               placeholder="your@email.com"
@@ -39,7 +39,20 @@
             <div class=" w-[118px] h-[56px] flex justify-center items-center bg-white-color cursor-pointer">
               <button type="submit" class="text-violet-color">Sign up</button>
             </div>
-          </form>
+          </form> -->
+          <div class="flex justify-center mt-[72px] pb-[54px]">
+            <el-input
+              v-model="input"
+              placeholder="your@email.com"
+              class="sm:w-full h-[53px] grow bg-white-opacity  text-base  min-w-[208px] border-none"
+            />
+            <el-button
+              :type="$elComponentType.primary"
+              class="w-[143px] h-[56px] bg-white-color font-normal text-violet-color text-base"
+            >
+              Sign up
+            </el-button>
+          </div>
         </div>
       </div>
       <div class="md:block md:text-center md:pt-5 flex justify-between pt-6">
@@ -68,6 +81,12 @@
     </div>
   </footer>
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const input = ref('')
+</script>
 
 <style scoped>
 .footer-top {

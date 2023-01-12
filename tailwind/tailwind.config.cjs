@@ -36,8 +36,8 @@ module.exports = {
       'white-opacity': 'rgba(255, 255, 255, 0.15)',
       'light-grey': '#F9F9F9',
       'grey-violet': '#505977',
-      'light-grey-icon': '#CAC6DA'
-
+      'light-grey-icon': '#CAC6DA',
+      'transparent-color': '#66000000'
     },
     fontFamily: {
       satoshi: ['Satoshi', 'sans-serif'],
