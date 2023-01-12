@@ -61,7 +61,6 @@ const products = ref<IProducts[]>([
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 20px;
-  padding: 0 80px;
   margin-bottom: 64px;
 }
 
@@ -69,7 +68,6 @@ const products = ref<IProducts[]>([
   .grid-card {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
-    padding: 0 20px;
     margin-bottom: 40px;
   }
 }

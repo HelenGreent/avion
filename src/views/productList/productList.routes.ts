@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
-import ProductList from './productListPage.vue'
+import ProductList from './productList.vue'
 
 export const productListRouteNames = {
   productList: 'productList'

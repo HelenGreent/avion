@@ -7,8 +7,7 @@
       "base": colors.$primary,
     ),
   ),
-  $card:
-  (
+  $card: (
     'border': none,
     'border-color': none,
     'border-radius': none,
@@ -22,12 +21,13 @@
   $button-padding-horizontal: (
     'default': 32px,
   ),
-  $input: 
-  (
+  $input: (
     'text-color': colors.$primary,
     'focus-border': colors.$primary,
-    'border-radius': none
-  ),
+    'border-radius': none,
+    'bg-color': colors.$input,
+    'placeholder-color': colors.$input-placeholder
+  )
 );
 
 @use "element-plus/theme-chalk/src/base";
@@ -39,3 +39,6 @@
 @use "element-plus/theme-chalk/src/form-item";
 @use "element-plus/theme-chalk/src/input";
 @use "element-plus/theme-chalk/src/card";
+
+@import './form.scss';
+@import './input.scss'
