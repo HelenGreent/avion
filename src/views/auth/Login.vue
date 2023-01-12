@@ -7,10 +7,14 @@
         </template>
 
         <el-form
+          ref="ruleFormRef"
           label-position="top"
+          :rules="formRules"
+          :model="formModel"
+          status-icon
           @submit.prevent
         >
-          <el-form-item label="Email">
+          <el-form-item label="Email" prop="email">
             <el-input
               v-model="formModel.email"
               type="email" placeholder="Please enter password"
@@ -18,10 +22,11 @@
             />
           </el-form-item>
 
-          <el-form-item label="Password">
+          <el-form-item label="Password" prop="password">
             <el-input
               v-model="formModel.password"
-              type="password" placeholder="Please enter password" show-password
+              type="password"
+              placeholder="Please enter password" show-password
               class="h-[52px]"
             />
           </el-form-item>
@@ -36,7 +41,12 @@
             </router-link>
           </p>
 
-          <el-button native-type="submit" :type="$elComponentType.primary" class="font-satoshi font-normal text-base">
+          <el-button
+            native-type="submit"
+            :type="$elComponentType.primary"
+            class="font-satoshi font-normal text-base"
+            @click="submitForm()"
+          >
             Login
           </el-button>
         </el-form>
@@ -46,11 +56,42 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import type { FormRules, FormInstance } from 'element-plus'
+import { router } from '@/router'
+import { routeNames } from '@/router/route-names'
 
-const formModel = ref({
+const ruleFormRef = ref<FormInstance>()
+
+const loading = ref(false)
+
+const formRules: FormRules = {
+  email: [
+    { required: true, message: 'This field is required', trigger: 'change' },
+    { type: 'email', message: 'Email is invalid', trigger: 'change' }
+  ],
+  password: [
+    { required: true, message: 'This field is required', trigger: 'change' },
+    { min: 6, message: 'Min length should be more than 6 characters ', trigger: 'change' }
+  ]
+}
+
+const formModel = reactive({
   email: '',
   password: ''
 })
-const loading = ref(false)
+
+const submitForm = () => {
+  ruleFormRef.value?.validate((valid) => {
+    if (valid) {
+      loading.value = true
+      console.log('submit!')
+      router.push({ name: routeNames.home })
+    } else {
+      console.log('error submit!')
+      return false
+    }
+  })
+}
+
 </script>

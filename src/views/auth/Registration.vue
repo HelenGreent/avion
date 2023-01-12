@@ -46,7 +46,7 @@
           <p class="pb-2.5 text-sm font-normal">
             Already a user?
             <router-link
-              class="form-link uppercase hover:underline ease-in-out duration-300"
+              class="text-link-color uppercase hover:underline ease-in-out duration-300"
               :to="{ name: $routeNames.login }"
             >
               Login
@@ -70,6 +70,8 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
+import { router } from '@/router'
+import { routeNames } from '@/router/route-names'
 
 const ruleFormRef = ref<FormInstance>()
 
@@ -120,18 +122,13 @@ const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
+      loading.value = true
       console.log('submit!')
+      router.push({ name: routeNames.home })
     } else {
       console.log('error submit!')
       return false
     }
   })
 }
-
 </script>
-
-<style lang="scss" scoped>
-.form-link {
-  color: #1f5c98;
-}
-</style>
