@@ -29,8 +29,8 @@
           <p class="pb-2.5 text-sm font-normal">
             Need an account?
             <router-link
-              class="form-link uppercase hover:underline ease-in-out duration-300"
-              :to="{ name: $routeNames.register }"
+              class="text-link-color uppercase hover:underline ease-in-out duration-300"
+              :to="{ name: $routeNames.registration }"
             >
               Sign Up
             </router-link>
@@ -54,9 +54,3 @@ const formModel = ref({
 })
 const loading = ref(false)
 </script>
-
-<style lang="scss" scoped>
-.form-link {
-  color: #1f5c98;
-}
-</style>

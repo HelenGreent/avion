@@ -1,10 +1,10 @@
 import type { RouteRecordRaw } from 'vue-router'
 import Login from '@/views/auth/Login.vue'
-import Register from '@/views/auth/Register.vue'
+import Register from '@/views/auth/Registration.vue'
 
 export const authRoutesNames = {
   login: 'login',
-  register: 'register'
+  registration: 'registration'
 }
 
 export const authRoutes: RouteRecordRaw[] = [
@@ -14,8 +14,8 @@ export const authRoutes: RouteRecordRaw[] = [
     component: Login
   },
   {
-    path: '/register',
-    name: authRoutesNames.register,
+    path: '/registration',
+    name: authRoutesNames.registration,
     component: Register
   }
 ]

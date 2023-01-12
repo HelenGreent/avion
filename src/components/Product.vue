@@ -19,5 +19,5 @@ const props = defineProps<{
   price: string
 }>()
 
-console.log(props)
+// console.log(props)
 </script>

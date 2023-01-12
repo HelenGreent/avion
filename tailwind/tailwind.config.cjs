@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-const colors = require('./tailwind.colors.cjs')
+const colors = require('tailwindcss/colors')
 
 module.exports = {
   content: [
@@ -25,7 +25,12 @@ module.exports = {
       // => @media (max-width: 639px) { ... }
     },
     colors: {
-      ...colors,
+      white: colors.white,
+      gray: colors.gray,
+      red: colors.red,
+      green: colors.green,
+      orange: colors.orange,
+
       'black-color-opacity': 'rgba(0, 0, 0, 0.1)',
       'dark-violet': '#22202E',
       'violet-color': '#2A254B',
@@ -37,7 +42,8 @@ module.exports = {
       'light-grey': '#F9F9F9',
       'grey-violet': '#505977',
       'light-grey-icon': '#CAC6DA',
-      'transparent-color': '#66000000'
+      'transparent-color': '#66000000',
+      'link-color': '#1f5c98'
     },
     fontFamily: {
       satoshi: ['Satoshi', 'sans-serif'],
