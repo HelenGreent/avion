@@ -1,21 +1,27 @@
 import type { RouteRecordRaw } from 'vue-router'
-import Login from '@/views/auth/Login.vue'
-import Register from '@/views/auth/Registration.vue'
+import BlankLayout from '@/layouts/BlankLayout.vue'
 
-export const authRoutesNames = {
+export const authRouteNames = {
+  auth: 'auth',
   login: 'login',
   registration: 'registration'
 }
 
-export const authRoutes: RouteRecordRaw[] = [
-  {
-    path: '/login',
-    name: authRoutesNames.login,
-    component: Login
-  },
-  {
-    path: '/registration',
-    name: authRoutesNames.registration,
-    component: Register
-  }
-]
+export const authRoutes: RouteRecordRaw = {
+  name: authRouteNames.auth,
+  path: '/auth',
+  redirect: { name: authRouteNames.login },
+  component: BlankLayout,
+  children: [
+    {
+      path: '/login',
+      name: authRouteNames.login,
+      component: () => import('./Login.vue')
+    },
+    {
+      path: '/registration',
+      name: authRouteNames.registration,
+      component: () => import('./Registration.vue')
+    }
+  ]
+}
