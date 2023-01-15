@@ -1,7 +1,7 @@
 <template>
   <section class="bg-[url('@/assets/image/authBG.jpeg')] h-full bg-no-repeat bg-cover bg-center">
-    <div class="max-w-[500px] m-auto pt-10">
-      <el-card v-loading="loading" class="shadow-none">
+    <div class="relative w-full h-full flex justify-center items-center max-w-[500px] m-auto">
+      <el-card v-loading="loading" class="w-full shadow-none">
         <template #header>
           <p class="font-clash font-medium text-3xl text-violet-color">Login</p>
         </template>
