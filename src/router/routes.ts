@@ -13,26 +13,17 @@ const defaultLayoutRoutes: RouteRecordRaw = {
     {
       name: routeNames.home,
       path: '/',
-      component: () => import('@/views/home/Home.vue'),
-      meta: {
-        isProtected: true
-      }
+      component: () => import('@/views/home/Home.vue')
     },
     {
       name: routeNames.productList,
       path: '/productList',
-      component: () => import('@/views/product-list/ProductList.vue'),
-      meta: {
-        isProtected: true
-      }
+      component: () => import('@/views/product-list/ProductList.vue')
     },
     {
       name: routeNames.productDetail,
       path: '/productDetail',
-      component: () => import('@/views/product-detail/ProductDetail.vue'),
-      meta: {
-        isProtected: true
-      }
+      component: () => import('@/views/product-detail/ProductDetail.vue')
     },
     {
       name: routeNames.aboutUs,
@@ -42,7 +33,10 @@ const defaultLayoutRoutes: RouteRecordRaw = {
     {
       name: routeNames.productBasket,
       path: '/productBasket',
-      component: () => import('@/views/product-basket/ProductBasket.vue')
+      component: () => import('@/views/product-basket/ProductBasket.vue'),
+      meta: {
+        isProtected: true
+      }
     }
   ]
 }
