@@ -13,17 +13,26 @@ const defaultLayoutRoutes: RouteRecordRaw = {
     {
       name: routeNames.home,
       path: '/',
-      component: () => import('@/views/home/Home.vue')
+      component: () => import('@/views/home/Home.vue'),
+      meta: {
+        isProtected: true
+      }
     },
     {
       name: routeNames.productList,
       path: '/productList',
-      component: () => import('@/views/product-list/ProductList.vue')
+      component: () => import('@/views/product-list/ProductList.vue'),
+      meta: {
+        isProtected: true
+      }
     },
     {
       name: routeNames.productDetail,
       path: '/productDetail',
-      component: () => import('@/views/product-detail/ProductDetail.vue')
+      component: () => import('@/views/product-detail/ProductDetail.vue'),
+      meta: {
+        isProtected: true
+      }
     },
     {
       name: routeNames.aboutUs,

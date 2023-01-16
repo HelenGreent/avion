@@ -12,6 +12,7 @@ dts/auto-imports.d.ts
 dts/components.d.ts
 
 # local env files
+.env
 .env.local
 .env.*.local
 
