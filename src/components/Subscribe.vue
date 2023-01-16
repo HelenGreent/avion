@@ -6,7 +6,7 @@
         Sign up for our newsletter and receive exclusive offers on new ranges,
         sales, pop up stores and more
       </span>
-      <div class="md:flex-col md:mb-8 flex justify-center mb-10 space-x-9">
+      <div class="md:flex-col md:mb-8 md:space-x-0 flex justify-center mb-10 space-x-9">
         <div class="subscribe-check space-x-[9px]">
           <img src="@/assets/icons/check.svg" alt="check icon" class="subscribe-check-icon">
           <span>Exclusive offers</span>

@@ -1,0 +1,5 @@
+.el-button {
+  &--info {
+    @apply bg-light-grey text-violet-color border-transparent-color;
+  }
+}
