@@ -60,6 +60,7 @@ import { ref, reactive } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import { router } from '@/router'
 import { routeNames } from '@/router/route-names'
+const { login } = useAuthStore()
 
 const ruleFormRef = ref<FormInstance>()
 
@@ -85,13 +86,15 @@ const submitForm = () => {
   ruleFormRef.value?.validate((valid) => {
     if (valid) {
       loading.value = true
-      console.log('submit!')
-      router.push({ name: routeNames.home })
+      login(formModel)
+        .then(() => {
+          router.push({ name: routeNames.home })
+        })
+        .finally(() => (loading.value = false))
     } else {
-      console.log('error submit!')
+      console.warn('error submit!')
       return false
     }
   })
 }
-
 </script>
