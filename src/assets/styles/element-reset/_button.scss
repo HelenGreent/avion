@@ -2,4 +2,7 @@
   &--info {
     @apply bg-light-grey text-violet-color border-transparent-color;
   }
+  &--primary {
+    @apply border-none h-[53px];
+  }
 }

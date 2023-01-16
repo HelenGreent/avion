@@ -24,7 +24,10 @@ module.exports = {
       md: { max: '767px' },
       // => @media (max-width: 767px) { ... }
 
-      sm: { max: '639px' }
+      sm: { max: '639px' },
+      // => @media (max-width: 639px) { ... }
+
+      xs: { max: '420px' }
       // => @media (max-width: 639px) { ... }
     },
     colors: {

@@ -4,7 +4,7 @@
     pr-20 flex items-center justify-end"
   >
     <div
-      class="md:px-6 md:pb-8 md:pt-0 md:min-h-0 md:block flex flex-col justify-between items-start
+      class="sm:px-6 md:pb-8 md:pt-0 md:min-h-0 md:block  md:p-0 flex flex-col justify-between items-start
       h-[444px] max-w-[630px] pl-[56px] pr-[61px] py-[47px] bg-white-color"
     >
       <div class="md:mb-5">
