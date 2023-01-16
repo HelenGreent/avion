@@ -4,7 +4,9 @@ import BlankLayout from '@/layouts/BlankLayout.vue'
 export const authRouteNames = {
   auth: 'auth',
   login: 'login',
-  registration: 'registration'
+  registration: 'registration',
+  accessDenied: 'accessDenied',
+  page404: 'page404'
 }
 
 export const authRoutes: RouteRecordRaw = {
@@ -22,6 +24,16 @@ export const authRoutes: RouteRecordRaw = {
       path: '/registration',
       name: authRouteNames.registration,
       component: () => import('./Registration.vue')
+    },
+    {
+      path: '/404',
+      name: authRouteNames.page404,
+      component: () => import('@/views/404-page/404Page.vue')
+    },
+    {
+      path: '/accessDenied',
+      name: authRouteNames.accessDenied,
+      component: () => import('@/views/access-denied/AccessDenied.vue')
     }
   ]
 }
