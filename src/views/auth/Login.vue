@@ -3,7 +3,7 @@
     <div class="relative w-full h-full flex justify-center items-center max-w-[500px] m-auto">
       <el-card v-loading="loading" class="w-full shadow-none">
         <template #header>
-          <p class="font-clash font-medium text-3xl text-violet-color">Login</p>
+          <p class="font-clash font-medium text-3xl text-center text-violet-color">Login</p>
         </template>
 
         <el-form
@@ -18,7 +18,7 @@
             <el-input
               v-model="formModel.email"
               type="email" placeholder="Please enter password"
-              class="h-[52px]"
+              class="h-[52px] bg-auth-input"
             />
           </el-form-item>
 
@@ -27,8 +27,13 @@
               v-model="formModel.password"
               type="password"
               placeholder="Please enter password" show-password
-              class="h-[52px]"
+              class="h-[52px] bg-auth-input"
             />
+            <router-link :to="{ name: $routeNames.forgotPassword }">
+              <p class="text-sm text-link-color hover:underline ease-in-out duration-300">
+                Forgot password?
+              </p>
+            </router-link>
           </el-form-item>
 
           <p class="pb-2.5 text-sm font-normal">
@@ -44,7 +49,7 @@
           <el-button
             native-type="submit"
             :type="$elComponentType.primary"
-            class="font-satoshi font-normal text-base"
+            class="md:w-full font-satoshi font-normal text-base"
             @click="submitForm()"
           >
             Login

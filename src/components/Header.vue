@@ -69,10 +69,6 @@ const menu: IMenu[] = [{
   path: '/crockery'
 },
 {
-  name: 'Tableware',
-  path: '/tableware'
-},
-{
   name: 'Cutlery',
   path: '/cutlery'
 }]

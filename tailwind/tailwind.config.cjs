@@ -49,7 +49,8 @@ module.exports = {
       'grey-violet': '#505977',
       'light-grey-icon': '#CAC6DA',
       'transparent-color': '#66000000',
-      'link-color': '#1f5c98'
+      'link-color': '#1f5c98',
+      'auth-input': '#e4e4e44a'
     },
     fontFamily: {
       satoshi: ['Satoshi', 'sans-serif'],
