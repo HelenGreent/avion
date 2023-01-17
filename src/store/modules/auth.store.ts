@@ -26,6 +26,14 @@ export const useAuthStore = defineStore('authStore', () => {
     return authService.register(payload)
   }
 
+  function forgotPassword (payload: IForgotPayload) {
+    return authService.forgotPassword(payload)
+  }
+
+  function resetPassword (payload: IResetPayload) {
+    return authService.resetPassword(payload)
+  }
+
   function logout () {
     localStorage.removeItem('si-token')
     localStorage.removeItem('ref-token')
@@ -38,6 +46,8 @@ export const useAuthStore = defineStore('authStore', () => {
     login,
     register,
     logout,
+    forgotPassword,
+    resetPassword,
     setRefreshToken,
     setToken
   }

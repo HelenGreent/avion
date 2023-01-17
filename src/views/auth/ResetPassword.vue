@@ -1,9 +1,9 @@
 <template>
-  <section class="bg-[url('@/assets/image/authBG.jpeg')] h-full bg-no-repeat bg-cover bg-center">
+  <section class="bg-[url('@/assets/image/resetBG.jpeg')] h-full bg-no-repeat bg-cover bg-center">
     <div class="relative w-full h-full flex justify-center items-center max-w-[500px] m-auto">
-      <el-card v-loading="loading" class="w-full shadow-none">
+      <el-card v-loading="loading" class="md:w-[70%] w-full shadow-none">
         <template #header>
-          <p class="font-clash font-medium text-3xl text-center text-violet-color">Login</p>
+          <p class="font-clash font-medium text-center text-3xl text-violet-color">Reset Password</p>
         </template>
 
         <el-form
@@ -14,45 +14,33 @@
           status-icon
           @submit.prevent
         >
-          <el-form-item label="Email" prop="email">
-            <el-input
-              v-model="formModel.email"
-              type="email" placeholder="Please enter password"
-              class="h-[52px] bg-auth-input"
-            />
-          </el-form-item>
-
           <el-form-item label="Password" prop="password">
             <el-input
               v-model="formModel.password"
               type="password"
+              autocomplete="off"
               placeholder="Please enter password" show-password
               class="h-[52px] bg-auth-input"
             />
-            <router-link :to="{ name: $routeNames.forgotPassword }">
-              <p class="text-sm text-link-color hover:underline ease-in-out duration-300">
-                Forgot password?
-              </p>
-            </router-link>
           </el-form-item>
 
-          <p class="pb-2.5 text-sm font-normal">
-            Need an account?
-            <router-link
-              class="text-link-color uppercase hover:underline ease-in-out duration-300"
-              :to="{ name: $routeNames.registration }"
-            >
-              Sign Up
-            </router-link>
-          </p>
+          <el-form-item label="New password" prop="newPassword">
+            <el-input
+              v-model="formModel.newPassword"
+              type="password"
+              autocomplete="off"
+              placeholder="Please add new password" show-password
+              class="h-[52px] bg-auth-input"
+            />
+          </el-form-item>
 
           <el-button
             native-type="submit"
             :type="$elComponentType.primary"
             class="md:w-full font-satoshi font-normal text-base"
-            @click="submitForm()"
+            @click="submitForm(ruleFormRef)"
           >
-            Login
+            Submit
           </el-button>
         </el-form>
       </el-card>
@@ -61,40 +49,41 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import { router } from '@/router'
 import { routeNames } from '@/router/route-names'
-const { login } = useAuthStore()
+const { resetPassword } = useAuthStore()
 
 const ruleFormRef = ref<FormInstance>()
 
 const loading = ref(false)
 
 const formRules: FormRules = {
-  email: [
-    { required: true, message: 'This field is required', trigger: 'change' },
-    { type: 'email', message: 'Email is invalid', trigger: 'change' }
-  ],
   password: [
+    { required: true, message: 'This field is required', trigger: 'change' },
+    { min: 6, message: 'Min length should be more than 6 characters ', trigger: 'change' }
+  ],
+  newPassword: [
     { required: true, message: 'This field is required', trigger: 'change' },
     { min: 6, message: 'Min length should be more than 6 characters ', trigger: 'change' }
   ]
 }
 
 const formModel = reactive({
-  email: '',
-  password: ''
+  password: '',
+  newPassword: ''
+  // token: $router.params.token
 })
 
-const submitForm = () => {
-  ruleFormRef.value?.validate((valid) => {
+const submitForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.validate((valid) => {
     if (valid) {
       loading.value = true
-      login(formModel)
-        .then(() => {
-          router.push({ name: routeNames.home })
-        })
+
+      resetPassword(formModel)
+        .then(() => { router.push({ name: routeNames.login }) })
         .finally(() => (loading.value = false))
     } else {
       console.warn('error submit!')

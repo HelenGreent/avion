@@ -2,7 +2,7 @@
   <section class="bg-[url('@/assets/image/accessBG.jpeg')] h-full bg-no-repeat bg-cover bg-center">
     <div class="flex items-center justify-center h-[90vh]">
       <div class="w-[70vw] flex flex-col items-center">
-        <a href="#" class="font-clash text-dark-violet text-2xl text-center hover:underline">Avion</a>
+        <a href="#" class="font-clash text-dark-violet text-2xl text-center cursor-default">Avion</a>
         <img src="@/assets/icons/lock.svg" alt="lock">
         <h1 class="mt-20 md:text-dark-violet sm:text-3xl py-4 text-5xl text-[#e1e1e1] font-medium">
           Access Denied
