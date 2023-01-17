@@ -66,7 +66,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
       loading.value = true
 
       forgotPassword(formModel)
-        .then(() => { router.push({ name: routeNames.resetPassword }) })
+        .then(() => { router.push({ name: routeNames.login }) })
         .finally(() => (loading.value = false))
     } else {
       console.warn('error submit!')

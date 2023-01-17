@@ -6,9 +6,3 @@ interface ILoginPayload {
 interface IForgotPayload {
   email: string
 }
-
-interface IResetPayload {
-  password: string
-  newPassword: string
-  // token: string
-}

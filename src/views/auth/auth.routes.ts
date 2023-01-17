@@ -6,9 +6,8 @@ export const authRouteNames = {
   login: 'login',
   registration: 'registration',
   accessDenied: 'accessDenied',
-  page404: 'page404',
-  forgotPassword: 'forgotPassword',
-  resetPassword: 'resetPassword'
+  error: 'error',
+  forgotPassword: 'forgotPassword'
 }
 
 export const authRoutes: RouteRecordRaw = {
@@ -28,9 +27,9 @@ export const authRoutes: RouteRecordRaw = {
       component: () => import('./Registration.vue')
     },
     {
-      path: '/404',
-      name: authRouteNames.page404,
-      component: () => import('@/views/404-page/404Page.vue')
+      path: '/error',
+      name: authRouteNames.error,
+      component: () => import('@/views/error-page/ErrorPage.vue')
     },
     {
       path: '/accessDenied',
@@ -41,11 +40,6 @@ export const authRoutes: RouteRecordRaw = {
       path: '/forgotPassword',
       name: authRouteNames.forgotPassword,
       component: () => import('./ForgotPassword.vue')
-    },
-    {
-      path: '/resetPassword',
-      name: authRouteNames.resetPassword,
-      component: () => import('./ResetPassword.vue')
     }
   ]
 }
