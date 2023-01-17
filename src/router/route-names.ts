@@ -8,5 +8,6 @@ export const routeNames = {
   productDetail: 'productDetail',
   aboutUs: 'aboutUs',
   productBasket: 'productBasket',
+  product: 'product',
   ...authRouteNames
 }

@@ -1,11 +1,11 @@
 <template>
   <section class="product">
     <div class="w-full">
-      <img src="@/assets/image/productDandy.jpg" alt="chair" class="w-full object-cover">
+      <img :src="product.image_url" :alt="product.title" class="w-full object-cover">
     </div>
     <div class="sm:px-6 lg:px-14 lg:pt-[28px] px-10">
-      <h2 class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color">The Dandy Chair</h2>
-      <span class="md:text-[20px] block text-2xl mb-7 text-[#12131A]">£250</span>
+      <h2 class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color">{{ product.title }}</h2>
+      <span class="md:text-[20px] block text-2xl mb-7 text-[#12131A]">£{{ product.price }}</span>
       <div class="text-grey-violet space-y-3">
         <span class="font-clash text-violet-color mb-4 leading-5">Description</span>
         <p class="block mb-[20px] leading-[22px]">
@@ -73,6 +73,12 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import type { IProducts } from '@/types/products.types'
+
+const props = defineProps<{
+  product: IProducts
+}>()
+console.log(props)
 
 const quantity = ref<any>('1')
 const input = ref('')
