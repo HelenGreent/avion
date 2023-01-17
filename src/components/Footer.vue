@@ -1,6 +1,6 @@
 <template>
-  <footer class="bg-violet-color text-white-color">
-    <div class="md:py-10 md:px-6 pt-[58px] px-[82px] pb-[25px]">
+  <footer class="w-full bg-violet-color text-white-color">
+    <div class="md:py-10 md:px-6 pt-[58px] m-auto max-w-[1440px] px-[82px] pb-[25px]">
       <div class="footer-top">
         <div class="footer-menu">
           <div>
@@ -31,24 +31,15 @@
         </div>
         <div class="md:mt-10">
           <span class="font-clash">Join our mailing list</span>
-          <!-- <form class="flex justify-center mt-4 w-full">
-            <input
-              type="text"
-              placeholder="your@email.com"
-              class="sm:w-full h-[56px] grow bg-white-opacity px-8 border-none">
-            <div class=" w-[118px] h-[56px] flex justify-center items-center bg-white-color cursor-pointer">
-              <button type="submit" class="text-violet-color">Sign up</button>
-            </div>
-          </form> -->
-          <div class="flex justify-center mt-[72px] pb-[54px]">
+          <div class="w-full flex justify-center mt-[72px] pb-[54px]">
             <el-input
               v-model="input"
               placeholder="your@email.com"
-              class="sm:w-full h-[53px] grow bg-white-opacity  text-base  min-w-[208px] border-none"
+              class="sm:w-full h-[53px] grow bg-white-opacity  text-base  border-none"
             />
             <el-button
               :type="$elComponentType.primary"
-              class="w-[143px] h-[56px] bg-white-color font-normal text-violet-color text-base"
+              class="xs:w-[123px] w-[143px] flex-none bg-white-color font-normal text-violet-color text-base"
             >
               Sign up
             </el-button>
@@ -57,7 +48,7 @@
       </div>
       <div class="md:block md:text-center md:pt-5 flex justify-between pt-6">
         <span class="font-sm">Copyright 2022 Avion LTD</span>
-        <div class="md:block  md:mt-2 flex items-center">
+        <div class="md:hidden  md:mt-2 flex items-center">
           <a href="#" class="mx-3 hover:opacity-80">
             <img src="@/assets/icons/linkedin.svg" alt="linkedin">
           </a>

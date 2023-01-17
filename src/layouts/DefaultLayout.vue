@@ -1,7 +1,7 @@
 <template>
-  <div class="max-w-[1440px] m-auto">
+  <div>
     <Header />
-    <main>
+    <main class="max-w-[1440px] m-auto">
       <router-view />
     </main>
     <Footer />

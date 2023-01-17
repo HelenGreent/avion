@@ -6,6 +6,7 @@ import type { EpPropFinalized, EpPropMergeType } from 'element-plus/es/utils'
 declare module 'vue-router' {
   interface RouteMeta {
     // todo: this is just an example. Please setup your own route meta params.
+    isProtected: boolean
     label?: string
     parentName?: string
     requireAuth?: boolean

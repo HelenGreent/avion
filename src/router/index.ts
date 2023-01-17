@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-import { routeGuard } from './route-guard'
 import { routes } from './routes'
 
 const router = createRouter({
@@ -11,4 +9,14 @@ export {
   router,
   routes
 }
-router.beforeEach(routeGuard)
+
+router.beforeEach((to, from, next) => {
+  const { accessToken, logout } = useAuthStore()
+
+  if (!accessToken && to.meta.isProtected) {
+    next(false)
+    return logout()
+  }
+
+  next()
+})

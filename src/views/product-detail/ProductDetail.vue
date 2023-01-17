@@ -1,7 +1,7 @@
 <template>
   <section class="product">
-    <div>
-      <img src="@/assets/image/productDandy.jpg" alt="chair">
+    <div class="w-full">
+      <img src="@/assets/image/productDandy.jpg" alt="chair" class="w-full object-cover">
     </div>
     <div class="sm:px-6 lg:px-14 lg:pt-[28px] px-10">
       <h2 class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color">The Dandy Chair</h2>
@@ -54,14 +54,17 @@
         <span class="md:inline block">Sign up for our newsletter and receive exclusive offers on new </span>
         ranges, sales, pop up stores and more
       </span>
-      <div class="flex justify-center mt-[72px] pb-[54px]">
+      <div class="w-full flex justify-center mt-[72px] pb-[54px]">
         <el-input
           v-model="input"
           placeholder="your@email.com"
-          class="w-[354px] min-w-[208px] text-base bg-light-grey"
+          class="w-full max-w-[354px] text-base bg-light-grey"
         />
-        <el-button :type="$elComponentType.primary" class="w-[143px] h-[56px] font-satoshi font-normal text-base">
-          Add to cart
+        <el-button
+          :type="$elComponentType.primary"
+          class="xs:w-[123px] w-[143px] h-[56px] font-satoshi font-normal text-base"
+        >
+          Sign up
         </el-button>
       </div>
     </div>

@@ -29,6 +29,14 @@ const defaultLayoutRoutes: RouteRecordRaw = {
       name: routeNames.aboutUs,
       path: '/aboutUs',
       component: () => import('@/views/about-us/AboutUs.vue')
+    },
+    {
+      name: routeNames.productBasket,
+      path: '/productBasket',
+      component: () => import('@/views/product-basket/ProductBasket.vue'),
+      meta: {
+        isProtected: true
+      }
     }
   ]
 }

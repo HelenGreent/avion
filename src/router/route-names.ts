@@ -7,5 +7,6 @@ export const routeNames = {
   productList: 'productList',
   productDetail: 'productDetail',
   aboutUs: 'aboutUs',
+  productBasket: 'productBasket',
   ...authRouteNames
 }

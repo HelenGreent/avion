@@ -1,9 +1,9 @@
 <template>
-  <section class="bg-[url('@/assets/image/authBG2.jpeg')] h-full">
-    <div class="max-w-[500px] m-auto pt-10">
-      <el-card v-loading="loading" class="shadow-none">
+  <section class="bg-[url('@/assets/image/authBG2.jpeg')] h-full bg-no-repeat bg-cover bg-center">
+    <div class="relative w-full h-full flex justify-center items-center max-w-[500px] m-auto">
+      <el-card v-loading="loading" class="md:w-[70%] w-full shadow-none">
         <template #header>
-          <p class="font-clash font-medium text-3xl text-violet-color">Sign Up</p>
+          <p class="font-clash font-medium text-center text-3xl text-violet-color">Sign Up</p>
         </template>
 
         <el-form
@@ -19,7 +19,7 @@
               v-model="formModel.email"
               type="email"
               placeholder="DanielReynolds@gmail.com"
-              class="h-[52px]"
+              class="h-[52px] bg-auth-input"
             />
           </el-form-item>
 
@@ -29,7 +29,7 @@
               type="password"
               autocomplete="off"
               placeholder="Please enter password" show-password
-              class="h-[52px]"
+              class="h-[52px] bg-auth-input"
             />
           </el-form-item>
 
@@ -39,7 +39,7 @@
               type="password"
               autocomplete="off"
               placeholder="Please confirm password" show-password
-              class="h-[52px]"
+              class="h-[52px] bg-auth-input"
             />
           </el-form-item>
 
@@ -56,7 +56,7 @@
           <el-button
             native-type="submit"
             :type="$elComponentType.primary"
-            class="font-satoshi font-normal text-base"
+            class="md:w-full font-satoshi font-normal text-base"
             @click="submitForm(ruleFormRef)"
           >
             Sign Up
@@ -72,6 +72,7 @@ import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import { router } from '@/router'
 import { routeNames } from '@/router/route-names'
+const { register } = useAuthStore()
 
 const ruleFormRef = ref<FormInstance>()
 
@@ -123,10 +124,12 @@ const submitForm = (formEl: FormInstance | undefined) => {
   formEl.validate((valid) => {
     if (valid) {
       loading.value = true
-      console.log('submit!')
-      router.push({ name: routeNames.home })
+
+      register(formModel)
+        .then(() => { router.push({ name: routeNames.login }) })
+        .finally(() => (loading.value = false))
     } else {
-      console.log('error submit!')
+      console.warn('error submit!')
       return false
     }
   })
