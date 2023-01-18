@@ -20,14 +20,14 @@
 <!-- <script lang="ts" setup>
 import { ref } from 'vue'
 
-interface IProductsssss {
+interface IProduct {
   id: number
   img: string
   title: string
   price: string
 }
 
-const productsssss = ref<IProductsssss[]>([
+const products = ref<IProduct[]>([
   {
     id: 1,
     img: '/src/assets/image/product1.jpg',

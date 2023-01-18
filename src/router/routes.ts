@@ -22,7 +22,7 @@ const defaultLayoutRoutes: RouteRecordRaw = {
     },
     {
       name: routeNames.productDetail,
-      path: '/productDetail',
+      path: '/productDetail/:id',
       component: () => import('@/views/products/ProductDetail.vue')
     },
     {

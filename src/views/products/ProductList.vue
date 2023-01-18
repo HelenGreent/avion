@@ -45,7 +45,13 @@
       </div>
     </div>
     <div class="grid-card">
-      <Product v-for="product in products" :key="product.id" :product="product" />
+      <Product
+        v-for="product in products" :key="product.id" :product="product"
+        :product-detail-route="{
+          name: $routeNames.productDetail,
+          params: { id: product.id }
+        }"
+      />
     </div>
     <div class="flex justify-center items-center mb-10">
       <div class="md:w-full md:mx-6 w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
