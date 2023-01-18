@@ -6,7 +6,7 @@
     >
       <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">All products</h2>
     </div>
-    <div class=" lg:h-[270px] flex justify-evenly h-16 text-violet-color">
+    <div class="lg:h-[270px] flex justify-evenly h-16 text-violet-color">
       <div class="lg:flex lg:flex-col py-2 space-x-3">
         <select class="h-[48px] w-[137px]">
           <option>Categories</option>
@@ -58,10 +58,10 @@
 <script lang="ts" setup>
 const productsStore = useProductsStore()
 const { getProducts } = productsStore
-const { products } = storeToRefs(productsStore)
+
+const products = computed(() => productsStore.products)
 
 onMounted(getProducts)
-
 </script>
 
 <style lang="scss" scoped>
