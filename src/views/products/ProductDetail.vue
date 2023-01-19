@@ -1,7 +1,7 @@
 <template>
   <section class="product">
     <div class="w-full">
-      <img :src="product?.image_url" :alt="product?.title" class="max-h-[759px] w-full object-cover">
+      <img :src="product?.image_url" :alt="product?.title" class="max-h-[600px] w-full object-cover">
     </div>
     <div class="sm:px-6 lg:px-14 lg:pt-[28px] px-10">
       <h2 class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color">{{ product?.title }}</h2>
@@ -18,6 +18,23 @@
           <li>Handmade upholstery</li>
           <li>Quality timeless classic</li>
         </ul>
+      </div>
+      <div v-if="product?.width !==''" class="mt-12 mb-4">
+        <span class="font-clash text-violet-color mb-4 leading-5">Dimensions</span>
+        <div class="pt-6 flex justify-between max-w-[241px] text-violet-color">
+          <div class="space-y-3">
+            <span class="font-clash text-sm text-grey-violet">Height</span>
+            <p>{{ product?.width }}</p>
+          </div>
+          <div class="space-y-3">
+            <span class="font-clash text-sm text-grey-violet">Height</span>
+            <p>{{ product?.height }}</p>
+          </div>
+          <div class="space-y-3">
+            <span class="font-clash text-sm text-grey-violet">Depth</span>
+            <p>{{ product?.depth }}</p>
+          </div>
+        </div>
       </div>
       <div class="sm:flex-col lg:mb-4 flex justify-between mt-[27px] space-y-3.5">
         <div class="sm:flex-col flex justify-left space-y-3.5 font-clash text-violet-color">

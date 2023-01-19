@@ -59,7 +59,8 @@
             </p>
             <el-button
               :type="$elComponentType.primary"
-              class="md:mt-9 mt-4 w-[172px] h-[56px] font-satoshi font-normal text-base">
+              class="md:mt-9 mt-4 w-[172px] h-[56px] font-satoshi font-normal text-base"
+            >
               Go to checkout
             </el-button>
           </div>
