@@ -1,23 +1,26 @@
 <template>
   <div>
-    <router-link to="/productDetail">
-      <img :src="img" alt="title" class="block mb-6">
+    <router-link
+      v-if="product.id"
+      :to="productDetailRoute"
+    >
+      <div>
+        <img :src="product.image_url" alt="title" class="h-[375px] block mb-6">
+      </div>
+      <p class="md:mb-0 block mb-2 font-clash text-violet-color text-xl hover:underline">
+        {{ product.title }}
+      </p>
+      <span class="md:text-base mb-2 text-violet-color text-lg">£{{ product.price }}</span>
     </router-link>
-    <router-link to="/productDetail" class="md:mb-0 block mb-2 font-clash text-violet-color text-xl hover:underline">
-      {{ title }}
-    </router-link>
-    <span class="md:text-base mb-2 text-violet-color text-lg">{{ price }}</span>
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { RouteLocationRaw } from 'vue-router'
+import type { IProducts } from '@/types/products.types'
 
-const props = defineProps<{
-  id: number
-  img: string
-  title: string
-  price: string
+defineProps<{
+  product: IProducts
+  productDetailRoute: RouteLocationRaw
 }>()
-
-// console.log(props)
 </script>

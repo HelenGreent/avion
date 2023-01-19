@@ -1,14 +1,13 @@
 <template>
-  <!-- #TODO висить помилка ts -->
   <section>
     <div class="grid-card">
-      <Product
+      <!-- <Product
         v-for="product in products"
         :key="product.id"
         :img="product.img"
         :title="product.title"
         :price="product.price"
-      />
+      /> -->
     </div>
     <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
       <div class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
@@ -18,17 +17,17 @@
   </section>
 </template>
 
-<script lang="ts" setup>
+<!-- <script lang="ts" setup>
 import { ref } from 'vue'
 
-interface IProducts {
+interface IProduct {
   id: number
   img: string
   title: string
   price: string
 }
 
-const products = ref<IProducts[]>([
+const products = ref<IProduct[]>([
   {
     id: 1,
     img: '/src/assets/image/product1.jpg',
@@ -54,7 +53,7 @@ const products = ref<IProducts[]>([
     price: '£399'
   }
 ])
-</script>
+</script> -->
 
 <style lang="scss" scoped>
 .grid-card {

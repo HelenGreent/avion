@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-const colors = require('tailwindcss/colors')
+const colors = require('./tailwind.colors.cjs')
 
 module.exports = {
   content: [
@@ -31,12 +31,7 @@ module.exports = {
       // => @media (max-width: 639px) { ... }
     },
     colors: {
-      white: colors.white,
-      gray: colors.gray,
-      red: colors.red,
-      green: colors.green,
-      orange: colors.orange,
-
+      ...colors,
       'black-color-opacity': 'rgba(0, 0, 0, 0.1)',
       'dark-violet': '#22202E',
       'violet-color': '#2A254B',
