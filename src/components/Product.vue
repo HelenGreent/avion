@@ -19,10 +19,8 @@
 import type { RouteLocationRaw } from 'vue-router'
 import type { IProducts } from '@/types/products.types'
 
-const props = defineProps<{
+defineProps<{
   product: IProducts
   productDetailRoute: RouteLocationRaw
 }>()
-
-console.log(props)
 </script>

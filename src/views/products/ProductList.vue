@@ -46,7 +46,9 @@
     </div>
     <div class="grid-card">
       <Product
-        v-for="product in products" :key="product.id" :product="product"
+        v-for="product in products"
+        :key="product.id"
+        :product="product"
         :product-detail-route="{
           name: $routeNames.productDetail,
           params: { id: product.id }
@@ -63,11 +65,8 @@
 
 <script lang="ts" setup>
 const productsStore = useProductsStore()
-const { getProducts } = productsStore
 
 const products = computed(() => productsStore.products)
-
-onMounted(getProducts)
 </script>
 
 <style lang="scss" scoped>
