@@ -1,11 +1,12 @@
-import { homeRouteNames } from '@/views/homePage/home.routes'
-import { productListRouteNames } from '@/views/productListPage/productListPage.routes'
-import { productDetailRouteNames } from '@/views/productDetailPage/productDetailPage.routes'
-import { aboutUsRouteNames } from '@/views/aboutUsPage/aboutUsPage.routes'
+import { authRouteNames } from '@/views/auth/auth.routes'
 
 export const routeNames = {
-  ...homeRouteNames,
-  ...productListRouteNames,
-  ...productDetailRouteNames,
-  ...aboutUsRouteNames
+  rootPage: 'rootPage',
+
+  home: 'home',
+  productList: 'productList',
+  productDetail: 'productDetail',
+  aboutUs: 'aboutUs',
+  productBasket: 'productBasket',
+  ...authRouteNames
 }

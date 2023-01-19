@@ -1,0 +1,7 @@
+@use "element-plus/theme-chalk/src/form-item";
+
+.el-form-item {
+  &__label {
+    @apply font-satoshi text-violet-color text-2xl;
+  }
+}
