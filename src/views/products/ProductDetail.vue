@@ -83,6 +83,9 @@ const products = computed(() => productsStore.products)
 const product = computed(() => products.value?.find((product) => product.id === route.params.id))
 
 const quantity = ref<any>(product.value?.qty)
+
+console.log(quantity)
+
 const input = ref('')
 
 const changeQuantity = (type: any) => {
@@ -93,7 +96,6 @@ const changeQuantity = (type: any) => {
     quantity.value === 15 ? (quantity.value = 15) : quantity.value++
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
