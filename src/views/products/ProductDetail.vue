@@ -24,13 +24,14 @@
           <span class="sm:mt-0 pt-[13px] pr-[22px] mt-[13px] leading-5">Quantity:</span>
           <div class="sm:w-full w-[122px] h-[46px] flex justify-center items-center bg-light-grey">
             <span class="text-light-grey-icon cursor-pointer" @click="changeQuantity('minus')">-</span>
-            <span class="mx-8"> {{ product?.qty }} </span>
+            <span class="mx-8"> {{ quantity }} </span>
             <span class="text-light-grey-icon cursor-pointer" @click="changeQuantity('plus')">+</span>
           </div>
         </div>
         <el-button
           :type="$elComponentType.primary"
           class="sm:w-full w-[143px] h-[56px] font-satoshi font-normal text-base"
+          @click="basketStore.addProducts(product,quantity)"
         >
           Add to cart
         </el-button>
@@ -77,15 +78,13 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const productsStore = useProductsStore()
+const basketStore = useBasketStore()
 
 const products = computed(() => productsStore.products)
 
 const product = computed(() => products.value?.find((product) => product.id === route.params.id))
 
-const quantity = ref<any>(product.value?.qty)
-
-console.log(quantity)
-
+const quantity = ref<any>('1')
 const input = ref('')
 
 const changeQuantity = (type: any) => {
@@ -93,9 +92,10 @@ const changeQuantity = (type: any) => {
     quantity.value === 1 ? (quantity.value = 1) : quantity.value--
   }
   if (type === 'plus') {
-    quantity.value === 15 ? (quantity.value = 15) : quantity.value++
+    quantity.value === product.value?.qty ? (quantity.value = product.value?.qty) : quantity.value++
   }
 }
+
 </script>
 
 <style lang="scss" scoped>

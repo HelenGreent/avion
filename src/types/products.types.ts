@@ -14,4 +14,5 @@ export interface IProducts {
   title: string
   type: string
   width: string
+  count?: number
 }
