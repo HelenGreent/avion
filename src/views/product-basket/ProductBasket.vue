@@ -1,7 +1,7 @@
 <template>
   <section>
     <template v-if="basketStore.basketProducts.length === 0">
-      <div class="p-6 text-center my-16 text-[20px] text-violet-saturated">
+      <div class="h-[60vh] p-6 text-center my-16 text-[20px] text-violet-saturated">
         <span class="block mb-4">
           Your basket is empty 😔
         </span>

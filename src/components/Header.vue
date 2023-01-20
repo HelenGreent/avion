@@ -16,7 +16,7 @@
                 v-if="basketStore.basketProducts.length"
                 class="absolute right-2/4 top-[63%] w-4 h-4 bg-violet-color rounded-full text-center text-xs
                 text-white-color"
-              > {{ basketStore.basketProducts.length }} </span>
+              > {{ basketStore.totalProductsCount }} </span>
             </router-link>
           </div>
           <div>

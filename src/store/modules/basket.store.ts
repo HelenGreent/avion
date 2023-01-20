@@ -10,13 +10,15 @@ export const useBasketStore = defineStore('basketStore', () => {
     }
   }
   function deleteProduct (index: number) {
-    console.log(index)
     basketProducts.value.splice(index, 1)
   }
+
+  const totalProductsCount = computed(() => basketProducts.value.reduce((total, product) => total + product.count, 0))
 
   return {
     basketProducts,
     addProducts,
-    deleteProduct
+    deleteProduct,
+    totalProductsCount
   }
 })
