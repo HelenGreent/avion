@@ -8,40 +8,40 @@
     </div>
     <div class="lg:h-[270px] flex justify-evenly h-16 text-violet-color">
       <div class="lg:flex lg:flex-col py-2 space-x-3">
-        <select class="h-[48px] w-[137px]">
-          <option>Categories</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
-        <select class="h-[48px] w-[137px]">
-          <option>Product type</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
-        <select class="h-[48px] w-[137px]">
-          <option>Price</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
-        <select class="h-[48px] w-[137px]">
-          <option>Brand</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
+        <el-select
+          v-for="(filter, filterKey) in filters"
+          :key="filter"
+          v-model="selectValue[filterKey]"
+          :placeholder="filterKey"
+          :name="filterKey"
+          clearable
+          class="h-[48px] w-[137px] placeholder-violet-color m-2"
+          @change="filterProducts"
+        >
+          <el-option
+            v-for="option in filter"
+            :key="option.value"
+            :label="option.label"
+            :value="option.value"
+          />
+        </el-select>
       </div>
 
       <div class="flex flex-row py-2">
         <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
-        <select name="date" class="h-[48px] w-[137px] mx-3">
-          <option>Date added</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
+        <el-select
+          v-model="dateValue"
+          class="h-[48px] w-[137px] mx-3 m-2"
+          placeholder="Date added"
+          clearable
+        >
+          <el-option
+            v-for="option in dateOptions"
+            :key="option.value"
+            :label="option.label"
+            :value="option.value"
+          />
+        </el-select>
       </div>
     </div>
     <div class="grid-card">
@@ -67,6 +67,72 @@
 const productsStore = useProductsStore()
 
 const products = computed(() => productsStore.products)
+
+const selectValue = ref({
+  Category: '',
+  Type: '',
+  Price: '',
+  Brand: ''
+})
+const filters = {
+  Category: [
+    { value: 'kitchen', label: 'kitchen' },
+    { value: 'bedroom', label: 'bedroom' },
+    { value: 'office', label: 'office' },
+    { value: 'garden', label: 'garden' },
+    { value: 'living room', label: 'living room' }
+  ],
+  Type: [
+    { value: 'chair', label: 'chair' },
+    { value: 'ceramics', label: 'ceramics' },
+    { value: 'crockery', label: 'crockery' },
+    { value: 'plant-pot', label: 'plant-pot' },
+    { value: 'table', label: 'table' }
+  ],
+  Price: [
+    { value: '0-19', label: '0-19' },
+    { value: '20-39', label: '20-39' },
+    { value: '40-59', label: '40-59' },
+    { value: '60-79', label: '60-79' },
+    { value: '80-99', label: '80-99' },
+    { value: '100', label: '100+' }
+  ],
+  Brand: [
+    { value: 'Henckels', label: 'Henckels' },
+    { value: 'Wusthof', label: 'Wusthof' },
+    { value: 'Cutco', label: 'Cutco' },
+    { value: 'Joseph Joseph', label: 'Joseph Joseph' },
+    { value: 'Calphalon', label: 'Calphalon' },
+    { value: 'Cuisinart', label: 'Cuisinart' },
+    { value: 'KitchenAid', label: 'KitchenAid' },
+    { value: 'Viners', label: 'Viners' }
+  ]
+}
+
+const dateValue = ref('')
+
+const dateOptions = [
+  {
+    value: 'Option1',
+    label: 'Option1'
+  },
+  {
+    value: 'Option2',
+    label: 'Option2'
+  },
+  {
+    value: 'Option3',
+    label: 'Option3'
+  }
+]
+
+async function filterProducts () {
+  try {
+    await productsStore.filterProducts(query)
+  } catch (error) {
+    console.log(error)
+  }
+}
 </script>
 
 <style lang="scss" scoped>

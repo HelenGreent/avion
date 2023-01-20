@@ -7,8 +7,13 @@ export const useProductsStore = defineStore('productsStore', () => {
     products.value = await productsService.getProducts()
   }
 
+  async function filterProducts (query: string) {
+    products.value = await productsService.filterProducts(query)
+  }
+
   return {
     products,
-    getProducts
+    getProducts,
+    filterProducts
   }
 })
