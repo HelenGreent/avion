@@ -122,6 +122,7 @@
     "useAttrs": true,
     "useAuthStore": true,
     "useBase64": true,
+    "useBasketStore": true,
     "useBattery": true,
     "useBluetooth": true,
     "useBreakpoints": true,

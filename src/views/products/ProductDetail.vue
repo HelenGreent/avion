@@ -1,7 +1,7 @@
 <template>
   <section class="product">
     <div class="w-full">
-      <img :src="product?.image_url" :alt="product?.title" class="max-h-[759px] w-full object-cover">
+      <img :src="product?.image_url" :alt="product?.title" class="max-h-[600px] w-full object-cover">
     </div>
     <div class="sm:px-6 lg:px-14 lg:pt-[28px] px-10">
       <h2 class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color">{{ product?.title }}</h2>
@@ -19,18 +19,36 @@
           <li>Quality timeless classic</li>
         </ul>
       </div>
+      <div class="mt-12 mb-4">
+        <span class="font-clash text-violet-color mb-4 leading-5">Dimensions</span>
+        <div class="pt-6 flex justify-between max-w-[241px] text-violet-color">
+          <div class="space-y-3">
+            <span class="font-clash text-sm text-grey-violet">Width</span>
+            <p>{{ product?.width }}</p>
+          </div>
+          <div class="sm:border-r border-gray-600 space-y-3">
+            <span class="font-clash text-sm text-grey-violet">Height</span>
+            <p>{{ product?.height }}</p>
+          </div>
+          <div class="space-y-3">
+            <span class="font-clash text-sm text-grey-violet">Depth</span>
+            <p>{{ product?.depth }}</p>
+          </div>
+        </div>
+      </div>
       <div class="sm:flex-col lg:mb-4 flex justify-between mt-[27px] space-y-3.5">
         <div class="sm:flex-col flex justify-left space-y-3.5 font-clash text-violet-color">
           <span class="sm:mt-0 pt-[13px] pr-[22px] mt-[13px] leading-5">Quantity:</span>
           <div class="sm:w-full w-[122px] h-[46px] flex justify-center items-center bg-light-grey">
             <span class="text-light-grey-icon cursor-pointer" @click="changeQuantity('minus')">-</span>
-            <span class="mx-8"> {{ product?.qty }} </span>
+            <span class="mx-8"> {{ quantity }} </span>
             <span class="text-light-grey-icon cursor-pointer" @click="changeQuantity('plus')">+</span>
           </div>
         </div>
         <el-button
           :type="$elComponentType.primary"
           class="sm:w-full w-[143px] h-[56px] font-satoshi font-normal text-base"
+          @click="basketStore.addProducts(product as IBasketProduct, quantity)"
         >
           Add to cart
         </el-button>
@@ -51,7 +69,7 @@
         Join the club and get the benefits
       </h2>
       <span class="leading-[150%] text-violet-color">
-        <span class="md:inline block">Sign up for our newsletter and receive exclusive offers on new </span>
+        <span class="md:inline block">Sign up for our newsletter and receive exclusive offers on new</span>
         ranges, sales, pop up stores and more
       </span>
       <div class="w-full flex justify-center mt-[72px] pb-[54px]">
@@ -72,30 +90,30 @@
 </template>
 
 <script lang="ts" setup>
+import type { IBasketProduct } from '@/types/products.types'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const productsStore = useProductsStore()
+const basketStore = useBasketStore()
 
 const products = computed(() => productsStore.products)
 
 const product = computed(() => products.value?.find((product) => product.id === route.params.id))
 
-const quantity = ref<any>(product.value?.qty)
-
-console.log(quantity)
-
+const quantity = ref<number>(1)
 const input = ref('')
 
-const changeQuantity = (type: any) => {
+const changeQuantity = (type: string) => {
   if (type === 'minus') {
     quantity.value === 1 ? (quantity.value = 1) : quantity.value--
   }
   if (type === 'plus') {
-    quantity.value === 15 ? (quantity.value = 15) : quantity.value++
+    quantity.value === product.value?.qty ? (quantity.value = product.value?.qty) : quantity.value++
   }
 }
+
 </script>
 
 <style lang="scss" scoped>

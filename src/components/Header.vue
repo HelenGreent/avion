@@ -2,16 +2,22 @@
   <header class="w-full h-[132px] bg-white-color sticky top-0">
     <div class="m-auto max-w-[1440px]">
       <div
-        class="h-[70px] flex justify-between items-center border-b border-solid border-black-color-opacity mx-[28px]">
+        class="h-[70px] flex justify-between items-center border-b border-solid border-black-color-opacity mx-[28px]"
+      >
         <div>
           <img src="@/assets/icons/search.svg" alt="search" class="cursor-pointer">
         </div>
         <a href="#" class="font-clash text-dark-violet text-2xl text-center hover:underline">Avion</a>
         <div class="flex items-center">
-          <div class="mr-4">
-            <a href="#">
+          <div class="mr-4 relative">
+            <router-link to="/productBasket">
               <img src="@/assets/icons/basket.svg" alt="basket">
-            </a>
+              <span
+                v-if="basketStore.basketProducts.length"
+                class="absolute right-2/4 top-[63%] w-4 h-4 bg-violet-color rounded-full text-center text-xs
+                text-white-color"
+              > {{ basketStore.totalProductsCount }} </span>
+            </router-link>
           </div>
           <div>
             <a href="#">
@@ -43,6 +49,8 @@
 </template>
 
 <script setup lang="ts">
+const basketStore = useBasketStore()
+
 interface IMenu {
   name: string
   path: string
