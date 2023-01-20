@@ -9,9 +9,14 @@ export const useBasketStore = defineStore('basketStore', () => {
       basketProducts.value.push({ ...product, count })
     }
   }
+  function deleteProduct (index: number) {
+    console.log(index)
+    basketProducts.value.splice(index, 1)
+  }
 
   return {
     basketProducts,
-    addProducts
+    addProducts,
+    deleteProduct
   }
 })

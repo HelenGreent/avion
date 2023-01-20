@@ -32,14 +32,14 @@
               <img :src="item.image_url" :alt="item.brand" class="w-full max-w-[133px]">
               <div class="max-w-[201px] flex flex-col pl-5 pt-3 space-y-2">
                 <span class="font-clash text-[20px]">{{ item.title }}</span>
-                <p class="sm:truncate text-sm">
+                <p class="md:truncate text-sm">
                   {{ item.description }}
                 </p>
                 <span>£{{ item.price }}</span>
               </div>
             </div>
             <div
-              class="md:ml-[133px] md:mt-[-46px] w-[122px] h-[46px] flex justify-center items-center pt-3 font-clash
+              class="md:ml-[133px] md:mt-[-46px] w-[122px] h-[46px] flex justify-center items-center pt-1 font-clash
              text-violet-color"
             >
               <span
@@ -55,6 +55,12 @@
               >
                 +
               </span>
+            </div>
+            <div
+              class="mt-3 py-[2px] px-3 text-sm text-violet-color border rounded-md
+            hover:bg-light-grey ease-in-out duration-300 active:bg-gray-100"
+            >
+              <p @click="basketStore.deleteProduct(index)">Delete</p>
             </div>
             <p class="md:hidden font-clash pt-3">£{{ item.price*(item.count || 1) }}</p>
           </div>
