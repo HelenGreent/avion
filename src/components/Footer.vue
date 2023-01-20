@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="md:block md:text-center md:pt-5 flex justify-between pt-6">
-        <span class="font-sm">Copyright 2022 Avion LTD</span>
+        <span class="font-sm">Copyright 2023 Avion LTD</span>
         <div class="md:hidden  md:mt-2 flex items-center">
           <a href="#" class="mx-3 hover:opacity-80">
             <img src="@/assets/icons/linkedin.svg" alt="linkedin">

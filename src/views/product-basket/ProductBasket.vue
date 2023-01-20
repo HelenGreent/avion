@@ -57,10 +57,14 @@
               </span>
             </div>
             <div
-              class="mt-3 py-[2px] px-3 text-sm text-violet-color border rounded-md
-            hover:bg-light-grey ease-in-out duration-300 active:bg-gray-100"
+              class="mt-3 py-[2px] px-3 text-sm cursor-pointer"
             >
-              <p @click="basketStore.deleteProduct(index)">Delete</p>
+              <img
+                src="@/assets/icons/basket.svg"
+                alt="basket"
+                class="cursor-pointer"
+                @click="basketStore.deleteProduct(index)"
+              >
             </div>
             <p class="md:hidden font-clash pt-3">£{{ item.price*(item.count || 1) }}</p>
           </div>
