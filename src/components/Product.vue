@@ -17,10 +17,10 @@
 
 <script lang="ts" setup>
 import type { RouteLocationRaw } from 'vue-router'
-import type { IProducts } from '@/types/products.types'
+import type { IProduct } from '@/types/products.types'
 
 defineProps<{
-  product: IProducts
+  product: IProduct
   productDetailRoute: RouteLocationRaw
 }>()
 </script>

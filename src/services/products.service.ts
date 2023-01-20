@@ -1,8 +1,8 @@
-import type { IProducts } from '@/types/products.types'
+import type { IProduct } from '@/types/products.types'
 
 class ProductsService {
   getProducts () {
-    return useHttp.get<IProducts[]>('rest/v1/products?select=*')
+    return useHttp.get<IProduct[]>('rest/v1/products?select=*')
   }
 }
 

@@ -42,17 +42,27 @@
               class="md:ml-[133px] md:mt-[-46px] w-[122px] h-[46px] flex justify-center items-center pt-3 font-clash
              text-violet-color"
             >
-              <span class="text-light-grey-icon cursor-pointer">-</span>
+              <span
+                class="text-light-grey-icon cursor-pointer"
+                @click="item.count === 1 ? item.count = 1 : item.count--"
+              >
+                -
+              </span>
               <span class="mx-8"> {{ item.count }} </span>
-              <span class="text-light-grey-icon cursor-pointer">+</span>
+              <span
+                class="text-light-grey-icon cursor-pointer"
+                @click="item.count === item.qty ? item.count = item.qty : item.count++"
+              >
+                +
+              </span>
             </div>
-            <p class="md:hidden font-clash pt-3">£{{ item.price }}</p>
+            <p class="md:hidden font-clash pt-3">£{{ item.price*(item.count || 1) }}</p>
           </div>
 
           <div class="flex flex-col items-end">
             <div class="flex items-center mt-7 font-clash leading-[140%]">
               <p class="mr-4 text-[20px] text-violet-saturated">Subtotal</p>
-              <!-- <span class="text-2xl text-violet-color">£ {{ productTotalCost }}</span> -->
+              <span class="text-2xl text-violet-color">£ {{ productTotalCost }}</span>
             </div>
             <p class="sm:text-right mt-2 leading-[150%] text-violet-saturated">
               Taxes and shipping are calculated at checkout
@@ -73,17 +83,9 @@
 <script setup lang="ts">
 const basketStore = useBasketStore()
 
-// const productTotalCost = computed(() => {
-//   let result: any = []
-//   if (basketStore.basketProducts.length) {
-//     for (item of basketStore.basketProducts) {
-//     result.push(item.price * item.count)
-//   }
-//     result = result.reduce((sum:number, el:number) => return sum + el, 0)
-//   return result
-// } else {
-//   return 0
-// }
-// })
+const basketProducts = computed(() => basketStore.basketProducts)
 
+const productTotalCost = computed(() => basketProducts.value.reduce((total, product) => {
+  return total + product.price * product.count
+}, 0))
 </script>

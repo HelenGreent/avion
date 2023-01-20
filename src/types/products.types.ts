@@ -1,4 +1,4 @@
-export interface IProducts {
+export interface IProduct {
   brand: string
   category: string
   created_at: string
@@ -14,5 +14,8 @@ export interface IProducts {
   title: string
   type: string
   width: string
-  count?: number
+}
+
+export interface IBasketProduct extends IProduct {
+  count: number
 }

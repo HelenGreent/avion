@@ -19,14 +19,14 @@
           <li>Quality timeless classic</li>
         </ul>
       </div>
-      <div v-if="product?.width !==''" class="mt-12 mb-4">
+      <div class="mt-12 mb-4">
         <span class="font-clash text-violet-color mb-4 leading-5">Dimensions</span>
         <div class="pt-6 flex justify-between max-w-[241px] text-violet-color">
           <div class="space-y-3">
-            <span class="font-clash text-sm text-grey-violet">Height</span>
+            <span class="font-clash text-sm text-grey-violet">Width</span>
             <p>{{ product?.width }}</p>
           </div>
-          <div class="space-y-3">
+          <div class="sm:border-r border-gray-600 space-y-3">
             <span class="font-clash text-sm text-grey-violet">Height</span>
             <p>{{ product?.height }}</p>
           </div>
@@ -48,7 +48,7 @@
         <el-button
           :type="$elComponentType.primary"
           class="sm:w-full w-[143px] h-[56px] font-satoshi font-normal text-base"
-          @click="basketStore.addProducts(product,quantity)"
+          @click="basketStore.addProducts(product as IBasketProduct, quantity)"
         >
           Add to cart
         </el-button>
@@ -69,7 +69,7 @@
         Join the club and get the benefits
       </h2>
       <span class="leading-[150%] text-violet-color">
-        <span class="md:inline block">Sign up for our newsletter and receive exclusive offers on new </span>
+        <span class="md:inline block">Sign up for our newsletter and receive exclusive offers on new</span>
         ranges, sales, pop up stores and more
       </span>
       <div class="w-full flex justify-center mt-[72px] pb-[54px]">
@@ -90,6 +90,7 @@
 </template>
 
 <script lang="ts" setup>
+import type { IBasketProduct } from '@/types/products.types'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -101,10 +102,10 @@ const products = computed(() => productsStore.products)
 
 const product = computed(() => products.value?.find((product) => product.id === route.params.id))
 
-const quantity = ref<any>('1')
+const quantity = ref<number>(1)
 const input = ref('')
 
-const changeQuantity = (type: any) => {
+const changeQuantity = (type: string) => {
   if (type === 'minus') {
     quantity.value === 1 ? (quantity.value = 1) : quantity.value--
   }
