@@ -28,5 +28,5 @@ export interface IFilterParams {
 }
 
 export interface IQueryParams {
-  dateSort: 'Sort Oldest to Newest' | 'Sort Newest to Oldest' | 'Random Order'
+  dateSort: 'Sort Oldest to Newest' | 'Sort Newest to Oldest' | ''
 }

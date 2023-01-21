@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full h-[132px] bg-white-color sticky top-0">
+  <header class="w-full h-[132px] bg-white-color sticky top-0 z-10">
     <div class="m-auto max-w-[1440px]">
       <div
         class="h-[70px] flex justify-between items-center border-b border-solid border-black-color-opacity mx-[28px]"

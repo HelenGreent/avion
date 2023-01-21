@@ -138,15 +138,11 @@ const dateOptions: {label: string; value: string}[] = [
   {
     value: 'Sort Newest to Oldest',
     label: 'Sort Newest to Oldest (Z->A)'
-  },
-  {
-    value: 'Random Order',
-    label: 'Random Order'
   }
 ]
 
 const queryParams = ref<IQueryParams>({
-  dateSort: 'Random Order'
+  dateSort: ''
 })
 
 const products = computed(() => {
