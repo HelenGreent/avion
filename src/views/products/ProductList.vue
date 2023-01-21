@@ -6,7 +6,7 @@
     >
       <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">All products</h2>
     </div>
-    <div class="lg:h-[270px] flex justify-evenly h-16 text-violet-color">
+    <div class="flex justify-between h-16 text-violet-color">
       <div class="lg:flex lg:flex-col py-2 space-x-3">
         <el-select
           v-for="(filter, filterKey) in filters"
@@ -15,7 +15,7 @@
           :placeholder="filterKey"
           :name="filterKey"
           clearable
-          class="h-[48px] w-[137px] placeholder-violet-color m-2"
+          class="ml-8 m-2 placeholder-violet-color"
           @click="filterProducts"
         >
           <el-option
@@ -31,7 +31,7 @@
         <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
         <el-select
           v-model="queryParams.dateSort"
-          class="h-[48px] w-[137px] mx-3 m-2"
+          class="mr-8 m-2"
           placeholder="Date added"
           clearable
           @click="sortByDate"
@@ -133,11 +133,11 @@ async function filterProducts () {
 const dateOptions: {label: string; value: string}[] = [
   {
     value: 'Sort Oldest to Newest',
-    label: 'Sort Oldest to Newest (A->Z)'
+    label: 'Sort Oldest to Newest'
   },
   {
     value: 'Sort Newest to Oldest',
-    label: 'Sort Newest to Oldest (Z->A)'
+    label: 'Sort Newest to Oldest'
   }
 ]
 
