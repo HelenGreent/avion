@@ -16,7 +16,7 @@
           :name="filterKey"
           clearable
           class="h-[48px] w-[137px] placeholder-violet-color m-2"
-          @change="filterProducts"
+          @click="filterProducts"
         >
           <el-option
             v-for="option in filter"
@@ -30,16 +30,17 @@
       <div class="flex flex-row py-2">
         <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
         <el-select
-          v-model="dateValue"
+          v-model="queryParams.dateSort"
           class="h-[48px] w-[137px] mx-3 m-2"
           placeholder="Date added"
           clearable
+          @click="sortByDate"
         >
           <el-option
-            v-for="option in dateOptions"
-            :key="option.value"
-            :label="option.label"
-            :value="option.value"
+            v-for="{label, value} in dateOptions"
+            :key="value"
+            :label="label"
+            :value="value"
           />
         </el-select>
       </div>
@@ -64,6 +65,8 @@
 </template>
 
 <script lang="ts" setup>
+import type { IProduct } from '@/types/products.types'
+
 const productsStore = useProductsStore()
 
 const products = computed(() => productsStore.products)
@@ -109,22 +112,41 @@ const filters = {
   ]
 }
 
-const dateValue = ref('')
-
-const dateOptions = [
+const dateOptions: {label: string; value: string}[] = [
   {
-    value: 'Option1',
-    label: 'Option1'
+    value: 'Sort Oldest to Newest',
+    label: 'Sort Oldest to Newest (A->Z)'
   },
   {
-    value: 'Option2',
-    label: 'Option2'
+    value: 'Sort Newest to Oldest',
+    label: 'Sort Newest to Oldest (Z->A)'
   },
   {
-    value: 'Option3',
-    label: 'Option3'
+    value: 'All',
+    label: 'All'
   }
 ]
+
+interface IQueryParams {
+  dateSort: 'Sort Oldest to Newest' | 'Sort Newest to Oldest' | 'All'
+}
+
+const queryParams = ref<IQueryParams>({
+  dateSort: 'All'
+})
+
+const sortByDate = computed<IProduct[]>(() => {
+  const sortArray = [...products.value]
+  if (queryParams.value.dateSort === 'Sort Oldest to Newest') {
+    sortArray.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)
+    )
+  }
+  else if (queryParams.value.dateSort === 'Sort Newest to Oldest') {
+    sortArray.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)
+    )
+  }
+  console.log(sortArray)
+})
 
 async function filterProducts () {
   try {
