@@ -138,11 +138,11 @@ const queryParams = ref<IQueryParams>({
 const sortByDate = computed<IProduct[]>(() => {
   const sortArray = [...products.value]
   if (queryParams.value.dateSort === 'Sort Oldest to Newest') {
-    sortArray.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)
+    sortArray.sort((a, b) => new Date(a.created_at).valueOf() - new Date(b.created_at).valueOf()
     )
   }
   else if (queryParams.value.dateSort === 'Sort Newest to Oldest') {
-    sortArray.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)
+    sortArray.sort((a, b) => new Date(b.created_at).valueOf() - new Date(a.created_at).valueOf()
     )
   }
   console.log(sortArray)
