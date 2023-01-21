@@ -11,7 +11,7 @@
         <el-select
           v-for="(filter, filterKey) in filters"
           :key="filter"
-          v-model="selectValue[filterKey]"
+          v-model="filterValue[filterKey]"
           :placeholder="filterKey"
           :name="filterKey"
           clearable
@@ -65,34 +65,32 @@
 </template>
 
 <script lang="ts" setup>
-import type { IProduct } from '@/types/products.types'
+import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.types'
 
 const productsStore = useProductsStore()
 
-const products = computed(() => productsStore.products)
-
-const selectValue = ref({
-  Category: '',
-  Type: '',
-  Price: '',
-  Brand: ''
+const filterValue = ref<IFilterParams>({
+  category: '',
+  type: '',
+  price: '',
+  brand: ''
 })
 const filters = {
-  Category: [
+  category: [
     { value: 'kitchen', label: 'kitchen' },
     { value: 'bedroom', label: 'bedroom' },
     { value: 'office', label: 'office' },
     { value: 'garden', label: 'garden' },
     { value: 'living room', label: 'living room' }
   ],
-  Type: [
+  type: [
     { value: 'chair', label: 'chair' },
     { value: 'ceramics', label: 'ceramics' },
     { value: 'crockery', label: 'crockery' },
     { value: 'plant-pot', label: 'plant-pot' },
     { value: 'table', label: 'table' }
   ],
-  Price: [
+  price: [
     { value: '0-19', label: '0-19' },
     { value: '20-39', label: '20-39' },
     { value: '40-59', label: '40-59' },
@@ -100,7 +98,7 @@ const filters = {
     { value: '80-99', label: '80-99' },
     { value: '100', label: '100+' }
   ],
-  Brand: [
+  brand: [
     { value: 'Henckels', label: 'Henckels' },
     { value: 'Wusthof', label: 'Wusthof' },
     { value: 'Cutco', label: 'Cutco' },
@@ -110,6 +108,26 @@ const filters = {
     { value: 'KitchenAid', label: 'KitchenAid' },
     { value: 'Viners', label: 'Viners' }
   ]
+}
+
+function calculateQuery () {
+  const [gt, lt] = filterValue.value.price ? filterValue.value.price.split('-') : []
+
+  const category = filterValue.value.category ? `&category=fts.%27${filterValue.value.category}%27` : ''
+  const type = filterValue.value.type ? `&type=fts.%27${filterValue.value.type}%27` : ''
+  const price = filterValue.value.price ? lt ? `&price=gt.${gt}&price=lt.${lt}` : `&price=gt.${gt}` : ''
+  const brand = filterValue.value.brand ? `&brand=fts.%27${filterValue.value.brand}%27` : ''
+
+  return `${category}${type}${price}${brand}`
+}
+
+async function filterProducts () {
+  const query = calculateQuery()
+  try {
+    await productsStore.filterProducts(query)
+  } catch (error) {
+    console.warn(error)
+  }
 }
 
 const dateOptions: {label: string; value: string}[] = [
@@ -122,21 +140,39 @@ const dateOptions: {label: string; value: string}[] = [
     label: 'Sort Newest to Oldest (Z->A)'
   },
   {
-    value: 'All',
-    label: 'All'
+    value: 'Random Order',
+    label: 'Random Order'
   }
 ]
 
-interface IQueryParams {
-  dateSort: 'Sort Oldest to Newest' | 'Sort Newest to Oldest' | 'All'
-}
-
 const queryParams = ref<IQueryParams>({
-  dateSort: 'All'
+  dateSort: 'Random Order'
+})
+
+const products = computed(() => {
+  return sortByDate.value.map(product => ({
+    id: product.id,
+    title: product.title,
+    src: product.image_url,
+    image_url: product.image_url,
+    alt: product.title,
+    price: product.price,
+    brand: product.brand,
+    category: product.category,
+    created_at: product.created_at,
+    depth: product.depth,
+    description: product.description,
+    diameter: product.diameter,
+    height: product.height,
+    length: product.length,
+    qty: product.qty,
+    type: product.type,
+    width: product.width
+  }))
 })
 
 const sortByDate = computed<IProduct[]>(() => {
-  const sortArray = [...products.value]
+  const sortArray = [...productsStore.products]
   if (queryParams.value.dateSort === 'Sort Oldest to Newest') {
     sortArray.sort((a, b) => new Date(a.created_at).valueOf() - new Date(b.created_at).valueOf()
     )
@@ -144,16 +180,8 @@ const sortByDate = computed<IProduct[]>(() => {
     sortArray.sort((a, b) => new Date(b.created_at).valueOf() - new Date(a.created_at).valueOf()
     )
   }
-  console.log(sortArray)
+  return sortArray
 })
-
-async function filterProducts () {
-  try {
-    await productsStore.filterProducts(query)
-  } catch (error) {
-    console.log(error)
-  }
-}
 </script>
 
 <style lang="scss" scoped>

@@ -19,3 +19,14 @@ export interface IProduct {
 export interface IBasketProduct extends IProduct {
   count: number
 }
+
+export interface IFilterParams {
+  category: string
+  type: string
+  price: string
+  brand: string
+}
+
+export interface IQueryParams {
+  dateSort: 'Sort Oldest to Newest' | 'Sort Newest to Oldest' | 'Random Order'
+}
