@@ -8,40 +8,41 @@
     </div>
     <div class="lg:h-[270px] flex justify-evenly h-16 text-violet-color">
       <div class="lg:flex lg:flex-col py-2 space-x-3">
-        <select class="h-[48px] w-[137px]">
-          <option>Categories</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
-        <select class="h-[48px] w-[137px]">
-          <option>Product type</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
-        <select class="h-[48px] w-[137px]">
-          <option>Price</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
-        <select class="h-[48px] w-[137px]">
-          <option>Brand</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
+        <el-select
+          v-for="(filter, filterKey) in filters"
+          :key="filter"
+          v-model="selectValue[filterKey]"
+          :placeholder="filterKey"
+          :name="filterKey"
+          clearable
+          class="h-[48px] w-[137px] placeholder-violet-color m-2"
+          @click="filterProducts"
+        >
+          <el-option
+            v-for="option in filter"
+            :key="option.value"
+            :label="option.label"
+            :value="option.value"
+          />
+        </el-select>
       </div>
 
       <div class="flex flex-row py-2">
         <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
-        <select name="date" class="h-[48px] w-[137px] mx-3">
-          <option>Date added</option>
-          <option>S</option>
-          <option>W</option>
-          <option>P</option>
-        </select>
+        <el-select
+          v-model="queryParams.dateSort"
+          class="h-[48px] w-[137px] mx-3 m-2"
+          placeholder="Date added"
+          clearable
+          @click="sortByDate"
+        >
+          <el-option
+            v-for="{label, value} in dateOptions"
+            :key="value"
+            :label="label"
+            :value="value"
+          />
+        </el-select>
       </div>
     </div>
     <div class="grid-card">
@@ -64,9 +65,95 @@
 </template>
 
 <script lang="ts" setup>
+import type { IProduct } from '@/types/products.types'
+
 const productsStore = useProductsStore()
 
 const products = computed(() => productsStore.products)
+
+const selectValue = ref({
+  Category: '',
+  Type: '',
+  Price: '',
+  Brand: ''
+})
+const filters = {
+  Category: [
+    { value: 'kitchen', label: 'kitchen' },
+    { value: 'bedroom', label: 'bedroom' },
+    { value: 'office', label: 'office' },
+    { value: 'garden', label: 'garden' },
+    { value: 'living room', label: 'living room' }
+  ],
+  Type: [
+    { value: 'chair', label: 'chair' },
+    { value: 'ceramics', label: 'ceramics' },
+    { value: 'crockery', label: 'crockery' },
+    { value: 'plant-pot', label: 'plant-pot' },
+    { value: 'table', label: 'table' }
+  ],
+  Price: [
+    { value: '0-19', label: '0-19' },
+    { value: '20-39', label: '20-39' },
+    { value: '40-59', label: '40-59' },
+    { value: '60-79', label: '60-79' },
+    { value: '80-99', label: '80-99' },
+    { value: '100', label: '100+' }
+  ],
+  Brand: [
+    { value: 'Henckels', label: 'Henckels' },
+    { value: 'Wusthof', label: 'Wusthof' },
+    { value: 'Cutco', label: 'Cutco' },
+    { value: 'Joseph Joseph', label: 'Joseph Joseph' },
+    { value: 'Calphalon', label: 'Calphalon' },
+    { value: 'Cuisinart', label: 'Cuisinart' },
+    { value: 'KitchenAid', label: 'KitchenAid' },
+    { value: 'Viners', label: 'Viners' }
+  ]
+}
+
+const dateOptions: {label: string; value: string}[] = [
+  {
+    value: 'Sort Oldest to Newest',
+    label: 'Sort Oldest to Newest (A->Z)'
+  },
+  {
+    value: 'Sort Newest to Oldest',
+    label: 'Sort Newest to Oldest (Z->A)'
+  },
+  {
+    value: 'All',
+    label: 'All'
+  }
+]
+
+interface IQueryParams {
+  dateSort: 'Sort Oldest to Newest' | 'Sort Newest to Oldest' | 'All'
+}
+
+const queryParams = ref<IQueryParams>({
+  dateSort: 'All'
+})
+
+const sortByDate = computed<IProduct[]>(() => {
+  const sortArray = [...products.value]
+  if (queryParams.value.dateSort === 'Sort Oldest to Newest') {
+    sortArray.sort((a, b) => new Date(a.created_at).valueOf() - new Date(b.created_at).valueOf()
+    )
+  } else if (queryParams.value.dateSort === 'Sort Newest to Oldest') {
+    sortArray.sort((a, b) => new Date(b.created_at).valueOf() - new Date(a.created_at).valueOf()
+    )
+  }
+  console.log(sortArray)
+})
+
+async function filterProducts () {
+  try {
+    await productsStore.filterProducts(query)
+  } catch (error) {
+    console.log(error)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
