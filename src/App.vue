@@ -4,15 +4,15 @@
 
 <script lang="ts" setup>
 const productsStore = useProductsStore()
-const { getProducts } = productsStore
 
-async function getProductsList () {
+async function getProductsListRange () {
+  const query = `&offset=0&limit=9`
   try {
-    await getProducts()
+    await productsStore.getProducts(query)
   } catch (error) {
     console.log(error)
   }
 }
 
-onMounted(getProductsList)
+onMounted(getProductsListRange)
 </script>

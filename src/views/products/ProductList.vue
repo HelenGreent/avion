@@ -6,17 +6,17 @@
     >
       <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">All products</h2>
     </div>
-    <div class="lg:h-[270px] flex justify-evenly h-16 text-violet-color">
+    <div class="flex justify-between h-16 text-violet-color">
       <div class="lg:flex lg:flex-col py-2 space-x-3">
         <el-select
           v-for="(filter, filterKey) in filters"
           :key="filter"
-          v-model="selectValue[filterKey]"
+          v-model="filterValue[filterKey]"
           :placeholder="filterKey"
           :name="filterKey"
           clearable
-          class="h-[48px] w-[137px] placeholder-violet-color m-2"
-          @click="filterProducts"
+          class="ml-8 m-2 placeholder-violet-color"
+          @change="filterProducts"
         >
           <el-option
             v-for="option in filter"
@@ -31,7 +31,7 @@
         <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
         <el-select
           v-model="queryParams.dateSort"
-          class="h-[48px] w-[137px] mx-3 m-2"
+          class="mr-8 m-2"
           placeholder="Date added"
           clearable
           @click="sortByDate"
@@ -58,41 +58,40 @@
     </div>
     <div class="flex justify-center items-center mb-10">
       <div class="md:w-full md:mx-6 w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
-        <router-link to="/" class="text-violet-color hover:underline">View collection</router-link>
+        <span class="text-violet-color hover:underline" @click="getProductsList">View collection</span>
       </div>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import type { IProduct } from '@/types/products.types'
+import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.types'
 
 const productsStore = useProductsStore()
+const { getMoreProducts } = productsStore
 
-const products = computed(() => productsStore.products)
-
-const selectValue = ref({
-  Category: '',
-  Type: '',
-  Price: '',
-  Brand: ''
+const filterValue = ref<IFilterParams>({
+  category: '',
+  type: '',
+  price: '',
+  brand: ''
 })
 const filters = {
-  Category: [
+  category: [
     { value: 'kitchen', label: 'kitchen' },
     { value: 'bedroom', label: 'bedroom' },
     { value: 'office', label: 'office' },
     { value: 'garden', label: 'garden' },
     { value: 'living room', label: 'living room' }
   ],
-  Type: [
+  type: [
     { value: 'chair', label: 'chair' },
     { value: 'ceramics', label: 'ceramics' },
     { value: 'crockery', label: 'crockery' },
     { value: 'plant-pot', label: 'plant-pot' },
     { value: 'table', label: 'table' }
   ],
-  Price: [
+  price: [
     { value: '0-19', label: '0-19' },
     { value: '20-39', label: '20-39' },
     { value: '40-59', label: '40-59' },
@@ -100,7 +99,7 @@ const filters = {
     { value: '80-99', label: '80-99' },
     { value: '100', label: '100+' }
   ],
-  Brand: [
+  brand: [
     { value: 'Henckels', label: 'Henckels' },
     { value: 'Wusthof', label: 'Wusthof' },
     { value: 'Cutco', label: 'Cutco' },
@@ -112,31 +111,73 @@ const filters = {
   ]
 }
 
+function calculateQuery () {
+  const [gt, lt] = filterValue.value.price ? filterValue.value.price.split('-') : []
+
+  const category = filterValue.value.category ? `&category=fts.%27${filterValue.value.category}%27` : ''
+  const type = filterValue.value.type ? `&type=fts.%27${filterValue.value.type}%27` : ''
+  const price = filterValue.value.price ? lt ? `&price=gt.${gt}&price=lt.${lt}` : `&price=gt.${gt}` : ''
+  const brand = filterValue.value.brand ? `&brand=fts.%27${filterValue.value.brand}%27` : ''
+
+  return `${category}${type}${price}${brand}`
+}
+
+async function filterProducts () {
+  const query = calculateQuery()
+  try {
+    await productsStore.filterProducts(query)
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
+async function getProductsList () {
+  try {
+    await getMoreProducts()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const dateOptions: {label: string; value: string}[] = [
   {
     value: 'Sort Oldest to Newest',
-    label: 'Sort Oldest to Newest (A->Z)'
+    label: 'Sort Oldest to Newest'
   },
   {
     value: 'Sort Newest to Oldest',
-    label: 'Sort Newest to Oldest (Z->A)'
-  },
-  {
-    value: 'All',
-    label: 'All'
+    label: 'Sort Newest to Oldest'
   }
 ]
 
-interface IQueryParams {
-  dateSort: 'Sort Oldest to Newest' | 'Sort Newest to Oldest' | 'All'
-}
-
 const queryParams = ref<IQueryParams>({
-  dateSort: 'All'
+  dateSort: ''
+})
+
+const products = computed(() => {
+  return sortByDate.value.map(product => ({
+    id: product.id,
+    title: product.title,
+    src: product.image_url,
+    image_url: product.image_url,
+    alt: product.title,
+    price: product.price,
+    brand: product.brand,
+    category: product.category,
+    created_at: product.created_at,
+    depth: product.depth,
+    description: product.description,
+    diameter: product.diameter,
+    height: product.height,
+    length: product.length,
+    qty: product.qty,
+    type: product.type,
+    width: product.width
+  }))
 })
 
 const sortByDate = computed<IProduct[]>(() => {
-  const sortArray = [...products.value]
+  const sortArray = [...productsStore.products]
   if (queryParams.value.dateSort === 'Sort Oldest to Newest') {
     sortArray.sort((a, b) => new Date(a.created_at).valueOf() - new Date(b.created_at).valueOf()
     )
@@ -144,16 +185,8 @@ const sortByDate = computed<IProduct[]>(() => {
     sortArray.sort((a, b) => new Date(b.created_at).valueOf() - new Date(a.created_at).valueOf()
     )
   }
-  console.log(sortArray)
+  return sortArray
 })
-
-async function filterProducts () {
-  try {
-    await productsStore.filterProducts(query)
-  } catch (error) {
-    console.log(error)
-  }
-}
 </script>
 
 <style lang="scss" scoped>
