@@ -16,7 +16,7 @@
           :name="filterKey"
           clearable
           class="ml-8 m-2 placeholder-violet-color"
-          @click="filterProducts"
+          @change="filterProducts"
         >
           <el-option
             v-for="option in filter"
@@ -58,7 +58,7 @@
     </div>
     <div class="flex justify-center items-center mb-10">
       <div class="md:w-full md:mx-6 w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
-        <router-link to="/" class="text-violet-color hover:underline">View collection</router-link>
+        <span class="text-violet-color hover:underline" @click="getProductsList">View collection</span>
       </div>
     </div>
   </section>
@@ -68,6 +68,7 @@
 import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.types'
 
 const productsStore = useProductsStore()
+const { getMoreProducts } = productsStore
 
 const filterValue = ref<IFilterParams>({
   category: '',
@@ -127,6 +128,14 @@ async function filterProducts () {
     await productsStore.filterProducts(query)
   } catch (error) {
     console.warn(error)
+  }
+}
+
+async function getProductsList () {
+  try {
+    await getMoreProducts()
+  } catch (error) {
+    console.log(error)
   }
 }
 
