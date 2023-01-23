@@ -33,7 +33,7 @@ export const useAuthStore = defineStore('authStore', () => {
   function logout () {
     localStorage.removeItem('si-token')
     localStorage.removeItem('ref-token')
-    window.location.href = router.resolve({ name: routeNames.login }).href
+    window.location.href = router.resolve({ name: routeNames.home }).href
   }
 
   return {

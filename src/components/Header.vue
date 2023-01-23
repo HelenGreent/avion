@@ -19,11 +19,34 @@
               > {{ basketStore.totalProductsCount }} </span>
             </router-link>
           </div>
-          <div>
+          <el-dropdown trigger="click" :hide-on-click="false">
             <a href="#">
               <img src="@/assets/icons/user.svg" alt="user">
             </a>
-          </div>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <template v-if="accessToken">
+                  <el-dropdown-item>
+                    <span>user data</span>
+                  </el-dropdown-item>
+                  <el-dropdown-item class="text-link-color hover:underline" @click="logout">
+                    <p>Log Out</p>
+                  </el-dropdown-item>
+                </template>
+                <template v-else>
+                  <el-dropdown-item disabled><span>You are not logged in. . .</span></el-dropdown-item>
+                  <el-dropdown-item>
+                    <router-link
+                      :to="{name: $routeNames.login}"
+                      class="text-link-color hover:underline"
+                    >
+                      Login
+                    </router-link>
+                  </el-dropdown-item>
+                </template>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
       </div>
       <div class="md:hidden h-[62px] flex justify-center items-center">
@@ -50,6 +73,7 @@
 
 <script setup lang="ts">
 const basketStore = useBasketStore()
+const { logout, accessToken } = useAuthStore()
 
 interface IMenu {
   name: string
