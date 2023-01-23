@@ -34,14 +34,14 @@
             Get in touch
           </el-button>
         </div>
-        <div>
-          <img src="@/assets/image/interior1.jpg" alt="interior" class="w-[720px]">
+        <div class="overflow-hidden">
+          <img src="@/assets/image/interior1.jpg" alt="interior" class="w-[720px] transition-transform hover:scale-110">
         </div>
       </div>
 
       <div class="1xl:flex-col 1xl:items-center flex justify-between">
-        <div>
-          <img src="@/assets/image/interior2.jpg" alt="interior" class="w-[720px]">
+        <div class="overflow-hidden">
+          <img src="@/assets/image/interior2.jpg" alt="interior" class="w-[720px] transition-transform hover:scale-110">
         </div>
         <div
           class="sm:pt-6 sm:px-6 1xl:pt-12 1xl:pl-6 1xl:pb-0 flex flex-col justify-between

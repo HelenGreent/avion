@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <main class="max-w-[1440px] m-auto">
+    <main class="max-w-[1440px] m-auto scroll-smooth">
       <router-view />
     </main>
     <Footer />

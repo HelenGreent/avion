@@ -7,7 +7,12 @@
         <div>
           <img src="@/assets/icons/search.svg" alt="search" class="cursor-pointer">
         </div>
-        <a href="#" class="font-clash text-dark-violet text-2xl text-center hover:underline">Avion</a>
+        <router-link
+          to="/aboutUs"
+          class="font-clash text-dark-violet text-2xl text-center hover:underline"
+        >
+          Avion
+        </router-link>
         <div class="flex items-center">
           <div class="mr-4 relative">
             <router-link to="/productBasket">

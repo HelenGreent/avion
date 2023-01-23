@@ -10,9 +10,12 @@
       /> -->
     </div>
     <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
-      <div class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
-        <router-link to="/" class="text-violet-color hover:underline">View collection</router-link>
-      </div>
+      <router-link
+        to="/productList"
+        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer"
+      >
+        <p class="text-violet-color hover:underline">View collection</p>
+      </router-link>
     </div>
   </section>
 </template>

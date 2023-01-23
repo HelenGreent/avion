@@ -42,6 +42,7 @@
               :type="$elComponentType.primary"
               class="xs:w-[123px] w-[143px] flex-none bg-white-color font-normal text-violet-color text-base
               hover:bg-white-light-opacity-hover hover:text-violet-color active:bg-white-light-opacity-active"
+              @click="onClick"
             >
               Sign up
             </el-button>
@@ -79,6 +80,14 @@
 import { ref } from 'vue'
 
 const input = ref('')
+
+const onClick = () => {
+  ElNotification({
+    title: 'Your email has been sent',
+    message: 'Welcome to the club. Sincerely yours, Avion',
+    type: 'success'
+  })
+}
 </script>
 
 <style scoped>
