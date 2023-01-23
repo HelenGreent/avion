@@ -12,9 +12,10 @@
     <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
       <router-link
         to="/productList"
-        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer"
+        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
+        hover:bg-black-color-opacity ease-in-out duration-300"
       >
-        <p class="text-violet-color hover:underline">View collection</p>
+        <p class="text-violet-color">View collection</p>
       </router-link>
     </div>
   </section>

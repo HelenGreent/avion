@@ -57,8 +57,12 @@
       />
     </div>
     <div class="flex justify-center items-center mb-10">
-      <div class="md:w-full md:mx-6 w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
-        <span class="text-violet-color hover:underline" @click="getProductsList">View collection</span>
+      <div
+        class="md:w-full md:mx-6 w-[170px] h-[56px] flex justify-center items-center bg-light-grey
+         cursor-pointer hover:bg-black-color-opacity ease-in-out duration-300"
+        @click="getProductsList"
+      >
+        <span class="text-violet-color">View collection</span>
       </div>
     </div>
   </section>
@@ -155,25 +159,7 @@ const queryParams = ref<IQueryParams>({
 })
 
 const products = computed(() => {
-  return sortByDate.value.map(product => ({
-    id: product.id,
-    title: product.title,
-    src: product.image_url,
-    image_url: product.image_url,
-    alt: product.title,
-    price: product.price,
-    brand: product.brand,
-    category: product.category,
-    created_at: product.created_at,
-    depth: product.depth,
-    description: product.description,
-    diameter: product.diameter,
-    height: product.height,
-    length: product.length,
-    qty: product.qty,
-    type: product.type,
-    width: product.width
-  }))
+  return sortByDate.value.map(product => product)
 })
 
 const sortByDate = computed<IProduct[]>(() => {

@@ -17,9 +17,10 @@
       </div>
       <router-link
         to="/productList"
-        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer"
+        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
+        hover:bg-black-color-opacity ease-in-out duration-300"
       >
-        <p class="text-violet-color hover:underline">View collection</p>
+        <p class="text-violet-color">View collection</p>
       </router-link>
       <img src="@/assets/image/hero.jpg" alt="hero image" class="md:block md:mt-8 h-[304px] object-cover hidden">
     </div>
@@ -45,9 +46,10 @@
       </div>
       <router-link
         to="/aboutUs"
-        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-violet-opacity cursor-pointer"
+        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-violet-opacity cursor-pointer
+        hover:bg-middle-violet ease-in-out duration-300"
       >
-        <p class="hover:underline">View collection</p>
+        <p>View collection</p>
       </router-link>
     </div>
     <div class="overflow-hidden">
