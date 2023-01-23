@@ -20,15 +20,29 @@
           <span>Large discounts</span>
         </div>
       </div>
-      <form class="flex justify-center">
-        <input type="text" placeholder="your@email.com" class="h-[56px] grow px-8 border-none">
-        <div class="w-[118px] h-[56px] flex justify-center items-center bg-violet-color cursor-pointer">
-          <button type="submit">Sign up</button>
-        </div>
-      </form>
+      <div class="w-full flex justify-center">
+        <el-input
+          v-model="input"
+          type="email"
+          placeholder="your@email.com"
+          class="md:w-full md:max-w-[350px] h-[53px] grow bg-white-color  text-base  border-none"
+        />
+        <el-button
+          :type="$elComponentType.primary"
+          class="xs:w-[123px] w-[143px] flex-none bg-violet-color font-normal text-white-color text-base"
+        >
+          Sign up
+        </el-button>
+      </div>
     </div>
   </section>
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const input = ref('')
+</script>
 
 <style lang="scss" scoped>
 .subscribe-check {
