@@ -1,28 +1,30 @@
 <template>
-  <section
-    class="md:h-auto md:bg-none md:p-0 md:justify-center bg-[url('@/assets/image/hero.jpg')] h-[704px] bg-cover
-    pr-20 flex items-center justify-end"
-  >
+  <section class="container">
     <div
-      class="sm:px-6 md:pb-8 md:pt-0 md:min-h-0 md:block  md:p-0 flex flex-col justify-between items-start
-      h-[444px] max-w-[630px] pl-[56px] pr-[61px] py-[47px] bg-white-color"
+      class="md:h-auto md:bg-none md:p-0 md:justify-center bg-[url('@/assets/image/hero.jpg')] h-[704px] bg-cover
+    pr-20 flex items-center justify-end"
     >
-      <div class="md:mb-5">
-        <h2 class="mb-5 md:text-2xl font-clash font-normal text-dark-violet text-[32px] leading-10">
-          Luxury homeware for people who love timeless design quality
-        </h2>
-        <span class="md:mb-8 md:text-base text-[18px] text-middle-violet">
-          Shop the new Spring 2022 collection today
-        </span>
-      </div>
-      <router-link
-        to="/productList"
-        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
-        hover:bg-black-color-opacity ease-in-out duration-300"
+      <div
+        class="sm:px-6 md:pb-8 md:pt-0 md:min-h-0 md:block  md:p-0 flex flex-col justify-between items-start
+      h-[444px] max-w-[630px] pl-[56px] pr-[61px] py-[47px] bg-white-color"
       >
-        <p class="text-violet-color">View collection</p>
-      </router-link>
-      <img src="@/assets/image/hero.jpg" alt="hero image" class="md:block md:mt-8 h-[304px] object-cover hidden">
+        <div class="md:mb-5">
+          <h2 class="mb-5 md:text-2xl font-clash font-normal text-dark-violet text-[32px] leading-10">
+            Luxury homeware for people who love timeless design quality
+          </h2>
+          <span class="md:mb-8 md:text-base text-[18px] text-middle-violet">
+            Shop the new Spring 2022 collection today
+          </span>
+        </div>
+        <router-link
+          to="/productList"
+          class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
+        hover:bg-black-color-opacity ease-in-out duration-300"
+        >
+          <p class="text-violet-color">View collection</p>
+        </router-link>
+        <img src="@/assets/image/hero.jpg" alt="hero image" class="md:block md:mt-8 h-[304px] object-cover hidden">
+      </div>
     </div>
   </section>
 
@@ -31,7 +33,8 @@
     <ProductsCollection />
   </div>
 
-  <section class="grid-card">
+  <section class="container">
+    <div class="grid-card">
     <div
       class="md:px-8 md:pt-9 md:h-auto flex flex-col justify-between h-[478px] max-w-[630px]
       pl-[56px] pr-[61px] py-[47px] bg-violet-color text-white-color"
@@ -56,8 +59,9 @@
       <img
         src="@/assets/image/livingRoom.jpg"
         alt="livingRoom"
-        class="md:mt-6 md:mb-8 md:h-auto h-full object-cover transition-transform hover:scale-110"
+        class="md:mt-6 md:mb-8 md:h-auto h-full object-cover scale-img"
       >
+    </div>
     </div>
   </section>
 

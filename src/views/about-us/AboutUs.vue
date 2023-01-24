@@ -1,13 +1,13 @@
 <template>
   <section>
-    <div class="1xl:px-6 sm:text-left md:py-8 pl-6 pr-[51px] pt-[67px] pb-20 text-center">
+    <div class="container 1xl:px-6 sm:text-left md:py-8 pl-6 pr-[51px] pt-[67px] pb-20 text-center">
       <h2 class="md:text-[32px] font-clash text-4xl leading-[50px]">
         A brand built on the love of craftmanship,
         <span class="md:inline block">quality and outstanding customer service</span>
       </h2>
     </div>
     <div>
-      <div class="1xl:flex-col 1xl:items-center flex justify-between">
+      <div class="container 1xl:flex-col 1xl:items-center flex justify-between">
         <div
           class="sm:pt-6 sm:px-6 1xl:pt-12 1xl:pl-6 1xl:pb-[36px] flex flex-col justify-between
           items-start max-w-[721px] pt-[72px] pl-[84px] pr-[100px] pb-[54px]"
@@ -34,14 +34,14 @@
             Get in touch
           </el-button>
         </div>
-        <div class="overflow-hidden">
-          <img src="@/assets/image/interior1.jpg" alt="interior" class="w-[720px] transition-transform hover:scale-110">
+        <div class="overflow-hidden max-w-[720px]">
+          <img src="@/assets/image/interior1.jpg" alt="interior" class="w-[720px] scale-img">
         </div>
       </div>
 
-      <div class="1xl:flex-col 1xl:items-center flex justify-between">
-        <div class="overflow-hidden">
-          <img src="@/assets/image/interior2.jpg" alt="interior" class="w-[720px] transition-transform hover:scale-110">
+      <div class="container 1xl:flex-col 1xl:items-center flex justify-between">
+        <div class="overflow-hidden max-w-[720px]">
+          <img src="@/assets/image/interior2.jpg" alt="interior" class="w-[720px] scale-img">
         </div>
         <div
           class="sm:pt-6 sm:px-6 1xl:pt-12 1xl:pl-6 1xl:pb-0 flex flex-col justify-between

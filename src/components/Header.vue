@@ -10,7 +10,7 @@
         </form>
 
         <router-link
-          to="/aboutUs"
+          to="/home"
           class="font-clash text-dark-violet text-2xl text-center hover:underline"
         >
           Avion
