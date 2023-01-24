@@ -35,33 +35,33 @@
 
   <section class="container">
     <div class="grid-card">
-    <div
-      class="md:px-8 md:pt-9 md:h-auto flex flex-col justify-between h-[478px] max-w-[630px]
-      pl-[56px] pr-[61px] py-[47px] bg-violet-color text-white-color"
-    >
-      <div class="md:pb-14">
-        <h2 class="md:text-xl mb-5 font-clash font-normal text-[32px] leading-10">
-          It started with a small idea
-        </h2>
-        <span class="md:text-sm text-lg">A global brand with local beginnings,
-          our story begain in a small studio in South London in early 2014
-        </span>
-      </div>
-      <router-link
-        to="/aboutUs"
-        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-violet-opacity cursor-pointer
+      <div
+        class="md:px-8 md:pt-9 md:h-auto flex flex-col justify-between h-[478px] max-w-[630px]
+          pl-[56px] pr-[61px] py-[47px] bg-violet-color text-white-color"
+      >
+        <div class="md:pb-14">
+          <h2 class="md:text-xl mb-5 font-clash font-normal text-[32px] leading-10">
+            It started with a small idea
+          </h2>
+          <span class="md:text-sm text-lg">A global brand with local beginnings,
+            our story begain in a small studio in South London in early 2014
+          </span>
+        </div>
+        <router-link
+          to="/aboutUs"
+          class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-violet-opacity cursor-pointer
         hover:bg-middle-violet ease-in-out duration-300"
-      >
-        <p>View collection</p>
-      </router-link>
-    </div>
-    <div class="overflow-hidden">
-      <img
-        src="@/assets/image/livingRoom.jpg"
-        alt="livingRoom"
-        class="md:mt-6 md:mb-8 md:h-auto h-full object-cover scale-img"
-      >
-    </div>
+        >
+          <p>View collection</p>
+        </router-link>
+      </div>
+      <div class="overflow-hidden">
+        <img
+          src="@/assets/image/livingRoom.jpg"
+          alt="livingRoom"
+          class="md:mt-6 md:mb-8 md:h-auto h-full object-cover scale-img"
+        >
+      </div>
     </div>
   </section>
 

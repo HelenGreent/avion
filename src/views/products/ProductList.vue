@@ -50,23 +50,23 @@
         </div>
       </div>
       <div class="grid-card">
-      <Product
-        v-for="product in products"
-        :key="product.id"
-        :product="product"
-        :product-detail-route="{
-          name: $routeNames.productDetail,
-          params: { id: product.id }
-        }"
-      />
+        <Product
+          v-for="product in products"
+          :key="product.id"
+          :product="product"
+          :product-detail-route="{
+            name: $routeNames.productDetail,
+            params: { id: product.id }
+          }"
+        />
       </div>
       <div v-if="paginationStep != productLength" class="flex justify-center items-center mb-10">
-      <div
-        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
-        hover:bg-black-color-opacity ease-in-out duration-300"
-      >
-        <span class="text-violet-color" @click="getMoreProducts">View collection</span>
-      </div>
+        <div
+          class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
+         hover:bg-black-color-opacity ease-in-out duration-300"
+        >
+          <span class="text-violet-color" @click="getMoreProducts">View collection</span>
+        </div>
       </div>
     </div>
   </section>
