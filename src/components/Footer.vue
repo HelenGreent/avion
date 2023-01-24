@@ -34,12 +34,15 @@
           <div class="w-full flex justify-center mt-[72px] pb-[54px]">
             <el-input
               v-model="input"
+              type="text"
               placeholder="your@email.com"
-              class="sm:w-full h-[53px] grow bg-white-opacity  text-base  border-none"
+              class="md:w-full md:max-w-[350px] h-[53px] grow bg-white-opacity  text-base  border-none"
             />
             <el-button
               :type="$elComponentType.primary"
-              class="xs:w-[123px] w-[143px] flex-none bg-white-color font-normal text-violet-color text-base"
+              class="xs:w-[123px] w-[143px] flex-none bg-white-color font-normal text-violet-color text-base
+              hover:bg-white-light-opacity-hover hover:text-violet-color active:bg-white-light-opacity-active"
+              @click="onSent"
             >
               Sign up
             </el-button>
@@ -77,6 +80,14 @@
 import { ref } from 'vue'
 
 const input = ref('')
+
+const onSent = () => {
+  ElNotification({
+    title: 'Your email has been sent',
+    message: 'Welcome to the club. Sincerely yours, Avion',
+    type: 'success'
+  })
+}
 </script>
 
 <style scoped>

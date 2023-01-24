@@ -15,9 +15,13 @@
           Shop the new Spring 2022 collection today
         </span>
       </div>
-      <div class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
-        <router-link to="/" class="text-violet-color hover:underline">View collection</router-link>
-      </div>
+      <router-link
+        to="/productList"
+        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
+        hover:bg-black-color-opacity ease-in-out duration-300"
+      >
+        <p class="text-violet-color">View collection</p>
+      </router-link>
       <img src="@/assets/image/hero.jpg" alt="hero image" class="md:block md:mt-8 h-[304px] object-cover hidden">
     </div>
   </section>
@@ -40,11 +44,21 @@
           our story begain in a small studio in South London in early 2014
         </span>
       </div>
-      <div class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-violet-opacity cursor-pointer">
-        <router-link to="/" class="hover:underline">View collection</router-link>
-      </div>
+      <router-link
+        to="/aboutUs"
+        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-violet-opacity cursor-pointer
+        hover:bg-middle-violet ease-in-out duration-300"
+      >
+        <p>View collection</p>
+      </router-link>
     </div>
-    <img src="@/assets/image/livingRoom.jpg" alt="livingRoom" class="md:mt-6 md:mb-8 md:h-auto h-full object-cover">
+    <div class="overflow-hidden">
+      <img
+        src="@/assets/image/livingRoom.jpg"
+        alt="livingRoom"
+        class="md:mt-6 md:mb-8 md:h-auto h-full object-cover transition-transform hover:scale-110"
+      >
+    </div>
   </section>
 
   <Subscribe />

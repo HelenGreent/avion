@@ -7,7 +7,12 @@
         <div>
           <img src="@/assets/icons/search.svg" alt="search" class="cursor-pointer">
         </div>
-        <a href="#" class="font-clash text-dark-violet text-2xl text-center hover:underline">Avion</a>
+        <router-link
+          to="/aboutUs"
+          class="font-clash text-dark-violet text-2xl text-center hover:underline"
+        >
+          Avion
+        </router-link>
         <div class="flex items-center">
           <div class="mr-4 relative">
             <router-link to="/productBasket">
@@ -49,7 +54,9 @@
           </el-dropdown>
         </div>
       </div>
-      <div class="md:hidden h-[62px] flex justify-center items-center">
+      <div
+        class="md:hidden md:h-0 h-[62px] flex justify-center items-center"
+      >
         <router-link
           v-for="(item, index) in menu" :key="index" :to="item.path"
           class="mx-[22px] text-light-violet hover:underline"
@@ -57,7 +64,7 @@
           {{ item.name }}
         </router-link>
       </div>
-      <div class="md:flex md:justify-center h-[62px] hidden">
+      <div class="md:inline-block md:absolute md:top-[23px] md:right-[85px] hidden">
         <button type="submit">
           <svg
             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#726E8D"

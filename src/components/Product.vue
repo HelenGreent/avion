@@ -5,7 +5,10 @@
       :to="productDetailRoute"
     >
       <div>
-        <img :src="product.image_url" alt="title" class="h-[375px] block mb-6">
+        <img
+          :src="product.image_url" alt="title" class="transition ease-in-out delay-150 hover:-translate-y-1
+          hover:scale-110 duration-300 h-[375px] block mb-6"
+        >
       </div>
       <p class="md:mb-0 block mb-2 font-clash text-violet-color text-xl hover:underline">
         {{ product.title }}
