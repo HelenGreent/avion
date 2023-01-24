@@ -129,9 +129,13 @@ function calculateQuery () {
   const type = filterValue.value.type ? `&type=fts.%27${filterValue.value.type}%27` : ''
   const price = filterValue.value.price ? lt ? `&price=gt.${gt}&price=lt.${lt}` : `&price=gt.${gt}` : ''
   const brand = filterValue.value.brand ? `&brand=fts.%27${filterValue.value.brand}%27` : ''
-  const tittle = replacer ? `&title=fts.%27${replacer}%27` : ''
 
-  return `${category}${type}${price}${brand}${tittle}`
+  if (replacer.length) {
+    const tittle = replacer ? `&title=fts.%27${replacer}%27` : ''
+    return `${category}${type}${price}${brand}${tittle}`
+  } else {
+    return `${category}${type}${price}${brand}`
+  }
 }
 
 async function filterProducts () {
