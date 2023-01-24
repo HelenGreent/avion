@@ -58,8 +58,11 @@
       />
     </div>
     <div v-if="paginationStep != productLength" class="flex justify-center items-center mb-10">
-      <div class="md:w-full md:mx-6 w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
-        <span class="text-violet-color hover:underline" @click="getMoreProducts">View collection</span>
+      <div
+        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
+        hover:bg-black-color-opacity ease-in-out duration-300"
+      >
+        <span class="text-violet-color" @click="getMoreProducts">View collection</span>
       </div>
     </div>
   </section>
@@ -116,13 +119,15 @@ const filters = {
 
 function calculateQuery () {
   const [gt, lt] = filterValue.value.price ? filterValue.value.price.split('-') : []
+  const replacer = productsStore.searchValue ? productsStore.searchValue.trim().replaceAll(' ', '+') : []
 
   const category = filterValue.value.category ? `&category=fts.%27${filterValue.value.category}%27` : ''
   const type = filterValue.value.type ? `&type=fts.%27${filterValue.value.type}%27` : ''
   const price = filterValue.value.price ? lt ? `&price=gt.${gt}&price=lt.${lt}` : `&price=gt.${gt}` : ''
   const brand = filterValue.value.brand ? `&brand=fts.%27${filterValue.value.brand}%27` : ''
+  const tittle = replacer ? `&title=fts.%27${replacer}%27` : ''
 
-  return `${category}${type}${price}${brand}`
+  return `${category}${type}${price}${brand}${tittle}`
 }
 
 async function filterProducts () {
