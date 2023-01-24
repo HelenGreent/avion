@@ -9,7 +9,8 @@
         </div> -->
         <form class="flex justify-start">
           <img src="@/assets/icons/search.svg" alt="search" class="cursor-pointer" @click.prevent="findByTitle">
-          <el-search v-model="searchValue" placeholder="Search by title" clearable />
+          <el-input v-model="productsStore.searchValue" placeholder="Search by title" clearable/>
+          <!-- <p> {{ productsStore.searchValue2 }}</p> -->
         </form>
         <router-link
           to="/aboutUs"
@@ -90,12 +91,10 @@ const basketStore = useBasketStore()
 const { logout, accessToken } = useAuthStore()
 const productsStore = useProductsStore()
 
-const searchValue = ref('')
-
 function calculateQuery () {
-  const replacer = searchValue.value ? searchValue.value.trim().replaceAll(' ', '+') : []
+  const replacer = productsStore.searchValue2 ? productsStore.searchValue2.trim().replaceAll(' ', '+') : []
   console.log(replacer)
-  return searchValue.value ? `&title=fts.%27${replacer}%27` : ''
+  return productsStore.searchValue2 ? `&title=fts.%27${replacer}%27` : ''
 }
 
 async function findByTitle () {
