@@ -14,12 +14,14 @@ export {
 }
 
 router.beforeEach((to, from, next) => {
-  const { accessToken, logout } = useAuthStore()
+  const { accessToken } = useAuthStore()
 
   if (!accessToken && to.meta.isProtected) {
-    next(false)
-    return logout()
+    return ElNotification({
+      title: 'You are not logged in 🔐',
+      type: 'warning',
+      duration: 1500
+    }) && next(false)
   }
-
   next()
 })

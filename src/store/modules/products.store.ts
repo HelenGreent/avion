@@ -2,23 +2,26 @@ import type { IProduct } from '@/types/products.types'
 
 export const useProductsStore = defineStore('productsStore', () => {
   const products = ref<IProduct[]>([])
+  const productsListLength = ref(0)
 
   async function getProducts (query: string) {
     products.value = await productsService.getProducts(query)
   }
 
   async function filterProducts (query: string) {
-    products.value = await productsService.filterProducts(query)
+    products.value = await productsService.getProducts(query)
   }
 
-  async function getMoreProducts () {
-    products.value = await productsService.getMoreProducts()
+  async function getProductsListLength () {
+    const allProducts = await productsService.getProducts()
+    productsListLength.value = allProducts.length
   }
 
   return {
     products,
+    productsListLength,
     getProducts,
     filterProducts,
-    getMoreProducts
+    getProductsListLength
   }
 })

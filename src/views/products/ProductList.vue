@@ -57,13 +57,9 @@
         }"
       />
     </div>
-    <div class="flex justify-center items-center mb-10">
-      <div
-        class="md:w-full md:mx-6 w-[170px] h-[56px] flex justify-center items-center bg-light-grey
-         cursor-pointer hover:bg-black-color-opacity ease-in-out duration-300"
-        @click="getProductsList"
-      >
-        <span class="text-violet-color">View collection</span>
+    <div v-if="paginationStep != productLength" class="flex justify-center items-center mb-10">
+      <div class="md:w-full md:mx-6 w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
+        <span class="text-violet-color hover:underline" @click="getMoreProducts">View collection</span>
       </div>
     </div>
   </section>
@@ -73,7 +69,9 @@
 import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.types'
 
 const productsStore = useProductsStore()
-const { getMoreProducts } = productsStore
+
+let paginationStep = 10
+const productLength = computed(() => productsStore.productsListLength)
 
 const filterValue = ref<IFilterParams>({
   category: '',
@@ -136,9 +134,16 @@ async function filterProducts () {
   }
 }
 
-async function getProductsList () {
+function calculatePaginationStep () {
+  if ((productLength.value - paginationStep) >= 10) paginationStep += 10
+  else paginationStep = paginationStep + (productLength.value - paginationStep)
+  return paginationStep
+}
+
+async function getMoreProducts () {
+  const query = `${calculateQuery()}&offset=0&limit=${calculatePaginationStep()}`
   try {
-    await getMoreProducts()
+    await productsStore.getProducts(query)
   } catch (error) {
     console.log(error)
   }
@@ -174,6 +179,16 @@ const sortByDate = computed<IProduct[]>(() => {
   }
   return sortArray
 })
+
+async function getProductsListLength () {
+  try {
+    await productsStore.getProductsListLength()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+onMounted(getProductsListLength)
 </script>
 
 <style lang="scss" scoped>

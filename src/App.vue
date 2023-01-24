@@ -6,7 +6,7 @@
 const productsStore = useProductsStore()
 
 async function getProductsListRange () {
-  const query = `&offset=0&limit=9`
+  const query = '&offset=0&limit=10'
   try {
     await productsStore.getProducts(query)
   } catch (error) {
