@@ -10,7 +10,7 @@
       <div class="lg:flex lg:flex-col py-2 space-x-3">
         <el-select
           v-for="(filter, filterKey) in filters"
-          :key="filter"
+          :key="filterKey"
           v-model="filterValue[filterKey]"
           :placeholder="filterKey"
           :name="filterKey"
@@ -31,7 +31,7 @@
         <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
         <el-select
           v-model="queryParams.dateSort"
-          class="mr-8 m-2"
+          class="mr-8 m-2 w-[90px]"
           placeholder="Date added"
           clearable
           @click="sortByDate"
@@ -41,6 +41,7 @@
             :key="value"
             :label="label"
             :value="value"
+            class="text-violet-color"
           />
         </el-select>
       </div>
@@ -180,9 +181,8 @@ const sortByDate = computed<IProduct[]>(() => {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 20px;
-  row-gap: 28px;
+  row-gap: 48px;
   padding: 28px 80px;
-  margin-bottom: 48px;
 }
 
 @media screen and (max-width: 1024px) {
