@@ -4,9 +4,13 @@
       <div
         class="h-[70px] flex justify-between items-center border-b border-solid border-black-color-opacity mx-[28px]"
       >
-        <div>
+        <!-- <div>
           <img src="@/assets/icons/search.svg" alt="search" class="cursor-pointer">
-        </div>
+        </div> -->
+        <form class="flex justify-start">
+          <img src="@/assets/icons/search.svg" alt="search" class="cursor-pointer" @click.prevent="findByTitle">
+          <el-search v-model="searchValue" placeholder="Search by title" clearable />
+        </form>
         <router-link
           to="/aboutUs"
           class="font-clash text-dark-violet text-2xl text-center hover:underline"
@@ -79,8 +83,31 @@
 </template>
 
 <script setup lang="ts">
+import { router } from '@/router'
+import { routeNames } from '@/router/route-names'
+
 const basketStore = useBasketStore()
 const { logout, accessToken } = useAuthStore()
+const productsStore = useProductsStore()
+
+const searchValue = ref('')
+
+function calculateQuery () {
+  const replacer = searchValue.value ? searchValue.value.trim().replaceAll(' ', '+') : []
+  console.log(replacer)
+  return searchValue.value ? `&title=fts.%27${replacer}%27` : ''
+}
+
+async function findByTitle () {
+  const query = calculateQuery()
+  try {
+    await productsStore.getProducts(query)
+  } catch (error) {
+    console.warn(error)
+  } finally {
+    router.push({ name: routeNames.productList })
+  }
+}
 
 interface IMenu {
   name: string
