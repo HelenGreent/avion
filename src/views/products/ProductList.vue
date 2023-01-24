@@ -4,49 +4,52 @@
       class="xl:bg-[url('@/assets/image/productListHeroMobile.jpg')]
       bg-[url('@/assets/image/productListHero.jpg')] h-[209px] bg-cover"
     >
-      <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">All products</h2>
-    </div>
-    <div class="flex justify-between h-16 text-violet-color">
-      <div class="lg:flex lg:flex-col py-2 space-x-3">
-        <el-select
-          v-for="(filter, filterKey) in filters"
-          :key="filterKey"
-          v-model="filterValue[filterKey]"
-          :placeholder="filterKey"
-          :name="filterKey"
-          clearable
-          class="ml-8 m-2 placeholder-violet-color"
-          @change="filterProducts"
-        >
-          <el-option
-            v-for="option in filter"
-            :key="option.value"
-            :label="option.label"
-            :value="option.value"
-          />
-        </el-select>
+      <div class="container">
+        <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">All products</h2>
       </div>
+    </div>
+    <div class="container">
+      <div class="flex justify-between h-16 text-violet-color">
+        <div class="lg:flex lg:flex-col py-2 space-x-3">
+          <el-select
+            v-for="(filter, filterKey) in filters"
+            :key="filterKey"
+            v-model="filterValue[filterKey]"
+            :placeholder="filterKey"
+            :name="filterKey"
+            clearable
+            class="ml-8 m-2 placeholder-violet-color"
+            @change="filterProducts"
+          >
+            <el-option
+              v-for="option in filter"
+              :key="option.value"
+              :label="option.label"
+              :value="option.value"
+            />
+          </el-select>
+        </div>
 
-      <div class="flex flex-row py-2">
-        <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
-        <el-select
-          v-model="queryParams.dateSort"
-          class="mr-8 m-2 w-[90px]"
-          placeholder="Date added"
-          clearable
-          @click="sortByDate"
-        >
-          <el-option
-            v-for="{label, value} in dateOptions"
-            :key="value"
-            :label="label"
-            :value="value"
-            class="text-violet-color"
-          />
-        </el-select>
+        <div class="flex flex-row py-2">
+          <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
+          <el-select
+            v-model="queryParams.dateSort"
+            class="mr-8 m-2 w-[90px]"
+            placeholder="Date added"
+            clearable
+            @click="sortByDate"
+          >
+            <el-option
+              v-for="{label, value} in dateOptions"
+              :key="value"
+              :label="label"
+              :value="value"
+              class="text-violet-color"
+            />
+          </el-select>
+        </div>
       </div>
-    </div>
-    <div class="grid-card">
+      <div class="grid-card">
       <Product
         v-for="product in products"
         :key="product.id"
@@ -56,13 +59,14 @@
           params: { id: product.id }
         }"
       />
-    </div>
-    <div v-if="paginationStep != productLength" class="flex justify-center items-center mb-10">
+      </div>
+      <div v-if="paginationStep != productLength" class="flex justify-center items-center mb-10">
       <div
         class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
         hover:bg-black-color-opacity ease-in-out duration-300"
       >
         <span class="text-violet-color" @click="getMoreProducts">View collection</span>
+      </div>
       </div>
     </div>
   </section>
