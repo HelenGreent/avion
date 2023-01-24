@@ -27,8 +27,12 @@ module.exports = {
       sm: { max: '639px' },
       // => @media (max-width: 639px) { ... }
 
+      ms: { max: '500px' },
+      // => @media (max-width: 420px) { ... }
+
       xs: { max: '420px' }
-      // => @media (max-width: 639px) { ... }
+      // => @media (max-width: 420px) { ... }
+
     },
     colors: {
       ...colors,

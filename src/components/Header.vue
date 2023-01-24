@@ -5,16 +5,18 @@
         class="h-[70px] flex justify-between items-center border-b border-solid border-black-color-opacity mx-[28px]"
       >
         <form class="flex justify-start">
-          <img src="@/assets/icons/search.svg" alt="search" class="cursor-pointer" @click.prevent="findByTitle">
-          <el-input v-model="productsStore.searchValue" placeholder="Search by title" clearable />
+          <img src="@/assets/icons/search.svg" alt="search" class="mr-2 cursor-pointer" @click.prevent="findByTitle">
+          <el-input v-model="productsStore.searchValue" placeholder="Search by title" clearable class="ms:hidden" />
         </form>
+
         <router-link
           to="/aboutUs"
           class="font-clash text-dark-violet text-2xl text-center hover:underline"
         >
           Avion
         </router-link>
-        <div class="flex items-center">
+
+        <div class="ms:pl-0 flex items-center pl-[138px]">
           <div class="mr-4 relative">
             <router-link to="/productBasket">
               <img src="@/assets/icons/basket.svg" alt="basket">
@@ -27,7 +29,7 @@
           </div>
           <el-dropdown trigger="click" :hide-on-click="false">
             <a href="#">
-              <img src="@/assets/icons/user.svg" alt="user">
+              <img src="@/assets/icons/user.svg" alt="user" class="mt-1">
             </a>
             <template #dropdown>
               <el-dropdown-menu>

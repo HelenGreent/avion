@@ -1,7 +1,14 @@
 .el-input {
   &__wrapper {
     @apply shadow-none bg-transparent-color;
+  &:hover {
+    @apply shadow-none;
   }
+  &.is-focus {
+    @apply shadow-none;
+  }
+}
+
   &--el-input-placeholder-color {
     @apply text-violet-color #{!important};
   }
