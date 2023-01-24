@@ -80,8 +80,7 @@ const filterValue = ref<IFilterParams>({
   category: '',
   type: '',
   price: '',
-  brand: '',
-  tittle: ''
+  brand: ''
 })
 const filters = {
   category: [
@@ -115,9 +114,6 @@ const filters = {
     { value: 'Cuisinart', label: 'Cuisinart' },
     { value: 'KitchenAid', label: 'KitchenAid' },
     { value: 'Viners', label: 'Viners' }
-  ],
-  tittle: [
-    { value: productsStore.searchValue2, label: productsStore.searchValue }
   ]
 }
 
