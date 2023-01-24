@@ -14,7 +14,6 @@
           <div>
             <span class="menu-title">Categories</span>
             <router-link to="/" class="menu__link">Crockery</router-link>
-            <router-link to="/" class="menu__link">Furniture</router-link>
             <router-link to="/" class="menu__link">Homeware</router-link>
             <router-link to="/" class="menu__link">Plant pots</router-link>
             <router-link to="/" class="menu__link">Chairs</router-link>
@@ -22,7 +21,7 @@
           </div>
           <div>
             <span class="menu-title">Our company</span>
-            <router-link to="/" class="menu__link">About us</router-link>
+            <router-link to="/aboutUs" class="menu__link">About us</router-link>
             <router-link to="/" class="menu__link">Vacancies</router-link>
             <router-link to="/" class="menu__link">Contact us</router-link>
             <router-link to="/" class="menu__link">Privacy</router-link>
