@@ -119,7 +119,7 @@ const filters = {
 
 function calculateQuery () {
   const [gt, lt] = filterValue.value.price ? filterValue.value.price.split('-') : []
-  const replacer = productsStore.searchValue2 ? productsStore.searchValue2.trim().replaceAll(' ', '+') : []
+  const replacer = productsStore.searchValue ? productsStore.searchValue.trim().replaceAll(' ', '+') : []
 
   const category = filterValue.value.category ? `&category=fts.%27${filterValue.value.category}%27` : ''
   const type = filterValue.value.type ? `&type=fts.%27${filterValue.value.type}%27` : ''

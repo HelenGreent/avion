@@ -4,13 +4,9 @@
       <div
         class="h-[70px] flex justify-between items-center border-b border-solid border-black-color-opacity mx-[28px]"
       >
-        <!-- <div>
-          <img src="@/assets/icons/search.svg" alt="search" class="cursor-pointer">
-        </div> -->
         <form class="flex justify-start">
           <img src="@/assets/icons/search.svg" alt="search" class="cursor-pointer" @click.prevent="findByTitle">
-          <el-input v-model="productsStore.searchValue" placeholder="Search by title" clearable/>
-          <!-- <p> {{ productsStore.searchValue2 }}</p> -->
+          <el-input v-model="productsStore.searchValue" placeholder="Search by title" clearable />
         </form>
         <router-link
           to="/aboutUs"
@@ -92,8 +88,8 @@ const { logout, accessToken } = useAuthStore()
 const productsStore = useProductsStore()
 
 function calculateQuery () {
-  const replacer = productsStore.searchValue2 ? productsStore.searchValue2.trim().replaceAll(' ', '+') : []
-  return productsStore.searchValue2 ? `&title=fts.%27${replacer}%27` : ''
+  const replacer = productsStore.searchValue ? productsStore.searchValue.trim().replaceAll(' ', '+') : []
+  return productsStore.searchValue ? `&title=fts.%27${replacer}%27` : ''
 }
 
 async function findByTitle () {
