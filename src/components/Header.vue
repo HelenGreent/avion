@@ -93,7 +93,6 @@ const productsStore = useProductsStore()
 
 function calculateQuery () {
   const replacer = productsStore.searchValue2 ? productsStore.searchValue2.trim().replaceAll(' ', '+') : []
-  console.log(replacer)
   return productsStore.searchValue2 ? `&title=fts.%27${replacer}%27` : ''
 }
 

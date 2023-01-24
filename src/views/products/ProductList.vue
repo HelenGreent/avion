@@ -80,7 +80,8 @@ const filterValue = ref<IFilterParams>({
   category: '',
   type: '',
   price: '',
-  brand: ''
+  brand: '',
+  tittle: ''
 })
 const filters = {
   category: [
@@ -114,17 +115,23 @@ const filters = {
     { value: 'Cuisinart', label: 'Cuisinart' },
     { value: 'KitchenAid', label: 'KitchenAid' },
     { value: 'Viners', label: 'Viners' }
+  ],
+  tittle: [
+    { value: productsStore.searchValue2, label: productsStore.searchValue }
   ]
 }
 
 function calculateQuery () {
   const [gt, lt] = filterValue.value.price ? filterValue.value.price.split('-') : []
+  const replacer = productsStore.searchValue2 ? productsStore.searchValue2.trim().replaceAll(' ', '+') : []
 
   const category = filterValue.value.category ? `&category=fts.%27${filterValue.value.category}%27` : ''
   const type = filterValue.value.type ? `&type=fts.%27${filterValue.value.type}%27` : ''
   const price = filterValue.value.price ? lt ? `&price=gt.${gt}&price=lt.${lt}` : `&price=gt.${gt}` : ''
   const brand = filterValue.value.brand ? `&brand=fts.%27${filterValue.value.brand}%27` : ''
-  return `${category}${type}${price}${brand}`
+  const tittle = replacer ? `&title=fts.%27${replacer}%27` : ''
+
+  return `${category}${type}${price}${brand}${tittle}`
 }
 
 async function filterProducts () {

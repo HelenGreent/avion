@@ -25,6 +25,7 @@ export interface IFilterParams {
   type: string
   price: string
   brand: string
+  tittle: string
 }
 
 export interface IQueryParams {
