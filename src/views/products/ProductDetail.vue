@@ -27,7 +27,7 @@
               <span class="font-clash text-sm text-grey-violet">Width</span>
               <p>{{ product?.width }}</p>
             </div>
-            <div class="sm:border-r border-gray-600 space-y-3">
+            <div class="space-y-3">
               <span class="font-clash text-sm text-grey-violet">Height</span>
               <p>{{ product?.height }}</p>
             </div>

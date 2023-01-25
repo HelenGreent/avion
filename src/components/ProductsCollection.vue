@@ -1,13 +1,15 @@
 <template>
   <section>
     <div class="grid-card">
-      <!-- <Product
-        v-for="product in products"
+      <Product
+        v-for="product in productsStore.productCollection"
         :key="product.id"
-        :img="product.img"
-        :title="product.title"
-        :price="product.price"
-      /> -->
+        :product="product"
+        :product-detail-route="{
+          name: $routeNames.productDetail,
+          params: { id: product.id }
+        }"
+      />
     </div>
     <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
       <router-link
@@ -21,43 +23,21 @@
   </section>
 </template>
 
-<!-- <script lang="ts" setup>
-import { ref } from 'vue'
+<script lang="ts" setup>
 
-interface IProduct {
-  id: number
-  img: string
-  title: string
-  price: string
+const productsStore = useProductsStore()
+const { getProductCollection } = productsStore
+
+async function getProducts () {
+  try {
+    await getProductCollection('&category=fts.%27$bedroom%27&offset=0&limit=4')
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-const products = ref<IProduct[]>([
-  {
-    id: 1,
-    img: '/src/assets/image/product1.jpg',
-    title: 'The Dandy chair',
-    price: '£250'
-  },
-  {
-    id: 2,
-    img: '/src/assets/image/product2.jpg',
-    title: 'Rustic Vase Set',
-    price: '£115'
-  },
-  {
-    id: 3,
-    img: '/src/assets/image/product3.jpg',
-    title: 'The Silky Vase',
-    price: '£250'
-  },
-  {
-    id: 4,
-    img: '/src/assets/image/product4.jpg',
-    title: 'The Lucy Lamp',
-    price: '£399'
-  }
-])
-</script> -->
+onMounted(getProducts)
+</script>
 
 <style lang="scss" scoped>
 .grid-card {

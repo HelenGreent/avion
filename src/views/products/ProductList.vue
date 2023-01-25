@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="container">
-      <div class="flex justify-between h-16 text-violet-color">
+      <div class="lg:hidden flex justify-between h-16 text-violet-color">
         <div class="lg:flex lg:flex-col py-2 space-x-3">
           <el-select
             v-for="(filter, filterKey) in filters"
