@@ -7,7 +7,6 @@
         <form class="flex justify-start w-[182px]">
           <img src="@/assets/icons/search.svg" alt="search" class="mr-2 cursor-pointer" @click.prevent="findByTitle">
           <el-input v-model="productsStore.searchValue" placeholder="Search by title" clearable class="ms:hidden" />
-          <!-- <p>{{ productsStore.searchValue }}</p> -->
         </form>
 
         <router-link
