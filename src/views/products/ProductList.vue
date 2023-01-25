@@ -123,19 +123,14 @@ const filters = {
 
 function calculateQuery () {
   const [gt, lt] = filterValue.value.price ? filterValue.value.price.split('-') : []
-  const replacer = productsStore.searchValue ? productsStore.searchValue.trim().replaceAll(' ', '+') : []
 
   const category = filterValue.value.category ? `&category=fts.%27${filterValue.value.category}%27` : ''
   const type = filterValue.value.type ? `&type=fts.%27${filterValue.value.type}%27` : ''
   const price = filterValue.value.price ? lt ? `&price=gt.${gt}&price=lt.${lt}` : `&price=gt.${gt}` : ''
   const brand = filterValue.value.brand ? `&brand=fts.%27${filterValue.value.brand}%27` : ''
+  const title = productsStore.searchValue ? `&title=fts.%27${productsStore.searchValue}%27` : ''
 
-  if (replacer.length) {
-    const tittle = replacer ? `&title=fts.%27${replacer}%27` : ''
-    return `${category}${type}${price}${brand}${tittle}`
-  } else {
-    return `${category}${type}${price}${brand}`
-  }
+  return `${category}${type}${price}${brand}${title}`
 }
 
 async function filterProducts () {
@@ -195,7 +190,7 @@ const sortByDate = computed<IProduct[]>(() => {
 
 async function getProductsListLength () {
   try {
-    await productsStore.getProductsListLength()
+    await productsStore.getProductsListLength(productsStore.searchValue)
   } catch (error) {
     console.log(error)
   }
