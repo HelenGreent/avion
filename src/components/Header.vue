@@ -5,9 +5,14 @@
         class="h-[70px] flex justify-between items-center border-b border-solid border-black-color-opacity mx-[28px]"
       >
         <form class="flex justify-start w-[182px]">
-          <img src="@/assets/icons/search.svg" alt="search" class="mr-2 cursor-pointer" @click.prevent="findByTitle">
-          <el-input v-model="productsStore.searchValue" placeholder="Search by title" clearable class="ms:hidden" />
-          <!-- <p>{{ productsStore.searchValue }}</p> -->
+          <img src="@/assets/icons/search.svg" alt="search" class="mr-2 cursor-pointer">
+          <el-input
+            v-model="productsStore.searchValue"
+            placeholder="Search by title"
+            clearable
+            class="ms:hidden"
+            @input="debouncedSearch"
+          />
         </form>
 
         <router-link
@@ -85,26 +90,27 @@
 <script setup lang="ts">
 import { router } from '@/router'
 import { routeNames } from '@/router/route-names'
+import { debounce } from '@/composables/useDebounce'
 
 const basketStore = useBasketStore()
 const { logout, accessToken } = useAuthStore()
 const productsStore = useProductsStore()
 
-function calculateTitleQuery () {
-  const replacer = productsStore.searchValue ? productsStore.searchValue.trim().replaceAll(' ', '+') : []
-  return productsStore.searchValue ? `&title=fts.%27${replacer}%27` : ''
-}
+async function searchByTitle () {
+  const replacer = productsStore.searchValue ? productsStore.searchValue.replace(/^\s+|\s+$/g, '').replace(/(\s\s+)/g, '+') : ''
+  const query = productsStore.searchValue ? `&title=fts.%27${replacer}%27&offset=0&limit=10` : ''
 
-async function findByTitle () {
-  const query = calculateTitleQuery()
   try {
     await productsStore.getProducts(query)
+    await productsStore.getProductsListLength(productsStore.searchValue)
   } catch (error) {
     console.warn(error)
   } finally {
     router.push({ name: routeNames.productList })
   }
 }
+
+const debouncedSearch = debounce<typeof searchByTitle>(searchByTitle, 700)
 
 interface IMenu {
   name: string
