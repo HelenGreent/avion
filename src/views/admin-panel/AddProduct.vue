@@ -4,7 +4,7 @@
     bg-cover bg-center h-full flex justify-center items-center"
   >
     <el-card
-      v-loading="loading"
+      v-loading="pending"
       class="w-[500px] h-90vh flex flex-col m-auto
        bg-white text-violet-color rounded-sm"
     >
@@ -61,14 +61,12 @@
 
 <script lang="ts" setup>
 import type { IPostProduct } from '@/types/products.types'
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 import type { FormRules } from 'element-plus'
 
-const { addProduct } = useAdminStore()
+const { pending, addProduct } = useAdminStore()
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
-
-const loading = ref(false)
 
 const formRules: FormRules = {
   brand: [

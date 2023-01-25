@@ -23,11 +23,8 @@ export const adminRoutes: RouteRecordRaw = {
       component: () => import('@/views/admin-panel/AddProduct.vue'),
 
       beforeEnter (to, from, next) {
-        const { adminProducts } = useAdminStore()
-        if (to.params.adminProductsId === 'new' || adminProducts.find(product => product.id === to.params.adminProductsId)) {
+        if (to.params.adminProductsId === 'new') {
           next()
-        } else {
-          next({ name: adminRouteNames.adminProducts })
         }
       }
     }
