@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { routeNames } from '@/router/route-names'
 import { authRoutes } from '@/views/auth/auth.routes'
+import { adminRoutes } from '@/views/admin-panel/admin.routes'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
 const defaultLayoutRoutes: RouteRecordRaw = {
@@ -48,6 +49,7 @@ const routes: Array<RouteRecordRaw> = [
   },
 
   authRoutes,
+  adminRoutes,
   defaultLayoutRoutes
 
 ]

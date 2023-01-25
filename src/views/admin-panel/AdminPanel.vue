@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-black-color-opacity ">
+  <section class="bg-[url('@/assets/image/newProductBG.jpeg')] h-full bg-no-repeat bg-cover bg-center">
     <div class="container">
       <h1
         class="mb-5 md:text-2xl pt-4 font-clash font-normal text-center text-dark-violet text-[32px]
@@ -7,12 +7,13 @@
       >
         Admin Panel
       </h1>
-      <span class="block ml-2 text-xl text-middle-violet">Products:</span>
-      <el-button class="p-3 m-2 text-link-color border-link-color"> + Add product</el-button>
+      <span class="block ml-2 font-medium text-xl text-white">Products:</span>
+      <el-button class="p-3 m-2 text-link-color border-link-color" @click="createNewProduct"> + Add product</el-button>
 
-      <el-table :data="adminStore.adminProducts" style="width: 100%">
-        <el-table-column fixed prop="title" label="Title" width="180" />
+      <el-table v-loading="loading" :data="adminStore.adminProducts" style="width: 100%">
+        <el-table-column fixed="left" prop="title" label="Title" width="180" />
         <!--#need add img -->
+
         <!-- <el-table-column min-width="80" prop="image_url" label="IMG">
           <template slot-scope="scope">
             <img :src="scope.row.image_url">
@@ -34,10 +35,9 @@
             <el-button
               size="small"
               type="danger"
+              :icon="Delete"
               @click="handleDelete(scope.$index)"
-            >
-              Delete
-            </el-button>
+            />
           </template>
         </el-table-column>
       </el-table>
@@ -46,8 +46,18 @@
 </template>
 
 <script lang="ts" setup>
+import { Delete } from '@element-plus/icons-vue'
+import { router } from '@/router'
+import { routeNames } from '@/router/route-names'
+
 const adminStore = useAdminStore()
 const { getAdminProducts } = adminStore
+
+const loading = ref(false)
+
+function createNewProduct () {
+  router.push({ name: routeNames.addProduct, params: { adminProductsId: 'new' } })
+}
 
 const handleEdit = (index: number) => {
   console.log(index)
@@ -55,5 +65,6 @@ const handleEdit = (index: number) => {
 const handleDelete = (index: number) => {
   console.log(index)
 }
+
 onMounted(getAdminProducts)
 </script>
