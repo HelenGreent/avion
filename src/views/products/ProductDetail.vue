@@ -121,7 +121,7 @@ const changeQuantity = (type: string) => {
 }
 
 onBeforeMount(() => {
-  if (!product.value) router.push({ name: routeNames.productList })
+  if (!product.value) router.push({ name: routeNames.error })
 })
 </script>
 
