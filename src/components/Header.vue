@@ -4,7 +4,7 @@
       <div
         class="h-[70px] flex justify-between items-center border-b border-solid border-black-color-opacity mx-[28px]"
       >
-        <form class="flex justify-start w-[182px]">
+        <form class="ms:hidden flex justify-start w-[182px]">
           <img src="@/assets/icons/search.svg" alt="search" class="mr-2 cursor-pointer">
           <el-input
             v-model="productsStore.searchValue"
