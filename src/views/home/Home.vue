@@ -23,16 +23,21 @@
         >
           <p class="text-violet-color">View collection</p>
         </router-link>
-        <img src="@/assets/image/hero.jpg" alt="hero image" class="md:block md:mt-8 h-[304px] object-cover hidden">
+        <img
+          src="@/assets/image/hero.jpg"
+          alt="hero image"
+          class="md:block md:mt-8 h-[304px] object-cover hidden"
+        >
       </div>
     </div>
   </section>
 
   <AboutBrand />
-  <div class="lg:px-5 px-20">
-    <ProductsCollection />
+  <div class="container">
+    <div class="md:px-0 px-20">
+      <ProductsCollection />
+    </div>
   </div>
-
   <section class="container">
     <div class="grid-card">
       <div

@@ -1,26 +1,28 @@
 <template>
-  <section>
-    <div class="grid-card">
-      <Product
-        v-for="product in productsStore.productCollection"
-        :key="product.id"
-        :product="product"
-        :product-detail-route="{
-          name: $routeNames.productDetail,
-          params: { id: product.id }
-        }"
-      />
-    </div>
-    <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
-      <router-link
-        to="/productList"
-        class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
+  <div class="container">
+    <section>
+      <div class="grid-card">
+        <Product
+          v-for="product in productsStore.productCollection"
+          :key="product.id"
+          :product="product"
+          :product-detail-route="{
+            name: $routeNames.productDetail,
+            params: { id: product.id }
+          }"
+        />
+      </div>
+      <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
+        <router-link
+          to="/productList"
+          class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
         hover:bg-black-color-opacity ease-in-out duration-300"
-      >
-        <p class="text-violet-color">View collection</p>
-      </router-link>
-    </div>
-  </section>
+        >
+          <p class="text-violet-color">View collection</p>
+        </router-link>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script lang="ts" setup>
