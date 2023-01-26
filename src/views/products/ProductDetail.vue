@@ -57,7 +57,7 @@
       </div>
     </div>
   </section>
-  <div class="container md:p-6 md:pt-20 p-20">
+  <div class="container md:p-6 pt-20 px-20">
     <div class="md:text-[20px] mb-[33px] font-clash text-violet-color text-3xl">You might also like</div>
     <ProductsCollection />
   </div>

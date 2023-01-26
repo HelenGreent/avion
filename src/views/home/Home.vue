@@ -29,10 +29,11 @@
   </section>
 
   <AboutBrand />
-  <div class="lg:px-5 px-20">
-    <ProductsCollection />
+  <div class="container">
+    <div class="px-20">
+      <ProductsCollection />
+    </div>
   </div>
-
   <section class="container">
     <div class="grid-card">
       <div
