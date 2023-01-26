@@ -16,6 +16,22 @@ export interface IProduct {
   width: string
 }
 
+export interface IPostProduct {
+  brand: string
+  category: string
+  depth?: null | number
+  description: string
+  diameter?: null | number
+  height?: null | number
+  image_url?: string
+  length?: null | number
+  price: number
+  qty: number
+  title: string
+  type: string
+  width?: string
+}
+
 export interface IBasketProduct extends IProduct {
   count: number
 }
