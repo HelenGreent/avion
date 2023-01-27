@@ -20,7 +20,7 @@ export const adminRoutes: RouteRecordRaw = {
     {
       path: '/adminProducts/:adminProductsId',
       name: adminRouteNames.addProduct,
-      component: () => import('@/views/admin-panel/AddProduct.vue'),
+      component: () => import('@/views/products/AddProduct.vue'),
 
       beforeEnter (to, from, next) {
         if (to.params.adminProductsId === 'new') {

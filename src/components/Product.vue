@@ -14,6 +14,9 @@
       </p>
       <span class="md:text-base mb-2 text-violet-color text-lg">£{{ product.price }}</span>
     </router-link>
+    <div class="pt-[6px] pr-4 font-normal text-sm">
+      <slot />
+    </div>
   </div>
 </template>
 

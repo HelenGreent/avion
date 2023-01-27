@@ -31,10 +31,15 @@
         </div>
 
         <div class="flex flex-row py-2">
+          <div class="pt-[6px] pr-4 font-normal text-sm">
+            <el-button class="h-[20px] p-4 text-link-color" @click="createNewProduct">
+              + Add Product
+            </el-button>
+          </div>
           <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
           <el-select
             v-model="queryParams.dateSort"
-            class="mr-8 m-2 w-[90px]"
+            class="mr-8 m-2 w-[120px]"
             placeholder="Date added"
             clearable
             @click="sortByDate"
@@ -50,15 +55,26 @@
         </div>
       </div>
       <div class="grid-card">
-        <Product
-          v-for="product in products"
+        <template
+          v-for="(product, index) in products"
           :key="product.id"
-          :product="product"
-          :product-detail-route="{
-            name: $routeNames.productDetail,
-            params: { id: product.id }
-          }"
-        />
+        >
+          <Product
+            v-loading="pending"
+            :product="product"
+            :product-detail-route="{
+              name: $routeNames.productDetail,
+              params: { id: product.id }
+            }"
+          >
+            <el-button
+              size="small"
+              type="danger"
+              :icon="Delete"
+              @click="onDelete(index)"
+            />
+          </Product>
+        </template>
       </div>
       <div v-if="paginationStep != productLength" class="flex justify-center items-center mb-10">
         <div
@@ -74,8 +90,12 @@
 
 <script lang="ts" setup>
 import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.types'
+import { Delete } from '@element-plus/icons-vue'
 
 const productsStore = useProductsStore()
+const { pending, deleteProduct } = productsStore
+const router = useRouter()
+const { $routeNames } = useGlobalProperties()
 
 let paginationStep = 10
 const productLength = computed(() => productsStore.productsListLength)
@@ -194,6 +214,19 @@ async function getProductsListLength () {
   } catch (error) {
     console.log(error)
   }
+}
+
+function createNewProduct () {
+  router.push({ name: $routeNames.addProduct, params: { adminProductsId: 'new' } })
+}
+
+function onDelete (index: number) {
+  const currentProductId = products.value.find((_, idx) => idx === index)?.id as string
+  // deleteProduct(currentProductId)
+  console.log(products.value.length)
+  products.value.splice(currentProductId as any, 1)
+  console.log(products.value.length)
+  // onMounted(getProductsListLength)
 }
 
 onMounted(getProductsListLength)

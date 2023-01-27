@@ -4,7 +4,6 @@
     bg-cover bg-center h-full flex justify-center items-center"
   >
     <el-card
-      v-loading="pending"
       class="w-[500px] h-90vh flex flex-col m-auto
        bg-white text-violet-color rounded-sm"
     >
@@ -64,7 +63,8 @@ import type { IPostProduct } from '@/types/products.types'
 import { reactive } from 'vue'
 import type { FormRules } from 'element-plus'
 
-const { pending, addProduct } = useAdminStore()
+const productsStore = useProductsStore()
+const { addProduct } = productsStore
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
@@ -105,11 +105,11 @@ const productValue = reactive<IPostProduct>({
   diameter: 1,
   height: 1,
   length: 1,
-  width: ''
+  width: 1
 })
 
 function onAdd () {
   addProduct(productValue)
-  router.push({ name: $routeNames.adminProducts })
+  router.push({ name: $routeNames.productList })
 }
 </script>

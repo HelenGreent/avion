@@ -29,7 +29,7 @@ export interface IPostProduct {
   qty: number
   title: string
   type: string
-  width?: string
+  width?: number
 }
 
 export interface IBasketProduct extends IProduct {
