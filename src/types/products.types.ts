@@ -32,6 +32,17 @@ export interface IPostProduct {
   width?: number
 }
 
+export interface IPatchProduct {
+  description: ''
+  image_url: ''
+  title: ''
+  price: number
+  qty: number
+  depth: null | number
+  height: null | number
+  width: null | number
+}
+
 export interface IBasketProduct extends IProduct {
   count: number
 }

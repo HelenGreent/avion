@@ -36,11 +36,26 @@ export const useProductsStore = defineStore('productsStore', () => {
 
   // TODO fix payload type
   async function addProduct (payload: any) {
-    await productsService.addProduct(payload)
+    try {
+      pending.value = true
+      await productsService.addProduct(payload)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      pending.value = false
+    }
   }
+
   // TODO fix payload type
   async function updateProduct (id: number | string, payload: any) {
-    await productsService.updateProduct(id, payload)
+    try {
+      pending.value = true
+      await productsService.updateProduct(id, payload)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      pending.value = false
+    }
   }
 
   async function deleteProduct (id: number | string) {

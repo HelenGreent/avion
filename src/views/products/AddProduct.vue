@@ -4,6 +4,7 @@
     bg-cover bg-center h-full flex justify-center items-center"
   >
     <el-card
+      v-loading="pending"
       class="w-[500px] h-90vh flex flex-col m-auto
        bg-white text-violet-color rounded-sm"
     >
@@ -64,7 +65,7 @@ import { reactive } from 'vue'
 import type { FormRules } from 'element-plus'
 
 const productsStore = useProductsStore()
-const { addProduct } = productsStore
+const { pending, addProduct } = productsStore
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
