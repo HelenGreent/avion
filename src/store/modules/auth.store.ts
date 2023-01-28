@@ -3,7 +3,7 @@ import { routeNames } from '@/router/route-names'
 export const useAuthStore = defineStore('authStore', () => {
   const accessToken = ref(localStorage.getItem('si-token'))
   const refreshToken = ref(localStorage.getItem('ref-token'))
-  const userId = ref(localStorage.getItem('user-id'))
+  const userId = ref('')
   const userData = ref<IUser>()
 
   function setToken (token: string) {
@@ -18,7 +18,6 @@ export const useAuthStore = defineStore('authStore', () => {
 
   function setUserId (id: string) {
     userId.value = id
-    localStorage.setItem('user-id', id)
   }
 
   function setUser () {
@@ -50,7 +49,6 @@ export const useAuthStore = defineStore('authStore', () => {
   function logout () {
     localStorage.removeItem('si-token')
     localStorage.removeItem('ref-token')
-    localStorage.removeItem('user-id')
     window.location.href = router.resolve({ name: routeNames.home }).href
   }
 
