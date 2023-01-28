@@ -18,6 +18,7 @@ export const useAuthStore = defineStore('authStore', () => {
 
   function setUserId (id: string) {
     userId.value = id
+    console.log(userId)
   }
 
   function setUser () {

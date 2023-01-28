@@ -40,8 +40,8 @@
             <template #dropdown>
               <el-dropdown-menu>
                 <template v-if="accessToken">
-                  <el-dropdown-item>
-                    <span>{{ userData?.full_name }}</span>
+                  <el-dropdown-item disabled>
+                    <span>{{ userName }}</span>
                   </el-dropdown-item>
                   <el-dropdown-item class="text-link-color hover:underline" @click="logout">
                     <p>Log Out</p>
@@ -93,8 +93,11 @@ import { routeNames } from '@/router/route-names'
 import { debounce } from '@/composables/useDebounce'
 
 const basketStore = useBasketStore()
-const { userData, logout, accessToken } = useAuthStore()
+const authStore = useAuthStore()
+const { logout, accessToken } = useAuthStore()
 const productsStore = useProductsStore()
+
+const userName = computed(() => authStore.userData?.full_name)
 
 async function searchByTitle () {
   const replacer = productsStore.searchValue ? productsStore.searchValue.replace(/^\s+|\s+$/g, '').replace(/(\s\s+)/g, '+') : ''
