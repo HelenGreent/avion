@@ -105,7 +105,6 @@
 
     <template v-else>
       <div
-        v-loading="pending"
         class="product"
       >
         <div class="w-full flex justify-center">
@@ -211,7 +210,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IBasketProduct, IPatchProduct } from '@/types/products.types'
+import type { IBasketProduct } from '@/types/products.types'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { router } from '@/router'
@@ -243,7 +242,7 @@ function triggerEditMode () {
   editMode.value = true
 }
 
-const payload = reactive<IPatchProduct>({
+const payload = reactive<any>({
   description: '',
   image_url: product.value?.image_url,
   title: product.value?.title,

@@ -3,6 +3,8 @@ import { routeNames } from '@/router/route-names'
 export const useAuthStore = defineStore('authStore', () => {
   const accessToken = ref(localStorage.getItem('si-token'))
   const refreshToken = ref(localStorage.getItem('ref-token'))
+  const userId = ref(localStorage.getItem('user-id'))
+  const userData = ref<IUser>()
 
   function setToken (token: string) {
     accessToken.value = token
@@ -14,11 +16,26 @@ export const useAuthStore = defineStore('authStore', () => {
     localStorage.setItem('ref-token', token)
   }
 
+  function setUserId (id: string) {
+    userId.value = id
+    localStorage.setItem('user-id', id)
+  }
+
+  function setUser () {
+    return authService.getUser(userId.value)
+      .then(res => {
+        userData.value = res[0]
+      })
+  }
+
   function login (payload: ILoginPayload) {
     return authService.login(payload)
       .then((res) => {
         setToken(res.access_token)
         setRefreshToken(res.refresh_token)
+        setUserId(res.user.id)
+        setUser()
+        return res
       })
   }
 
@@ -33,17 +50,22 @@ export const useAuthStore = defineStore('authStore', () => {
   function logout () {
     localStorage.removeItem('si-token')
     localStorage.removeItem('ref-token')
+    localStorage.removeItem('user-id')
     window.location.href = router.resolve({ name: routeNames.home }).href
   }
 
   return {
     accessToken,
     refreshToken,
+    userId,
+    userData,
     login,
     register,
     logout,
     forgotPassword,
     setRefreshToken,
-    setToken
+    setToken,
+    setUserId,
+    setUser
   }
 })
