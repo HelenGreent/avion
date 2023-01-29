@@ -88,8 +88,8 @@ const bannerTitles = {
   all: 'All products',
   'plant-pot': 'Plant pots',
   ceramics: 'Ceramics',
-  table: 'Tables',
-  chair: 'Chairs',
+  tables: 'Tables',
+  chairs: 'Chairs',
   crockery: 'Crockery'
 }
 
