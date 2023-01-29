@@ -103,10 +103,8 @@
           v-if="user.user_role === 'admin'"
           src="@/assets/icons/cancel.svg"
           alt="cancel"
-          @click="cancel()"
+          @click="cancel(payload)"
         >
-        <!-- <p class="w-[400px]">{{ basePayload }}</p>
-        <p class="w-[500px]">{{ payload }}</p> -->
         <!-- @click="router.back" -->
         <img
           v-if="user.user_role === 'admin'"
@@ -273,9 +271,9 @@ const payload = reactive({
 
 const basePayload = Object.assign({}, payload)
 
-function cancel () {
+function cancel (p: any) {
   editMode.value = false
-  return basePayload
+  Object.assign(p, basePayload)
 }
 
 function handleUpdate (productId: string) {
