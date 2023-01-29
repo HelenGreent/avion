@@ -41,7 +41,7 @@
               <el-dropdown-menu>
                 <template v-if="accessToken">
                   <el-dropdown-item disabled>
-                    <span>{{ userName }}</span>
+                    <span>{{ userData }}</span>
                   </el-dropdown-item>
                   <el-dropdown-item class="text-link-color hover:underline" @click="logout">
                     <p>Log Out</p>
@@ -97,7 +97,7 @@ const authStore = useAuthStore()
 const { logout, accessToken } = useAuthStore()
 const productsStore = useProductsStore()
 
-const userName = computed(() => authStore.userData?.full_name)
+const userData = computed(() => authStore.userData)
 
 async function searchByTitle () {
   const replacer = productsStore.searchValue ? productsStore.searchValue.replace(/^\s+|\s+$/g, '').replace(/(\s\s+)/g, '+') : ''

@@ -4,7 +4,8 @@ export const useAuthStore = defineStore('authStore', () => {
   const accessToken = ref(localStorage.getItem('si-token'))
   const refreshToken = ref(localStorage.getItem('ref-token'))
   const userId = ref('')
-  const userData = ref<IUser>()
+  const userData = ref<IUser[]>([])
+  console.log(userData)
 
   function setToken (token: string) {
     accessToken.value = token
@@ -18,14 +19,10 @@ export const useAuthStore = defineStore('authStore', () => {
 
   function setUserId (id: string) {
     userId.value = id
-    console.log(userId)
   }
 
-  function setUser () {
-    return authService.getUser(userId.value)
-      .then(res => {
-        userData.value = res[0]
-      })
+  async function getUser (id: string) {
+    userData.value = await authService.getUser(id)
   }
 
   function login (payload: ILoginPayload) {
@@ -34,8 +31,7 @@ export const useAuthStore = defineStore('authStore', () => {
         setToken(res.access_token)
         setRefreshToken(res.refresh_token)
         setUserId(res.user.id)
-        setUser()
-        return res
+        getUser(res.user.id)
       })
   }
 
@@ -65,6 +61,6 @@ export const useAuthStore = defineStore('authStore', () => {
     setRefreshToken,
     setToken,
     setUserId,
-    setUser
+    getUser
   }
 })

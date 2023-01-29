@@ -4,6 +4,7 @@
 
 <script lang="ts" setup>
 const productsStore = useProductsStore()
+const authStore = useAuthStore()
 
 async function getProductsListRange () {
   const query = '&offset=0&limit=10'
@@ -14,5 +15,16 @@ async function getProductsListRange () {
   }
 }
 
+async function getUserData () {
+  const id = computed(() => authStore.userId)
+  try {
+    await authStore.getUser(id)
+    console.log(id)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 onMounted(getProductsListRange)
+onMounted(getUserData)
 </script>
