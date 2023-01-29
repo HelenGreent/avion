@@ -17,7 +17,7 @@
           </span>
         </div>
         <router-link
-          to="/productList"
+          :to="{ name: $routeNames.productList, params: { type: 'all' }}"
           class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
         hover:bg-black-color-opacity ease-in-out duration-300"
         >

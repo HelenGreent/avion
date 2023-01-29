@@ -19,13 +19,8 @@ export const useProductsStore = defineStore('productsStore', () => {
   }
 
   async function getProductsListLength (query: string) {
-    if (query) {
-      const searchedProducts = await productsService.getProducts(`&title=fts.%27${query}%27`)
-      productsListLength.value = searchedProducts.length
-    } else {
-      const allProducts = await productsService.getProducts()
-      productsListLength.value = allProducts.length
-    }
+    const searchedProducts = await productsService.getProducts(query)
+    productsListLength.value = searchedProducts.length
   }
 
   return {
