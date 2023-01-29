@@ -3,9 +3,8 @@ import { routeNames } from '@/router/route-names'
 export const useAuthStore = defineStore('authStore', () => {
   const accessToken = ref(localStorage.getItem('si-token'))
   const refreshToken = ref(localStorage.getItem('ref-token'))
-  const userId = ref('')
+  const userId = ref(localStorage.getItem('user-id'))
   const userData = ref<IUser[]>([])
-  console.log(userData)
 
   function setToken (token: string) {
     accessToken.value = token
@@ -19,10 +18,19 @@ export const useAuthStore = defineStore('authStore', () => {
 
   function setUserId (id: string) {
     userId.value = id
+    localStorage.setItem('user-id', id)
   }
 
-  async function getUser (id: string) {
-    userData.value = await authService.getUser(id)
+  function setUser () {
+    return authService.getUser(userId.value)
+      .then(data => {
+        userData.value = data
+        // setLocalStorageUser(userData.value as any)
+      })
+    // function setLocalStorageUser (user: IUser) {
+    //   console.log(user)
+    //   return localStorage.setItem('user', user)
+    // }
   }
 
   function login (payload: ILoginPayload) {
@@ -31,7 +39,8 @@ export const useAuthStore = defineStore('authStore', () => {
         setToken(res.access_token)
         setRefreshToken(res.refresh_token)
         setUserId(res.user.id)
-        getUser(res.user.id)
+
+        setUser()
       })
   }
 
@@ -46,6 +55,7 @@ export const useAuthStore = defineStore('authStore', () => {
   function logout () {
     localStorage.removeItem('si-token')
     localStorage.removeItem('ref-token')
+    localStorage.removeItem('user-id')
     window.location.href = router.resolve({ name: routeNames.home }).href
   }
 
@@ -60,7 +70,6 @@ export const useAuthStore = defineStore('authStore', () => {
     forgotPassword,
     setRefreshToken,
     setToken,
-    setUserId,
-    getUser
+    setUserId
   }
 })
