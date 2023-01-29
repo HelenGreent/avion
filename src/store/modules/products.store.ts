@@ -49,12 +49,12 @@ export const useProductsStore = defineStore('productsStore', () => {
   // TODO fix payload type
   async function updateProduct (id: number | string, payload: any) {
     try {
-      pending.value = true
+      // pending.value = true
       await productsService.updateProduct(id, payload)
     } catch (err) {
       console.error(err)
-    } finally {
-      pending.value = false
+    // } finally {
+    //   pending.value = false
     }
   }
 

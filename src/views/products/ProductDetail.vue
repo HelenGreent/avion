@@ -103,8 +103,11 @@
           v-if="user.user_role === 'admin'"
           src="@/assets/icons/cancel.svg"
           alt="cancel"
-          @click="router.back"
+          @click="cancel()"
         >
+        <!-- <p class="w-[400px]">{{ basePayload }}</p>
+        <p class="w-[500px]">{{ payload }}</p> -->
+        <!-- @click="router.back" -->
         <img
           v-if="user.user_role === 'admin'"
           src="@/assets/icons/checkmark_green.svg"
@@ -226,12 +229,12 @@
 
 <script lang="ts" setup>
 import type { IBasketProduct } from '@/types/products.types'
+// import { routeNames } from '@/router/route-names'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { router } from '@/router'
 
 const route = useRoute()
-const { $routeNames } = useGlobalProperties()
 const productsStore = useProductsStore()
 const basketStore = useBasketStore()
 const { user } = useAuthStore()
@@ -268,9 +271,17 @@ const payload = reactive({
   width: product.value?.width
 })
 
+const basePayload = Object.assign({}, payload)
+
+function cancel () {
+  editMode.value = false
+  return basePayload
+}
+
 function handleUpdate (productId: string) {
   updateProduct(productId, payload)
-  router.push({ name: $routeNames.productList })
+  editMode.value = false
+  router.go(0)
 }
 
 // onBeforeMount(() => {

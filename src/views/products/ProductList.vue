@@ -229,6 +229,7 @@ function createNewProduct () {
 function onDelete (index: number) {
   const currentProductId = products.value.find((_, idx) => idx === index)?.id as string
   deleteProduct(currentProductId)
+  router.go(0)
   // products.value.splice(currentProductId as any, 1)
 }
 
