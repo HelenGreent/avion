@@ -6,7 +6,6 @@ export const useAuthStore = defineStore('authStore', () => {
   const userId = ref(localStorage.getItem('user-id'))
   const userData = ref<IUser[]>([])
   const user = JSON.parse(localStorage.getItem('user') as string)
-  console.log(user)
 
   function setToken (token: string) {
     accessToken.value = token
@@ -26,7 +25,7 @@ export const useAuthStore = defineStore('authStore', () => {
   function setUser () {
     return authService.getUser(userId.value)
       .then(data => {
-        userData.value = data
+        userData.value = data[0]
         setLocalStorageUser(userData.value as any)
       })
     function setLocalStorageUser (user: IUser) {
@@ -40,7 +39,6 @@ export const useAuthStore = defineStore('authStore', () => {
         setToken(res.access_token)
         setRefreshToken(res.refresh_token)
         setUserId(res.user.id)
-
         setUser()
       })
   }

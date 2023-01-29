@@ -99,8 +99,18 @@
       </div>
 
       <div class="flex justify-center">
-        <img src="@/assets/icons/cancel.svg" alt="cancel" @click="router.back">
-        <img src="@/assets/icons/checkmark_green.svg" alt="update" @click="handleUpdate(product?.id as string)">
+        <img
+          v-if="user.user_role === 'admin'"
+          src="@/assets/icons/cancel.svg"
+          alt="cancel"
+          @click="router.back"
+        >
+        <img
+          v-if="user.user_role === 'admin'"
+          src="@/assets/icons/checkmark_green.svg"
+          alt="update"
+          @click="handleUpdate(product?.id as string)"
+        >
       </div>
     </template>
 
@@ -116,6 +126,7 @@
             {{ product?.title }}
             <span>
               <img
+                v-if="user.user_role === 'admin'"
                 src="@/assets/icons/pencil.svg"
                 class="w-[20px] ml-3 pb-2"
                 alt="edit"
@@ -223,6 +234,7 @@ const route = useRoute()
 const { $routeNames } = useGlobalProperties()
 const productsStore = useProductsStore()
 const basketStore = useBasketStore()
+const { user } = useAuthStore()
 const { pending, updateProduct } = productsStore
 
 const products = computed(() => productsStore.products)
