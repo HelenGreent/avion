@@ -77,6 +77,7 @@
 <script lang="ts" setup>
 import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.types'
 import { useRoute } from 'vue-router'
+import { ref, watch } from 'vue'
 
 const route = useRoute()
 const productsStore = useProductsStore()
