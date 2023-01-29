@@ -13,11 +13,6 @@ export const adminRoutes: RouteRecordRaw = {
   component: BlankLayout,
   children: [
     {
-      path: '/adminProducts',
-      name: adminRouteNames.adminProducts,
-      component: () => import('@/views/admin-panel/AdminPanel.vue')
-    },
-    {
       path: '/adminProducts/:adminProductsId',
       name: adminRouteNames.addProduct,
       component: () => import('@/views/products/AddProduct.vue'),

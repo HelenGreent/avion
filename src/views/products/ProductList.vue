@@ -231,9 +231,7 @@ function createNewProduct () {
 function onDelete (index: number) {
   const currentProductId = products.value.find((_, idx) => idx === index)?.id as string
   deleteProduct(currentProductId)
-  // console.log(products.value.length)
   // products.value.splice(currentProductId as any, 1)
-  // console.log(products.value.length)
 }
 
 onMounted(getProductsListLength)
