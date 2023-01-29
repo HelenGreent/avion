@@ -17,6 +17,7 @@ async function getProductsListRange () {
 
 async function getUserData () {
   const id = computed(() => authStore.userId)
+  console.log(id)
   try {
     await authStore.getUser(id)
     console.log(id)
