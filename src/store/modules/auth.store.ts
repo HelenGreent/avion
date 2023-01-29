@@ -5,7 +5,8 @@ export const useAuthStore = defineStore('authStore', () => {
   const refreshToken = ref(localStorage.getItem('ref-token'))
   const userId = ref(localStorage.getItem('user-id'))
   const userData = ref<IUser[]>([])
-  // const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('user') as string)
+  console.log(user)
 
   function setToken (token: string) {
     accessToken.value = token
@@ -29,7 +30,6 @@ export const useAuthStore = defineStore('authStore', () => {
         setLocalStorageUser(userData.value as any)
       })
     function setLocalStorageUser (user: IUser) {
-      console.log(user)
       return localStorage.setItem('user', JSON.stringify(user))
     }
   }
@@ -57,6 +57,7 @@ export const useAuthStore = defineStore('authStore', () => {
     localStorage.removeItem('si-token')
     localStorage.removeItem('ref-token')
     localStorage.removeItem('user-id')
+    localStorage.removeItem('user')
     window.location.href = router.resolve({ name: routeNames.home }).href
   }
 
@@ -64,7 +65,7 @@ export const useAuthStore = defineStore('authStore', () => {
     accessToken,
     refreshToken,
     userId,
-    userData,
+    user,
     login,
     register,
     logout,
