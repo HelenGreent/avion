@@ -10,12 +10,16 @@
         </div>
 
         <div class="sm:px-6 lg:px-14 lg:pt-[28px] px-10">
-          <input
-            v-model="payload.title"
-            type="text"
-            class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color"
-          >
+          <div class="mb-4">
+            <img src="@/assets/icons/pencil.svg" class="w-[15px] mr-3 mb-2" alt="edit">
+            <input
+              v-model="payload.title"
+              type="text"
+              class="md:text-6 font-clash text-4xl leading-[44px] text-violet-color"
+            >
+          </div>
           <div class="flex justify-start items-center mb-7 md:text-[20px] text-2xl ">
+            <img src="@/assets/icons/pencil.svg" class="w-[15px] mr-3" alt="edit">
             <span class="pr-1">£</span>
             <input
               v-model="payload.price"
@@ -25,38 +29,50 @@
           </div>
           <div class="text-grey-violet space-y-3">
             <span class="font-clash text-violet-color mb-4 leading-5">Description :</span>
-            <input
-              v-model="payload.description"
-              type="textarea"
-              class="w-full min-h-[50px] p-2 block mb-[20px] leading-[22px]"
-              placeholder="A timeless design, with premium materials features as one of our most popular and
-              iconic pieces. The dandy chair is perfect for any stylish living space with beech
-              legs and lambskin leather upholstery."
-            >
+            <div class="flex items-center">
+              <img src="@/assets/icons/pencil.svg" class=" w-[15px] mr-3 mb-5" alt="edit">
+              <input
+                v-model="payload.description"
+                type="textarea"
+                class="w-full min-h-[50px] p-2 block mb-[20px] leading-[22px]"
+                placeholder="A timeless design, with premium materials features as one of our most popular and
+                iconic pieces. The dandy chair is perfect for any stylish living space with beech
+                legs and lambskin leather upholstery."
+              >
+            </div>
           </div>
           <div class="mt-12 mb-4">
             <span class="font-clash text-violet-color mb-4 leading-5">Dimensions :</span>
             <div class="pt-6 flex justify-between max-w-[241px] text-violet-color">
               <div class="space-y-3">
                 <span class="font-clash text-sm text-grey-violet">Width :</span>
-                <input
-                  v-model="payload.width"
-                  type="text"
-                >
+                <div class="flex">
+                  <img src="@/assets/icons/pencil.svg" class=" w-[10px] mr-1" alt="edit">
+                  <input
+                    v-model="payload.width"
+                    type="text"
+                  >
+                </div>
               </div>
               <div class="space-y-3">
                 <span class="font-clash text-sm text-grey-violet">Height :</span>
-                <input
-                  v-model="payload.height"
-                  type="text"
-                >
+                <div class="flex">
+                  <img src="@/assets/icons/pencil.svg" class=" w-[10px] mr-1" alt="edit">
+                  <input
+                    v-model="payload.height"
+                    type="text"
+                  >
+                </div>
               </div>
               <div class="space-y-3">
                 <span class="font-clash text-sm text-grey-violet">Depth :</span>
-                <input
-                  v-model="payload.depth"
-                  type="text"
-                >
+                <div class="flex">
+                  <img src="@/assets/icons/pencil.svg" class=" w-[10px] mr-1" alt="edit">
+                  <input
+                    v-model="payload.depth"
+                    type="text"
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -64,6 +80,7 @@
             <div class="sm:flex-col flex justify-left space-y-3.5 font-clash text-violet-color">
               <span class="sm:mt-0 w-[130px] pt-[13px] pr-[22px] mt-[13px] leading-5">Quantity:</span>
               <div class="sm:w-full w-[122px] h-[46px] flex justify-center items-center">
+                <img src="@/assets/icons/pencil.svg" class=" w-[10px] mr-1" alt="edit">
                 <input
                   v-model="payload.qty"
                   type="text"
@@ -78,28 +95,12 @@
               Add to cart
             </el-button>
           </div>
-          <div class="mt-2">
-            <el-button
-              :icon="Edit"
-              class="text-link-color border-link-color"
-              @click="triggerEditMode()"
-            >
-              Edit
-            </el-button>
-          </div>
         </div>
       </div>
 
-      <div class="flex justify-end mt-2 mr-[80px]">
-        <el-button type="danger" class="rounded-sm" @click="$router.back">
-          Back
-        </el-button>
-        <el-button
-          class="text-link-color border-link-color"
-          @click="handleUpdate(product?.id as string)"
-        >
-          Update
-        </el-button>
+      <div class="flex justify-center">
+        <img src="@/assets/icons/cancel.svg" alt="cancel" @click="router.back">
+        <img src="@/assets/icons/checkmark_green.svg" alt="update" @click="handleUpdate(product?.id as string)">
       </div>
     </template>
 
@@ -111,7 +112,18 @@
           <img :src="product?.image_url" :alt="product?.title" class="max-h-[600px]">
         </div>
         <div class="sm:px-6 lg:px-14 lg:pt-[28px] px-10">
-          <h2 class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color">{{ product?.title }}</h2>
+          <h2 class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color">
+            {{ product?.title }}
+            <span>
+              <img
+                src="@/assets/icons/pencil.svg"
+                class="w-[20px] ml-3 pb-2"
+                alt="edit"
+                @click="triggerEditMode()"
+              >
+            </span>
+          </h2>
+
           <span class="md:text-[20px] block text-2xl mb-7 text-[#12131A]">£{{ product?.price }}</span>
           <div class="text-grey-violet space-y-3">
             <span class="font-clash text-violet-color mb-4 leading-5">Description</span>
@@ -160,15 +172,7 @@
               Add to cart
             </el-button>
           </div>
-          <div class="mt-2">
-            <el-button
-              :icon="Edit"
-              class="text-link-color border-link-color"
-              @click="triggerEditMode()"
-            >
-              Edit
-            </el-button>
-          </div>
+          <div class="mt-2" />
         </div>
       </div>
     </template>
@@ -214,7 +218,6 @@ import type { IBasketProduct } from '@/types/products.types'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { router } from '@/router'
-import { Edit } from '@element-plus/icons-vue'
 
 const route = useRoute()
 const { $routeNames } = useGlobalProperties()
@@ -242,7 +245,7 @@ function triggerEditMode () {
   editMode.value = true
 }
 
-const payload = reactive<any>({
+const payload = reactive({
   description: '',
   image_url: product.value?.image_url,
   title: product.value?.title,

@@ -32,7 +32,10 @@
 
         <div class="flex flex-row py-2">
           <div class="pt-[6px] pr-4 font-normal text-sm">
-            <el-button class="h-[20px] p-4 text-link-color" @click="createNewProduct">
+            <el-button
+              v-if="user?.user_role === 'admin'"
+              class="h-[20px] p-4 text-link-color" @click="createNewProduct"
+            >
               + Add Product
             </el-button>
           </div>
@@ -68,6 +71,7 @@
             }"
           >
             <el-button
+              v-if="user?.user_role === 'admin'"
               size="small"
               type="danger"
               :icon="Delete"
@@ -93,9 +97,12 @@ import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.typ
 import { Delete } from '@element-plus/icons-vue'
 
 const productsStore = useProductsStore()
+const authStore = useAuthStore()
 const { pending, deleteProduct } = productsStore
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
+
+const user = computed(() => authStore.userData)
 
 let paginationStep = 10
 const productLength = computed(() => productsStore.productsListLength)

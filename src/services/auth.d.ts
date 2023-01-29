@@ -13,5 +13,5 @@ interface IUser {
   user_name: string
   full_name: string
   avatar_url: string
-  user_role: boolean
+  user_role: string
 }
