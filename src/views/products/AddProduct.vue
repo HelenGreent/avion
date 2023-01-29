@@ -102,11 +102,11 @@ const productValue = reactive<IPostProduct>({
   type: '',
   price: 250,
   qty: 10,
-  depth: 1,
-  diameter: 1,
-  height: 1,
-  length: 1,
-  width: 1
+  depth: null,
+  diameter: null,
+  height: null,
+  length: null,
+  width: null
 })
 
 function onAdd () {

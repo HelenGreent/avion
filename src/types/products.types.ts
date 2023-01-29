@@ -29,7 +29,7 @@ export interface IPostProduct {
   qty: number
   title: string
   type: string
-  width?: number
+  width?: null | number
 }
 
 export interface IPatchProduct {
