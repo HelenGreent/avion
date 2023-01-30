@@ -41,7 +41,7 @@
               <el-dropdown-menu>
                 <template v-if="accessToken">
                   <el-dropdown-item disabled>
-                    <span>{{ user.user_name }}</span>
+                    <span>{{ user?.user_name || 'user' }}</span>
                   </el-dropdown-item>
                   <el-dropdown-item class="text-link-color hover:underline" @click="logout">
                     <p>Log Out</p>

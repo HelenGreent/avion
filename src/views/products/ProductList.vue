@@ -33,7 +33,7 @@
         <div class="flex flex-row py-2">
           <div class="pt-[6px] pr-4 font-normal text-sm">
             <el-button
-              v-if="user.user_role === 'admin'"
+              v-if="user?.user_role === 'admin'"
               class="h-[20px] p-4 text-link-color"
               @click="createNewProduct"
             >
@@ -72,7 +72,7 @@
             }"
           >
             <el-button
-              v-if="user.user_role === 'admin'"
+              v-if="user?.user_role === 'admin'"
               size="small"
               type="danger"
               :icon="Delete"

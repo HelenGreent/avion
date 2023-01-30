@@ -100,14 +100,13 @@
 
       <div class="flex justify-center">
         <img
-          v-if="user.user_role === 'admin'"
+          v-if="user?.user_role === 'admin'"
           src="@/assets/icons/cancel.svg"
           alt="cancel"
           @click="cancel(payload)"
         >
-        <!-- @click="router.back" -->
         <img
-          v-if="user.user_role === 'admin'"
+          v-if="user?.user_role === 'admin'"
           src="@/assets/icons/checkmark_green.svg"
           alt="update"
           @click="handleUpdate(product?.id as string)"
