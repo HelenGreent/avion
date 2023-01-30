@@ -60,13 +60,12 @@
           </el-select>
         </div>
       </div>
-      <div class="grid-card">
+      <div v-loading="pending" class="grid-card">
         <template
           v-for="(product, index) in products"
           :key="product.id"
         >
           <Product
-            v-loading="pending"
             :product="product"
             :product-detail-route="{
               name: $routeNames.productDetail,
@@ -83,10 +82,7 @@
           </Product>
         </template>
       </div>
-      <div>
-        <p>{{ paginationStep }}</p>
-        <p>{{ productLength }}</p>
-      </div>
+
       <div v-if="paginationStep < productLength" class="flex justify-center items-center mb-10">
         <div
           class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
@@ -104,13 +100,13 @@ import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.typ
 import { Delete } from '@element-plus/icons-vue'
 
 const route = useRoute()
+const router = useRouter()
 const productsStore = useProductsStore()
 const { user } = useAuthStore()
-const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
 const pending = ref(false)
-const paginationStep = 10
+let paginationStep = 10
 const productLength = computed(() => productsStore.productsListLength)
 
 const bannerTitles = {
@@ -195,21 +191,28 @@ watch(() => route.params.type as string, async (val) => {
 })
 
 async function filterProducts () {
+  paginationStep = 10
   try {
-    await productsStore.filterProducts(`${calculateQuery()}&offset=0&limit=${paginationStep}`)
+    pending.value = true
+    await productsStore.getProducts(`${calculateQuery()}&offset=0&limit=10`)
     await productsStore.getProductsListLength(calculateQuery())
   } catch (error) {
     console.warn(error)
+  } finally {
+    pending.value = false
   }
 }
 
 async function getMoreProducts () {
-  const step = paginationStep + 10
-  const query = `${calculateQuery()}&offset=0&limit=${step}`
+  paginationStep += 10
+  const query = `${calculateQuery()}&offset=0&limit=${paginationStep}`
   try {
+    pending.value = true
     await productsStore.getProducts(query)
   } catch (error) {
     console.log(error)
+  } finally {
+    pending.value = false
   }
 }
 
@@ -244,14 +247,6 @@ const sortByDate = computed<IProduct[]>(() => {
   return sortArray
 })
 
-async function getProductsListLength () {
-  try {
-    await productsStore.getProductsListLength(productsStore.searchValue)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
 function createNewProduct () {
   router.push({ name: $routeNames.addProduct, params: { adminProductsId: 'new' } })
 }
@@ -269,7 +264,21 @@ async function onDelete (index: number) {
   }
 }
 
-onMounted(getProductsListLength)
+async function getProducts () {
+  try {
+    pending.value = true
+    await Promise.all([
+      productsStore.getProducts(`${calculateQuery()}&offset=0&limit=10`),
+      productsStore.getProductsListLength(productsStore.searchValue)
+    ])
+  } catch (error) {
+    console.log(error)
+  } finally {
+    pending.value = false
+  }
+}
+
+onMounted(getProducts)
 </script>
 
 <style lang="scss" scoped>

@@ -116,6 +116,7 @@
 
     <template v-else>
       <div
+        v-loading="pending"
         class="product"
       >
         <div class="w-full flex justify-center">
@@ -126,7 +127,7 @@
             {{ product?.title }}
             <span>
               <img
-                v-if="user.user_role === 'admin'"
+                v-if="user?.user_role === 'admin'"
                 src="@/assets/icons/pencil.svg"
                 class="w-[20px] ml-3 pb-2"
                 alt="edit"
@@ -238,9 +239,7 @@ const { user } = useAuthStore()
 
 const pending = ref(false)
 
-const products = computed(() => productsStore.products)
-
-const product = computed(() => products.value?.find((product) => product.id === route.params.id))
+const product = computed(() => productsStore.product)
 
 const quantity = ref<number>(1)
 const input = ref('')
@@ -283,9 +282,19 @@ async function handleUpdate (productId: string) {
   }
 }
 
-onMounted(() => {
-  if (!product.value) router.replace({ name: routeNames.error })
-})
+async function getProduct () {
+  try {
+    pending.value = true
+    await productsStore.getProduct(route.params.id as string)
+  } catch (e) {
+    console.log(e)
+  } finally {
+    pending.value = false
+    if (!product.value) await router.replace({ name: routeNames.error })
+  }
+}
+
+onMounted(getProduct)
 </script>
 
 <style lang="scss" scoped>
