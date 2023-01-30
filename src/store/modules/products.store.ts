@@ -28,20 +28,6 @@ export const useProductsStore = defineStore('productsStore', () => {
     productsListLength.value = searchedProducts.length
   }
 
-  // TODO fix payload type
-  async function addProduct (payload: any) {
-    await productsService.addProduct(payload)
-  }
-
-  // TODO fix payload type
-  async function updateProduct (id: number | string, payload: any) {
-    await productsService.updateProduct(id, payload)
-  }
-
-  async function deleteProduct (id: number | string) {
-    await productsService.deleteProduct(id)
-  }
-
   return {
     products,
     allProducts,
@@ -52,9 +38,6 @@ export const useProductsStore = defineStore('productsStore', () => {
     getProductsList,
     filterProducts,
     getProductCollection,
-    getProductsListLength,
-    addProduct,
-    updateProduct,
-    deleteProduct
+    getProductsListLength
   }
 })

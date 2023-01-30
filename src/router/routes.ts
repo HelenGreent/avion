@@ -17,7 +17,7 @@ const defaultLayoutRoutes: RouteRecordRaw = {
     },
     {
       name: routeNames.productList,
-      path: '/productList:type',
+      path: '/productList/:type',
       component: () => import('@/views/products/ProductList.vue')
     },
     {

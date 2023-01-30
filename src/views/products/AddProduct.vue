@@ -112,16 +112,11 @@ async function onAdd () {
   try {
     pending.value = true
     await productsService.addProduct(productValue)
-    router.push({ name: $routeNames.productList })
+    router.push({ name: $routeNames.productList, params: { type: 'all' } })
   } catch (err) {
     console.error(err)
   } finally {
     pending.value = false
   }
 }
-
-// function onAdd () {
-//   addProduct(productValue)
-//   router.push({ name: $routeNames.productList })
-// }
 </script>
