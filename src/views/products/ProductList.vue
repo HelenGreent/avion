@@ -33,15 +33,6 @@
         </div>
 
         <div class="flex flex-row py-2">
-          <div class="pt-[6px] pr-4 font-normal text-sm">
-            <el-button
-              v-if="user?.user_role === 'admin'"
-              class="h-[20px] p-4 text-link-color"
-              @click="createNewProduct"
-            >
-              + Add Product
-            </el-button>
-          </div>
           <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
           <el-select
             v-model="queryParams.dateSort"
@@ -103,7 +94,6 @@ const route = useRoute()
 const router = useRouter()
 const productsStore = useProductsStore()
 const { user } = useAuthStore()
-const { $routeNames } = useGlobalProperties()
 
 const pending = ref(false)
 let paginationStep = 10
@@ -246,10 +236,6 @@ const sortByDate = computed<IProduct[]>(() => {
   }
   return sortArray
 })
-
-function createNewProduct () {
-  router.push({ name: $routeNames.addProduct, params: { adminProductsId: 'new' } })
-}
 
 async function onDelete (index: number) {
   try {

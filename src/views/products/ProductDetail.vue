@@ -1,4 +1,4 @@
-<template>
+he<template>
   <section class="container">
     <template v-if="editMode">
       <div
@@ -103,12 +103,14 @@
           v-if="user?.user_role === 'admin'"
           src="@/assets/icons/cancel.svg"
           alt="cancel"
+          class="cursor-pointer"
           @click="cancel"
         >
         <img
           v-if="user?.user_role === 'admin'"
           src="@/assets/icons/checkmark_green.svg"
           alt="update"
+          class="cursor-pointer"
           @click="handleUpdate(product?.id as string)"
         >
       </div>
@@ -129,9 +131,16 @@
               <img
                 v-if="user?.user_role === 'admin'"
                 src="@/assets/icons/pencil.svg"
-                class="w-[20px] ml-3 pb-2"
+                class="w-[20px] ml-3 pb-2 cursor-pointer"
                 alt="edit"
                 @click="editMode = true"
+              >
+              <img
+                v-if="user?.user_role === 'admin'"
+                src="@/assets/icons/plus.svg"
+                class="w-[30px] ml-3 pb-2 cursor-pointer"
+                alt="add-product"
+                @click="createNewProduct"
               >
             </span>
           </h2>
@@ -178,7 +187,7 @@
             </div>
             <el-button
               :type="$elComponentType.primary"
-              class="sm:w-full w-[143px] h-[56px] font-satoshi font-normal text-base"
+              class="sm:w-full w-[143px] h-[56px] font-satoshi font-normal text-base cursor-pointer"
               @click="basketStore.addProducts(product as IBasketProduct, quantity)"
             >
               Add to cart
@@ -233,6 +242,7 @@ import { useRoute } from 'vue-router'
 import { router } from '@/router'
 
 const route = useRoute()
+const { $routeNames } = useGlobalProperties()
 const productsStore = useProductsStore()
 const basketStore = useBasketStore()
 const { user } = useAuthStore()
@@ -292,6 +302,10 @@ async function getProduct () {
     pending.value = false
     if (!product.value) await router.replace({ name: routeNames.error })
   }
+}
+
+function createNewProduct () {
+  router.push({ name: $routeNames.addProduct, params: { adminProductsId: 'new' } })
 }
 
 onMounted(getProduct)
