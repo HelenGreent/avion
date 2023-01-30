@@ -116,6 +116,7 @@ he<template>
       </div>
     </template>
 
+    <!-- without edit mode -->
     <template v-else>
       <div
         v-loading="pending"
@@ -149,6 +150,7 @@ he<template>
           <div class="text-grey-violet space-y-3">
             <span class="font-clash text-violet-color mb-4 leading-5">Description</span>
             <p class="block mb-[20px] leading-[22px]">
+              {{ product?.description }}
               A timeless design, with premium materials features as one of our most popular and
               iconic pieces. The dandy chair is perfect for any stylish living space with beech
               legs and lambskin leather upholstery.
@@ -162,15 +164,15 @@ he<template>
           <div class="mt-12 mb-4">
             <span class="font-clash text-violet-color mb-4 leading-5">Dimensions</span>
             <div class="pt-6 flex justify-between max-w-[241px] text-violet-color">
-              <div class="space-y-3">
+              <div v-if="product?.width !== null" class="space-y-3">
                 <span class="font-clash text-sm text-grey-violet">Width</span>
                 <p>{{ product?.width }}</p>
               </div>
-              <div class="space-y-3">
+              <div v-if="product?.height !== null" class="space-y-3">
                 <span class="font-clash text-sm text-grey-violet">Height</span>
                 <p>{{ product?.height }}</p>
               </div>
-              <div class="space-y-3">
+              <div v-if="product?.depth !== null" class="space-y-3">
                 <span class="font-clash text-sm text-grey-violet">Depth</span>
                 <p>{{ product?.depth }}</p>
               </div>
