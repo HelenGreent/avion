@@ -83,6 +83,10 @@
           </Product>
         </template>
       </div>
+      <div>
+        <p>{{ paginationStep }}</p>
+        <p>{{ productLength }}</p>
+      </div>
       <div v-if="paginationStep < productLength" class="flex justify-center items-center mb-10">
         <div
           class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer

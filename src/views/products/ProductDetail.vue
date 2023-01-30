@@ -103,7 +103,7 @@
           v-if="user?.user_role === 'admin'"
           src="@/assets/icons/cancel.svg"
           alt="cancel"
-          @click="cancel(payload)"
+          @click="cancel"
         >
         <img
           v-if="user?.user_role === 'admin'"
@@ -130,7 +130,7 @@
                 src="@/assets/icons/pencil.svg"
                 class="w-[20px] ml-3 pb-2"
                 alt="edit"
-                @click="triggerEditMode()"
+                @click="editMode = true"
               >
             </span>
           </h2>
@@ -226,6 +226,7 @@
 
 <script lang="ts" setup>
 import type { IBasketProduct } from '@/types/products.types'
+// import { routeNames } from '@/router/route-names'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { router } from '@/router'
@@ -252,11 +253,7 @@ const changeQuantity = (type: string) => {
   }
 }
 
-function triggerEditMode () {
-  editMode.value = true
-}
-
-const payload = reactive({
+const payload = computed(() => ({
   description: '',
   image_url: product.value?.image_url,
   title: product.value?.title,
@@ -265,17 +262,15 @@ const payload = reactive({
   depth: product.value?.depth,
   height: product.value?.height,
   width: product.value?.width
-})
+}))
 
-const basePayload = Object.assign({}, payload)
-
-function cancel (p: any) {
+function cancel () {
   editMode.value = false
-  Object.assign(p, basePayload)
+  Object.assign(payload.value, product.value)
 }
 
 function handleUpdate (productId: string) {
-  updateProduct(productId, payload)
+  updateProduct(productId, payload.value)
   editMode.value = false
   router.go(0)
 }

@@ -32,12 +32,12 @@ export const useProductsStore = defineStore('productsStore', () => {
   // TODO fix payload type
   async function addProduct (payload: any) {
     try {
-      pending.value = true
+      // pending.value = true
       await productsService.addProduct(payload)
     } catch (err) {
       console.error(err)
-    } finally {
-      pending.value = false
+    // } finally {
+    //   pending.value = false
     }
   }
 
@@ -55,12 +55,12 @@ export const useProductsStore = defineStore('productsStore', () => {
 
   async function deleteProduct (id: number | string) {
     try {
-      pending.value = true
+      // pending.value = true
       await productsService.deleteProduct(id)
     } catch (err) {
       console.error(err)
-    } finally {
-      pending.value = false
+    // } finally {
+    //   pending.value = false
     }
   }
 
