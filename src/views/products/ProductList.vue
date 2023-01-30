@@ -6,7 +6,7 @@
     >
       <div class="container">
         <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">
-          {{ bannerTitles[route.params.type] }}
+          {{ bannerTitles[route.params.type as string] }}
         </h2>
       </div>
     </div>
@@ -86,12 +86,12 @@ const productLength = computed(() => productsStore.productsListLength)
 
 const bannerTitles = {
   all: 'All products',
-  'plant-pot': 'Plant pots',
+  'plant-pots': 'Plant pots',
   ceramics: 'Ceramics',
   tables: 'Tables',
   chairs: 'Chairs',
   crockery: 'Crockery'
-}
+} as TIndexedObject<string>
 
 const filterValue = ref<IFilterParams>({
   category: '',
@@ -156,8 +156,8 @@ function calculateQuery () {
   return `${category}${type}${price}${brand}${title}`
 }
 
-watch(() => route.params.type as string, async (value) => {
-  value !== 'all' ? filterValue.value.type = value : filterValue.value.type = ''
+watch(() => route.params.type as string, async (val) => {
+  val !== 'all' ? filterValue.value.type = val : filterValue.value.type = ''
   try {
     await filterProducts()
   } catch (error) {

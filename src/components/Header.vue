@@ -121,7 +121,7 @@ const menu = [
   },
   {
     name: 'Plant pots',
-    type: 'plant-pot'
+    type: 'plant-pots'
   },
   {
     name: 'Ceramics',
