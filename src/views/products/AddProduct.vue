@@ -64,8 +64,7 @@ import type { IPostProduct } from '@/types/products.types'
 import { reactive } from 'vue'
 import type { FormRules } from 'element-plus'
 
-const productsStore = useProductsStore()
-const { pending, addProduct } = productsStore
+const pending = ref(false)
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
@@ -109,8 +108,20 @@ const productValue = reactive<IPostProduct>({
   width: null
 })
 
-function onAdd () {
-  addProduct(productValue)
-  router.push({ name: $routeNames.productList })
+async function onAdd () {
+  try {
+    pending.value = true
+    await productsService.addProduct(productValue)
+    router.push({ name: $routeNames.productList })
+  } catch (err) {
+    console.error(err)
+  } finally {
+    pending.value = false
+  }
 }
+
+// function onAdd () {
+//   addProduct(productValue)
+//   router.push({ name: $routeNames.productList })
+// }
 </script>

@@ -6,7 +6,6 @@ export const useProductsStore = defineStore('productsStore', () => {
   const productCollection = ref<IProduct[]>([])
   const productsListLength = ref(0)
   const searchValue = ref('')
-  const pending = ref(false)
 
   async function getProducts (query: string) {
     products.value = await productsService.getProducts(query)
@@ -31,37 +30,16 @@ export const useProductsStore = defineStore('productsStore', () => {
 
   // TODO fix payload type
   async function addProduct (payload: any) {
-    try {
-      // pending.value = true
-      await productsService.addProduct(payload)
-    } catch (err) {
-      console.error(err)
-    // } finally {
-    //   pending.value = false
-    }
+    await productsService.addProduct(payload)
   }
 
   // TODO fix payload type
   async function updateProduct (id: number | string, payload: any) {
-    try {
-      // pending.value = true
-      await productsService.updateProduct(id, payload)
-    } catch (err) {
-      console.error(err)
-    // } finally {
-    //   pending.value = false
-    }
+    await productsService.updateProduct(id, payload)
   }
 
   async function deleteProduct (id: number | string) {
-    try {
-      // pending.value = true
-      await productsService.deleteProduct(id)
-    } catch (err) {
-      console.error(err)
-    // } finally {
-    //   pending.value = false
-    }
+    await productsService.deleteProduct(id)
   }
 
   return {
@@ -70,7 +48,6 @@ export const useProductsStore = defineStore('productsStore', () => {
     productCollection,
     productsListLength,
     searchValue,
-    pending,
     getProducts,
     getProductsList,
     filterProducts,

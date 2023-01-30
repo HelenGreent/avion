@@ -106,10 +106,10 @@ import { Delete } from '@element-plus/icons-vue'
 const route = useRoute()
 const productsStore = useProductsStore()
 const { user } = useAuthStore()
-const { pending, deleteProduct } = productsStore
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
+const pending = ref(false)
 const paginationStep = 10
 const productLength = computed(() => productsStore.productsListLength)
 
@@ -256,11 +256,18 @@ function createNewProduct () {
   router.push({ name: $routeNames.addProduct, params: { adminProductsId: 'new' } })
 }
 
-function onDelete (index: number) {
-  const currentProductId = products.value.find((_, idx) => idx === index)?.id as string
-  deleteProduct(currentProductId)
-  router.go(0)
-  // products.value.splice(currentProductId as any, 1)
+async function onDelete (index: number) {
+  try {
+    pending.value = true
+    const currentProductId = products.value.find((_, idx) => idx === index)?.id as string
+    await productsService.deleteProduct(currentProductId)
+    // products.value.splice(currentProductId as any, 1)
+    router.go(0)
+  } catch (err) {
+    console.error(err)
+  } finally {
+    pending.value = false
+  }
 }
 
 onMounted(getProductsListLength)

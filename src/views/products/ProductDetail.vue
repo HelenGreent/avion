@@ -235,7 +235,8 @@ const route = useRoute()
 const productsStore = useProductsStore()
 const basketStore = useBasketStore()
 const { user } = useAuthStore()
-const { pending, updateProduct } = productsStore
+
+const pending = ref(false)
 
 const products = computed(() => productsStore.products)
 
@@ -269,10 +270,17 @@ function cancel () {
   Object.assign(payload.value, product.value)
 }
 
-function handleUpdate (productId: string) {
-  updateProduct(productId, payload.value)
-  editMode.value = false
-  router.go(0)
+async function handleUpdate (productId: string) {
+  try {
+    pending.value = true
+    editMode.value = false
+    await productsService.updateProduct(productId, payload.value)
+    router.go(0)
+  } catch (err) {
+    console.error(err)
+  } finally {
+    pending.value = false
+  }
 }
 
 // onBeforeMount(() => {
