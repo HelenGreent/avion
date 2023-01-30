@@ -10,7 +10,6 @@ const defaultLayoutRoutes: RouteRecordRaw = {
   redirect: { name: routeNames.home },
   component: DefaultLayout,
   children: [
-    // list of views that use default layout
     {
       name: routeNames.home,
       path: '/',
@@ -18,7 +17,7 @@ const defaultLayoutRoutes: RouteRecordRaw = {
     },
     {
       name: routeNames.productList,
-      path: '/productList',
+      path: '/productList:type',
       component: () => import('@/views/products/ProductList.vue')
     },
     {

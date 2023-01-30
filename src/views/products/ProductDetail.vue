@@ -226,7 +226,6 @@
 
 <script lang="ts" setup>
 import type { IBasketProduct } from '@/types/products.types'
-// import { routeNames } from '@/router/route-names'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { router } from '@/router'

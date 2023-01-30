@@ -67,7 +67,9 @@
         class="md:hidden md:h-0 h-[62px] flex justify-center items-center"
       >
         <router-link
-          v-for="(item, index) in menu" :key="index" :to="item.path"
+          v-for="(item, index) in menu"
+          :key="index"
+          :to="{ name: $routeNames.productList, params: { type: item.type }}"
           class="mx-[22px] text-light-violet hover:underline"
         >
           {{ item.name }}
@@ -101,44 +103,40 @@ async function searchByTitle () {
   const query = productsStore.searchValue ? `&title=fts.%27${replacer}%27&offset=0&limit=10` : ''
 
   try {
-    await productsStore.getProducts(query)
-    await productsStore.getProductsListLength(productsStore.searchValue)
+    await productsStore.getProducts(`${query}&offset=0&limit=10`)
+    await productsStore.getProductsListLength(query)
   } catch (error) {
     console.warn(error)
   } finally {
-    router.push({ name: routeNames.productList })
+    await router.push({ name: routeNames.productList })
   }
 }
 
 const debouncedSearch = debounce<typeof searchByTitle>(searchByTitle, 700)
 
-interface IMenu {
-  name: string
-  path: string
-}
-
-const menu: IMenu[] = [{
-  name: 'Plant pots',
-  path: '/plant'
-},
-{
-  name: 'Ceramics',
-  path: '/ceramics'
-},
-{
-  name: 'Tables',
-  path: '/tables'
-},
-{
-  name: 'Chairs',
-  path: '/chairs'
-},
-{
-  name: 'Crockery',
-  path: '/crockery'
-},
-{
-  name: 'Cutlery',
-  path: '/cutlery'
-}]
+const menu = [
+  {
+    name: 'All products',
+    type: 'all'
+  },
+  {
+    name: 'Plant pots',
+    type: 'plant-pots'
+  },
+  {
+    name: 'Ceramics',
+    type: 'ceramics'
+  },
+  {
+    name: 'Tables',
+    type: 'tables'
+  },
+  {
+    name: 'Chairs',
+    type: 'chairs'
+  },
+  {
+    name: 'Crockery',
+    type: 'crockery'
+  }]
 </script>

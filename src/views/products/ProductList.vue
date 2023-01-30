@@ -5,7 +5,9 @@
       bg-[url('@/assets/image/productListHero.jpg')] h-[209px] bg-cover"
     >
       <div class="container">
-        <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">All products</h2>
+        <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">
+          {{ bannerTitles[route.params.type as string] }}
+        </h2>
       </div>
     </div>
     <div class="container">
@@ -81,7 +83,7 @@
           </Product>
         </template>
       </div>
-      <div v-if="paginationStep != productLength" class="flex justify-center items-center mb-10">
+      <div v-if="paginationStep < productLength" class="flex justify-center items-center mb-10">
         <div
           class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
          hover:bg-black-color-opacity ease-in-out duration-300"
@@ -97,14 +99,24 @@
 import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.types'
 import { Delete } from '@element-plus/icons-vue'
 
+const route = useRoute()
 const productsStore = useProductsStore()
 const { user } = useAuthStore()
 const { pending, deleteProduct } = productsStore
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
-let paginationStep = 10
+const paginationStep = 10
 const productLength = computed(() => productsStore.productsListLength)
+
+const bannerTitles = {
+  all: 'All products',
+  'plant-pots': 'Plant pots',
+  ceramics: 'Ceramics',
+  tables: 'Tables',
+  chairs: 'Chairs',
+  crockery: 'Crockery'
+} as TIndexedObject<string>
 
 const filterValue = ref<IFilterParams>({
   category: '',
@@ -112,40 +124,50 @@ const filterValue = ref<IFilterParams>({
   price: '',
   brand: ''
 })
-const filters = {
-  category: [
-    { value: 'kitchen', label: 'kitchen' },
-    { value: 'bedroom', label: 'bedroom' },
-    { value: 'office', label: 'office' },
-    { value: 'garden', label: 'garden' },
-    { value: 'living room', label: 'living room' }
-  ],
-  type: [
-    { value: 'chair', label: 'chair' },
-    { value: 'ceramics', label: 'ceramics' },
-    { value: 'crockery', label: 'crockery' },
-    { value: 'plant-pot', label: 'plant-pot' },
-    { value: 'table', label: 'table' }
-  ],
-  price: [
-    { value: '0-19', label: '0-19' },
-    { value: '20-39', label: '20-39' },
-    { value: '40-59', label: '40-59' },
-    { value: '60-79', label: '60-79' },
-    { value: '80-99', label: '80-99' },
-    { value: '100', label: '100+' }
-  ],
-  brand: [
-    { value: 'Henckels', label: 'Henckels' },
-    { value: 'Wusthof', label: 'Wusthof' },
-    { value: 'Cutco', label: 'Cutco' },
-    { value: 'Joseph Joseph', label: 'Joseph Joseph' },
-    { value: 'Calphalon', label: 'Calphalon' },
-    { value: 'Cuisinart', label: 'Cuisinart' },
-    { value: 'KitchenAid', label: 'KitchenAid' },
-    { value: 'Viners', label: 'Viners' }
-  ]
-}
+
+const filters = computed(() => {
+  const filterChunk = {
+    category: [
+      { value: 'kitchen', label: 'kitchen' },
+      { value: 'bedroom', label: 'bedroom' },
+      { value: 'office', label: 'office' },
+      { value: 'garden', label: 'garden' },
+      { value: 'living room', label: 'living room' }
+    ],
+    price: [
+      { value: '0-19', label: '0-19' },
+      { value: '20-39', label: '20-39' },
+      { value: '40-59', label: '40-59' },
+      { value: '60-79', label: '60-79' },
+      { value: '80-99', label: '80-99' },
+      { value: '100', label: '100+' }
+    ],
+    brand: [
+      { value: 'Henckels', label: 'Henckels' },
+      { value: 'Wusthof', label: 'Wusthof' },
+      { value: 'Cutco', label: 'Cutco' },
+      { value: 'Joseph Joseph', label: 'Joseph Joseph' },
+      { value: 'Calphalon', label: 'Calphalon' },
+      { value: 'Cuisinart', label: 'Cuisinart' },
+      { value: 'KitchenAid', label: 'KitchenAid' },
+      { value: 'Viners', label: 'Viners' }
+    ]
+  }
+  if (route.params.type === 'all') {
+    return {
+      type: [
+        { value: 'chair', label: 'chair' },
+        { value: 'ceramics', label: 'ceramics' },
+        { value: 'crockery', label: 'crockery' },
+        { value: 'plant-pot', label: 'plant-pot' },
+        { value: 'table', label: 'table' }
+      ],
+      ...filterChunk
+    }
+  } else {
+    return filterChunk
+  }
+})
 
 function calculateQuery () {
   const [gt, lt] = filterValue.value.price ? filterValue.value.price.split('-') : []
@@ -159,23 +181,27 @@ function calculateQuery () {
   return `${category}${type}${price}${brand}${title}`
 }
 
-async function filterProducts () {
-  const query = calculateQuery()
+watch(() => route.params.type as string, async (val) => {
+  val !== 'all' ? filterValue.value.type = val : filterValue.value.type = ''
   try {
-    await productsStore.filterProducts(query)
+    await filterProducts()
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+async function filterProducts () {
+  try {
+    await productsStore.filterProducts(`${calculateQuery()}&offset=0&limit=${paginationStep}`)
+    await productsStore.getProductsListLength(calculateQuery())
   } catch (error) {
     console.warn(error)
   }
 }
 
-function calculatePaginationStep () {
-  if ((productLength.value - paginationStep) >= 10) paginationStep += 10
-  else paginationStep = paginationStep + (productLength.value - paginationStep)
-  return paginationStep
-}
-
 async function getMoreProducts () {
-  const query = `${calculateQuery()}&offset=0&limit=${calculatePaginationStep()}`
+  const step = paginationStep + 10
+  const query = `${calculateQuery()}&offset=0&limit=${step}`
   try {
     await productsStore.getProducts(query)
   } catch (error) {
