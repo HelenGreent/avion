@@ -97,8 +97,8 @@
 import type { IBasketProduct } from '@/types/products.types'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { router } from '@/router'
-import { routeNames } from '@/router/route-names'
+// import { router } from '@/router'
+// import { routeNames } from '@/router/route-names'
 
 const route = useRoute()
 const productsStore = useProductsStore()
@@ -120,9 +120,9 @@ const changeQuantity = (type: string) => {
   }
 }
 
-onBeforeMount(() => {
-  if (!product.value) router.push({ name: routeNames.error })
-})
+// onBeforeMount(() => {
+//   if (!product.value) router.push({ name: routeNames.error })
+// })
 </script>
 
 <style lang="scss" scoped>

@@ -6,7 +6,7 @@
     >
       <div class="container">
         <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">
-          {{ bannerTitles [route.params.type] }}
+          {{ bannerTitles[route.params.type] }}
         </h2>
       </div>
     </div>
@@ -77,7 +77,6 @@
 <script lang="ts" setup>
 import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.types'
 import { useRoute } from 'vue-router'
-import { ref, watch } from 'vue'
 
 const route = useRoute()
 const productsStore = useProductsStore()
@@ -101,36 +100,34 @@ const filterValue = ref<IFilterParams>({
   brand: ''
 })
 
-const restFilters = {
-  category: [
-    { value: 'kitchen', label: 'kitchen' },
-    { value: 'bedroom', label: 'bedroom' },
-    { value: 'office', label: 'office' },
-    { value: 'garden', label: 'garden' },
-    { value: 'living room', label: 'living room' }
-  ],
-  price: [
-    { value: '0-19', label: '0-19' },
-    { value: '20-39', label: '20-39' },
-    { value: '40-59', label: '40-59' },
-    { value: '60-79', label: '60-79' },
-    { value: '80-99', label: '80-99' },
-    { value: '100', label: '100+' }
-  ],
-  brand: [
-    { value: 'Henckels', label: 'Henckels' },
-    { value: 'Wusthof', label: 'Wusthof' },
-    { value: 'Cutco', label: 'Cutco' },
-    { value: 'Joseph Joseph', label: 'Joseph Joseph' },
-    { value: 'Calphalon', label: 'Calphalon' },
-    { value: 'Cuisinart', label: 'Cuisinart' },
-    { value: 'KitchenAid', label: 'KitchenAid' },
-    { value: 'Viners', label: 'Viners' }
-  ]
-}
-
 const filters = computed(() => {
-  const filterChunk = { ...restFilters }
+  const filterChunk = {
+    category: [
+      { value: 'kitchen', label: 'kitchen' },
+      { value: 'bedroom', label: 'bedroom' },
+      { value: 'office', label: 'office' },
+      { value: 'garden', label: 'garden' },
+      { value: 'living room', label: 'living room' }
+    ],
+    price: [
+      { value: '0-19', label: '0-19' },
+      { value: '20-39', label: '20-39' },
+      { value: '40-59', label: '40-59' },
+      { value: '60-79', label: '60-79' },
+      { value: '80-99', label: '80-99' },
+      { value: '100', label: '100+' }
+    ],
+    brand: [
+      { value: 'Henckels', label: 'Henckels' },
+      { value: 'Wusthof', label: 'Wusthof' },
+      { value: 'Cutco', label: 'Cutco' },
+      { value: 'Joseph Joseph', label: 'Joseph Joseph' },
+      { value: 'Calphalon', label: 'Calphalon' },
+      { value: 'Cuisinart', label: 'Cuisinart' },
+      { value: 'KitchenAid', label: 'KitchenAid' },
+      { value: 'Viners', label: 'Viners' }
+    ]
+  }
   if (route.params.type === 'all') {
     return {
       type: [
