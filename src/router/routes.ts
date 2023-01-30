@@ -26,6 +26,11 @@ const defaultLayoutRoutes: RouteRecordRaw = {
       component: () => import('@/views/products/ProductDetail.vue')
     },
     {
+      path: '/productDetail/*',
+      name: routeNames.error,
+      component: () => import('@/views/error-page/ErrorPage.vue')
+    },
+    {
       name: routeNames.aboutUs,
       path: '/aboutUs',
       component: () => import('@/views/about-us/AboutUs.vue')
@@ -46,7 +51,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:pathMatch(.*)*',
     redirect: '/'
   },
-
   authRoutes,
   adminRoutes,
   defaultLayoutRoutes

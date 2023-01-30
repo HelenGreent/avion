@@ -9,6 +9,7 @@ export const routeNames = {
   productDetail: 'productDetail',
   aboutUs: 'aboutUs',
   productBasket: 'productBasket',
+  error: 'error',
   ...authRouteNames,
   ...adminRouteNames
 }

@@ -226,7 +226,7 @@
 
 <script lang="ts" setup>
 import type { IBasketProduct, IUpdateProduct } from '@/types/products.types'
-// import { routeNames } from '@/router/route-names'
+import { routeNames } from '@/router/route-names'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { router } from '@/router'
@@ -253,17 +253,6 @@ const changeQuantity = (type: string) => {
     quantity.value === product.value?.qty ? (quantity.value = product.value?.qty) : quantity.value++
   }
 }
-
-// export interface IUpdateProducts {
-// description?: string
-// image_url?: string
-// title?: string
-// price?: number
-// qty?: number
-// depth?: null | number
-// height?: null | number
-// width?: null | number
-// }
 
 const payload = computed(() => ({
   description: '',
@@ -294,9 +283,9 @@ async function handleUpdate (productId: string) {
   }
 }
 
-// onBeforeMount(() => {
-//   if (!product.value) router.push({ name: routeNames.error })
-// })
+onMounted(() => {
+  if (!product.value) router.replace({ name: routeNames.error })
+})
 </script>
 
 <style lang="scss" scoped>
