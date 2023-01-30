@@ -29,7 +29,18 @@ export interface IPostProduct {
   qty: number
   title: string
   type: string
-  width?: string
+  width?: null | number
+}
+
+export interface IPatchProduct {
+  description: ''
+  image_url: ''
+  title: ''
+  price: number
+  qty: number
+  depth: null | number
+  height: null | number
+  width: null | number
 }
 
 export interface IBasketProduct extends IProduct {

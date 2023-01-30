@@ -40,8 +40,8 @@
             <template #dropdown>
               <el-dropdown-menu>
                 <template v-if="accessToken">
-                  <el-dropdown-item>
-                    <span>user data</span>
+                  <el-dropdown-item disabled>
+                    <span>{{ user?.user_name || 'user' }}</span>
                   </el-dropdown-item>
                   <el-dropdown-item class="text-link-color hover:underline" @click="logout">
                     <p>Log Out</p>
@@ -95,7 +95,7 @@ import { routeNames } from '@/router/route-names'
 import { debounce } from '@/composables/useDebounce'
 
 const basketStore = useBasketStore()
-const { logout, accessToken } = useAuthStore()
+const { user, logout, accessToken } = useAuthStore()
 const productsStore = useProductsStore()
 
 async function searchByTitle () {

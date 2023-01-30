@@ -64,7 +64,8 @@ import type { IPostProduct } from '@/types/products.types'
 import { reactive } from 'vue'
 import type { FormRules } from 'element-plus'
 
-const { pending, addProduct } = useAdminStore()
+const productsStore = useProductsStore()
+const { pending, addProduct } = productsStore
 const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
@@ -105,11 +106,11 @@ const productValue = reactive<IPostProduct>({
   diameter: null,
   height: null,
   length: null,
-  width: ''
+  width: null
 })
 
 function onAdd () {
   addProduct(productValue)
-  router.push({ name: $routeNames.adminProducts })
+  router.push({ name: $routeNames.productList })
 }
 </script>
