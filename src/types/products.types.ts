@@ -32,15 +32,15 @@ export interface IPostProduct {
   width?: null | number
 }
 
-export interface IPatchProduct {
-  description: ''
-  image_url: ''
-  title: ''
-  price: number
-  qty: number
-  depth: null | number
-  height: null | number
-  width: null | number
+export interface IUpdateProduct {
+  description?: string
+  image_url?: string
+  title?: string
+  price?: number
+  qty?: number
+  depth?: null | number
+  height?: null | number
+  width?: null | number
 }
 
 export interface IBasketProduct extends IProduct {

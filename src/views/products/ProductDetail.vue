@@ -225,7 +225,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IBasketProduct } from '@/types/products.types'
+import type { IBasketProduct, IUpdateProduct } from '@/types/products.types'
 // import { routeNames } from '@/router/route-names'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -254,6 +254,17 @@ const changeQuantity = (type: string) => {
   }
 }
 
+// export interface IUpdateProducts {
+// description?: string
+// image_url?: string
+// title?: string
+// price?: number
+// qty?: number
+// depth?: null | number
+// height?: null | number
+// width?: null | number
+// }
+
 const payload = computed(() => ({
   description: '',
   image_url: product.value?.image_url,
@@ -274,7 +285,7 @@ async function handleUpdate (productId: string) {
   try {
     pending.value = true
     editMode.value = false
-    await productsService.updateProduct(productId, payload.value)
+    await productsService.updateProduct(productId, payload.value as IUpdateProduct)
     router.go(0)
   } catch (err) {
     console.error(err)

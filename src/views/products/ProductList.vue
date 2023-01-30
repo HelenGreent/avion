@@ -261,7 +261,6 @@ async function onDelete (index: number) {
     pending.value = true
     const currentProductId = products.value.find((_, idx) => idx === index)?.id as string
     await productsService.deleteProduct(currentProductId)
-    // products.value.splice(currentProductId as any, 1)
     router.go(0)
   } catch (err) {
     console.error(err)

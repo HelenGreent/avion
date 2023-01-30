@@ -1,16 +1,15 @@
-import type { IProduct } from '@/types/products.types'
+import type { IProduct, IPostProduct, IUpdateProduct } from '@/types/products.types'
 
 class ProductsService {
   getProducts (query = ''): Promise<IProduct[]> {
     return useHttp.get(`rest/v1/products?select=*${query}`)
   }
 
-  // TODO fix payload type
-  addProduct (payload: any): Promise<any> {
+  addProduct (payload: IPostProduct): Promise<any> {
     return useHttp.post('rest/v1/products', payload)
   }
 
-  updateProduct (id: number | string, payload: any): Promise<any> {
+  updateProduct (id: number | string, payload: IUpdateProduct): Promise<any> {
     return useHttp.patch(`rest/v1/products?id=eq.${id}`, payload)
   }
 

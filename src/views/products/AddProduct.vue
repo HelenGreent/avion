@@ -13,37 +13,37 @@
       </div>
       <el-form :rules="formRules" label-position="left" class="pt-2 px-2test text-middle-violet">
         <el-form-item label="Brand" class="mb-5" prop="brand">
-          <el-input v-model.trim="productValue.brand" placeholder="Enter brand" clearable class="border" />
+          <el-input v-model.trim="payload.brand" placeholder="Enter brand" clearable class="border" />
         </el-form-item>
         <el-form-item label="Category" class="mb-5" prop="category">
-          <el-input v-model.trim="productValue.category" placeholder="Enter category" clearable class="border" />
+          <el-input v-model.trim="payload.category" placeholder="Enter category" clearable class="border" />
         </el-form-item>
         <el-form-item label="Title" class="mb-5" prop="title">
-          <el-input v-model.trim="productValue.title" placeholder="Enter title" clearable class="border" />
+          <el-input v-model.trim="payload.title" placeholder="Enter title" clearable class="border" />
         </el-form-item>
         <el-form-item label="Type" class="mb-5" prop="type">
-          <el-input v-model.trim="productValue.type" placeholder="Enter type" clearable class="border" />
+          <el-input v-model.trim="payload.type" placeholder="Enter type" clearable class="border" />
         </el-form-item>
         <el-form-item label="Price" class="mb-5" prop="price">
-          <el-input v-model.trim="productValue.price" placeholder="Enter price" clearable class="border" />
+          <el-input v-model.trim="payload.price" placeholder="Enter price" clearable class="border" />
         </el-form-item>
         <el-form-item label="Quantity" class="mb-5" prop="qty">
-          <el-input v-model.trim="productValue.qty" placeholder="Enter quantity" clearable class="border" />
+          <el-input v-model.trim="payload.qty" placeholder="Enter quantity" clearable class="border" />
         </el-form-item>
         <el-form-item label="Image url" class="mb-5">
-          <el-input v-model.trim="productValue.image_url" placeholder="Enter image url" clearable class="border" />
+          <el-input v-model.trim="payload.image_url" placeholder="Enter image url" clearable class="border" />
         </el-form-item>
         <el-form-item label="Depth" class="mb-[9px]">
-          <el-input v-model.trim="productValue.depth" placeholder="Enter depth" clearable class="border" />
+          <el-input v-model.trim="payload.depth" placeholder="Enter depth" clearable class="border" />
         </el-form-item>
         <el-form-item label="Height" class="mb-[9px]">
-          <el-input v-model.trim="productValue.height" placeholder="Enter height" clearable class="border" />
+          <el-input v-model.trim="payload.height" placeholder="Enter height" clearable class="border" />
         </el-form-item>
         <el-form-item label="Length" class="mb-[9px]">
-          <el-input v-model.trim="productValue.length" placeholder="Enter length" clearable class="border" />
+          <el-input v-model.trim="payload.length" placeholder="Enter length" clearable class="border" />
         </el-form-item>
         <el-form-item label="Width" class="mb-[9px]">
-          <el-input v-model.trim="productValue.width" placeholder="Enter width" clearable class="border" />
+          <el-input v-model.trim="payload.width" placeholder="Enter width" clearable class="border" />
         </el-form-item>
       </el-form>
       <div class="flex justify-center my-2 gap-3">
@@ -92,7 +92,7 @@ const formRules: FormRules = {
   ]
 }
 
-const productValue = reactive<IPostProduct>({
+const payload = reactive<IPostProduct>({
   brand: '',
   category: '',
   description: '',
@@ -111,7 +111,7 @@ const productValue = reactive<IPostProduct>({
 async function onAdd () {
   try {
     pending.value = true
-    await productsService.addProduct(productValue)
+    await productsService.addProduct(payload)
     router.push({ name: $routeNames.productList, params: { type: 'all' } })
   } catch (err) {
     console.error(err)
