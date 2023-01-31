@@ -14,6 +14,10 @@ class AuthService {
   refreshToken (refreshToken: string) {
     return useHttp.post('auth/v1/token?grant_type=refresh_token', { refresh_token: refreshToken })
   }
+
+  getUser (id: string | null) {
+    return useHttp.get(`/rest/v1/profiles?id=eq.${id}&select=*`)
+  }
 }
 
 export const authService = new AuthService()

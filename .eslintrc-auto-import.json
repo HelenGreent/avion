@@ -1,6 +1,7 @@
 {
   "globals": {
     "EffectScope": true,
+    "ElNotification": true,
     "acceptHMRUpdate": true,
     "asyncComputed": true,
     "authService": true,
@@ -21,6 +22,7 @@
     "createSharedComposable": true,
     "createUnrefFn": true,
     "customRef": true,
+    "debounce": true,
     "debouncedRef": true,
     "debouncedWatch": true,
     "defineAsyncComponent": true,
@@ -122,6 +124,7 @@
     "useAttrs": true,
     "useAuthStore": true,
     "useBase64": true,
+    "useBasketStore": true,
     "useBattery": true,
     "useBluetooth": true,
     "useBreakpoints": true,

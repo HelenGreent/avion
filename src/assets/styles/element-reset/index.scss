@@ -39,7 +39,13 @@
 @use "element-plus/theme-chalk/src/form-item";
 @use "element-plus/theme-chalk/src/input";
 @use "element-plus/theme-chalk/src/card";
+@use "element-plus/theme-chalk/src/dropdown";
+@use "element-plus/theme-chalk/src/notification";
+@use "element-plus/theme-chalk/src/table";
 
 @import './form.scss';
 @import './input.scss';
 @import './button.scss';
+@import './select-dropdown.scss';
+@import './dropdown.scss';
+

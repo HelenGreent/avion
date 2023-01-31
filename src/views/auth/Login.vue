@@ -17,7 +17,7 @@
           <el-form-item label="Email" prop="email">
             <el-input
               v-model="formModel.email"
-              type="email" placeholder="Please enter password"
+              type="email" placeholder="Please enter email"
               class="h-[52px] bg-auth-input"
             />
           </el-form-item>

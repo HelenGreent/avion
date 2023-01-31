@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { routeNames } from '@/router/route-names'
 import { authRoutes } from '@/views/auth/auth.routes'
+import { adminRoutes } from '@/views/admin-panel/admin.routes'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
 const defaultLayoutRoutes: RouteRecordRaw = {
@@ -9,7 +10,6 @@ const defaultLayoutRoutes: RouteRecordRaw = {
   redirect: { name: routeNames.home },
   component: DefaultLayout,
   children: [
-    // list of views that use default layout
     {
       name: routeNames.home,
       path: '/',
@@ -17,13 +17,18 @@ const defaultLayoutRoutes: RouteRecordRaw = {
     },
     {
       name: routeNames.productList,
-      path: '/productList',
+      path: '/productList/:type',
       component: () => import('@/views/products/ProductList.vue')
     },
     {
       name: routeNames.productDetail,
       path: '/productDetail/:id',
       component: () => import('@/views/products/ProductDetail.vue')
+    },
+    {
+      path: '/productDetail/*',
+      name: routeNames.error,
+      component: () => import('@/views/error-page/ErrorPage.vue')
     },
     {
       name: routeNames.aboutUs,
@@ -46,8 +51,8 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:pathMatch(.*)*',
     redirect: '/'
   },
-
   authRoutes,
+  adminRoutes,
   defaultLayoutRoutes
 
 ]

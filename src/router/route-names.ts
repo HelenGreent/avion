@@ -1,4 +1,5 @@
 import { authRouteNames } from '@/views/auth/auth.routes'
+import { adminRouteNames } from '@/views/admin-panel/admin.routes'
 
 export const routeNames = {
   rootPage: 'rootPage',
@@ -8,5 +9,7 @@ export const routeNames = {
   productDetail: 'productDetail',
   aboutUs: 'aboutUs',
   productBasket: 'productBasket',
-  ...authRouteNames
+  error: 'error',
+  ...authRouteNames,
+  ...adminRouteNames
 }

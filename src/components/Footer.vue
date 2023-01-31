@@ -14,7 +14,6 @@
           <div>
             <span class="menu-title">Categories</span>
             <router-link to="/" class="menu__link">Crockery</router-link>
-            <router-link to="/" class="menu__link">Furniture</router-link>
             <router-link to="/" class="menu__link">Homeware</router-link>
             <router-link to="/" class="menu__link">Plant pots</router-link>
             <router-link to="/" class="menu__link">Chairs</router-link>
@@ -22,7 +21,7 @@
           </div>
           <div>
             <span class="menu-title">Our company</span>
-            <router-link to="/" class="menu__link">About us</router-link>
+            <router-link to="/aboutUs" class="menu__link">About us</router-link>
             <router-link to="/" class="menu__link">Vacancies</router-link>
             <router-link to="/" class="menu__link">Contact us</router-link>
             <router-link to="/" class="menu__link">Privacy</router-link>
@@ -31,15 +30,18 @@
         </div>
         <div class="md:mt-10">
           <span class="font-clash">Join our mailing list</span>
-          <div class="w-full flex justify-center mt-[72px] pb-[54px]">
+          <div class="w-full flex justify-center mt-4 pb-[54px]">
             <el-input
               v-model="input"
+              type="text"
               placeholder="your@email.com"
-              class="sm:w-full h-[53px] grow bg-white-opacity  text-base  border-none"
+              class="md:w-full md:max-w-[350px] h-[53px] grow bg-white-opacity  text-base  border-none"
             />
             <el-button
               :type="$elComponentType.primary"
-              class="xs:w-[123px] w-[143px] flex-none bg-white-color font-normal text-violet-color text-base"
+              class="xs:w-[123px] w-[143px] flex-none bg-white-color font-normal text-violet-color text-base
+              hover:bg-white-light-opacity-hover hover:text-violet-color active:bg-white-light-opacity-active"
+              @click="onSent"
             >
               Sign up
             </el-button>
@@ -47,7 +49,7 @@
         </div>
       </div>
       <div class="md:block md:text-center md:pt-5 flex justify-between pt-6">
-        <span class="font-sm">Copyright 2022 Avion LTD</span>
+        <span class="font-sm">Copyright 2023 Avion LTD</span>
         <div class="md:hidden  md:mt-2 flex items-center">
           <a href="#" class="mx-3 hover:opacity-80">
             <img src="@/assets/icons/linkedin.svg" alt="linkedin">
@@ -77,6 +79,14 @@
 import { ref } from 'vue'
 
 const input = ref('')
+
+const onSent = () => {
+  ElNotification({
+    title: 'Your email has been sent',
+    message: 'Welcome to the club. Sincerely yours, Avion',
+    type: 'success'
+  })
+}
 </script>
 
 <style scoped>

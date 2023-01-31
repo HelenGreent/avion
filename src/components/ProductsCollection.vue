@@ -1,59 +1,52 @@
 <template>
-  <section>
-    <div class="grid-card">
-      <!-- <Product
-        v-for="product in products"
-        :key="product.id"
-        :img="product.img"
-        :title="product.title"
-        :price="product.price"
-      /> -->
-    </div>
-    <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
-      <div class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer">
-        <router-link to="/" class="text-violet-color hover:underline">View collection</router-link>
+  <div class="container">
+    <section>
+      <div class="grid-card">
+        <Product
+          v-for="product in productsStore.productCollection"
+          :key="product.id"
+          :product="product"
+          :product-detail-route="{
+            name: $routeNames.productDetail,
+            params: { id: product.id }
+          }"
+        />
       </div>
-    </div>
-  </section>
+      <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
+        <router-link
+          to="/productList/all"
+          class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
+        hover:bg-black-color-opacity ease-in-out duration-300"
+        >
+          <p class="text-violet-color">View collection</p>
+        </router-link>
+      </div>
+    </section>
+  </div>
 </template>
 
-<!-- <script lang="ts" setup>
-import { ref } from 'vue'
+<script lang="ts" setup>
 
-interface IProduct {
-  id: number
-  img: string
-  title: string
-  price: string
+const productsStore = useProductsStore()
+const { getProductCollection } = productsStore
+
+const currentProduct = computed(() => productsStore.product)
+
+async function getProducts () {
+  const type = currentProduct.value?.type
+  const getCollection = currentProduct.value?.type
+    ? `&type=fts.%27${currentProduct.value?.type}%27&offset=0&limit=4`
+    : '&type=fts.%27chairs%27&offset=0&limit=4'
+  console.log(type)
+  try {
+    await getProductCollection(`${getCollection}`)
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-const products = ref<IProduct[]>([
-  {
-    id: 1,
-    img: '/src/assets/image/product1.jpg',
-    title: 'The Dandy chair',
-    price: '£250'
-  },
-  {
-    id: 2,
-    img: '/src/assets/image/product2.jpg',
-    title: 'Rustic Vase Set',
-    price: '£115'
-  },
-  {
-    id: 3,
-    img: '/src/assets/image/product3.jpg',
-    title: 'The Silky Vase',
-    price: '£250'
-  },
-  {
-    id: 4,
-    img: '/src/assets/image/product4.jpg',
-    title: 'The Lucy Lamp',
-    price: '£399'
-  }
-])
-</script> -->
+onMounted(getProducts)
+</script>
 
 <style lang="scss" scoped>
 .grid-card {

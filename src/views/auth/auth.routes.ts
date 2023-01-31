@@ -6,7 +6,6 @@ export const authRouteNames = {
   login: 'login',
   registration: 'registration',
   accessDenied: 'accessDenied',
-  error: 'error',
   forgotPassword: 'forgotPassword'
 }
 
@@ -25,11 +24,6 @@ export const authRoutes: RouteRecordRaw = {
       path: '/registration',
       name: authRouteNames.registration,
       component: () => import('./Registration.vue')
-    },
-    {
-      path: '/error',
-      name: authRouteNames.error,
-      component: () => import('@/views/error-page/ErrorPage.vue')
     },
     {
       path: '/accessDenied',

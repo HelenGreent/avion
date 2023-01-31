@@ -1,5 +1,5 @@
 <template>
-  <section class="md:p-6 md:pt-36 p-20 text-violet-color">
+  <section class="container md:p-6 md:pt-36 p-20 text-violet-color">
     <h3 class="sm:text-left md:text-xl mb-9 font-clash font-normal text-center text-2xl">
       What makes our brand different
     </h3>
@@ -16,14 +16,8 @@
 </template>
 
 <script setup lang="ts">
-interface IAboutBrand {
-  img: string
-  alt: string
-  title: string
-  description: string
-}
 
-const aboutBrands: IAboutBrand[] = [{
+const aboutBrands = [{
   img: '/src/assets/icons/delivery.svg',
   alt: 'delivery icon',
   title: 'Next day as standard',
