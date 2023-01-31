@@ -176,7 +176,6 @@
     "useFps": true,
     "useFullscreen": true,
     "useGamepad": true,
-    "useGeneralStore": true,
     "useGeolocation": true,
     "useGlobalProperties": true,
     "useHead": true,
