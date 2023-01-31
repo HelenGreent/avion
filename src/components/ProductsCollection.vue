@@ -33,11 +33,10 @@ const { getProductCollection } = productsStore
 const currentProduct = computed(() => productsStore.product)
 
 async function getProducts () {
-  const type = currentProduct.value?.type
   const getCollection = currentProduct.value?.type
     ? `&type=fts.%27${currentProduct.value?.type}%27&offset=0&limit=4`
     : '&type=fts.%27chairs%27&offset=0&limit=4'
-  console.log(type)
+
   try {
     await getProductCollection(`${getCollection}`)
   } catch (error) {
