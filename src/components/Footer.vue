@@ -77,6 +77,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { ElNotification } from 'element-plus/es'
 
 const input = ref('')
 
