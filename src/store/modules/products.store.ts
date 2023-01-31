@@ -3,7 +3,6 @@ import type { IProduct } from '@/types/products.types'
 export const useProductsStore = defineStore('productsStore', () => {
   const products = ref<IProduct[]>([])
   const product = ref<IProduct>()
-  // const allProducts = ref<IProduct[]>([])
   const productCollection = ref<IProduct[]>([])
   const productsListLength = ref(0)
   const searchValue = ref('')
@@ -29,7 +28,6 @@ export const useProductsStore = defineStore('productsStore', () => {
   return {
     products,
     product,
-    // allProducts,
     productCollection,
     productsListLength,
     searchValue,
