@@ -18,25 +18,25 @@
 <script setup lang="ts">
 
 const aboutBrands = [{
-  img: '/src/assets/icons/delivery.svg',
+  img: '@/assets/icons/delivery.svg',
   alt: 'delivery icon',
   title: 'Next day as standard',
   description: 'Order before 3pm and get your order the next day as standard'
 },
 {
-  img: '/src/assets/icons/checkmark.svg',
+  img: '@/assets/icons/checkmark.svg',
   alt: 'checkmark icon',
   title: 'Made by true artisans',
   description: 'Handmade crafted goods made with real passion and craftsmanship'
 },
 {
-  img: '/src/assets/icons/purchase.svg',
+  img: '@/assets/icons/purchase.svg',
   alt: 'purchase icon',
   title: 'Unbeatable prices',
   description: 'For our materials and quality you won’t find better prices anywhere'
 },
 {
-  img: '/src/assets/icons/plant.svg',
+  img: '@/assets/icons/plant.svg',
   alt: 'plant icon',
   title: 'Recycled packaging',
   description: 'We use 100% recycled to ensure our footprint is more manageable'
