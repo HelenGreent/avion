@@ -100,7 +100,7 @@ const productsStore = useProductsStore()
 
 async function searchByTitle () {
   const replacer = productsStore.searchValue ? productsStore.searchValue.replace(/^\s+|\s+$/g, '').replace(/(\s\s+)/g, '+') : ''
-  const query = productsStore.searchValue ? `&title=fts.%27${replacer}%27&offset=0&limit=10` : ''
+  const query = productsStore.searchValue ? `&title=fts.%27${replacer}%27` : ''
 
   try {
     await productsStore.getProducts(`${query}&offset=0&limit=10`)

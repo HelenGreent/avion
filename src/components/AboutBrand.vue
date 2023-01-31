@@ -16,14 +16,8 @@
 </template>
 
 <script setup lang="ts">
-interface IAboutBrand {
-  img: string
-  alt: string
-  title: string
-  description: string
-}
 
-const aboutBrands: IAboutBrand[] = [{
+const aboutBrands = [{
   img: '/src/assets/icons/delivery.svg',
   alt: 'delivery icon',
   title: 'Next day as standard',

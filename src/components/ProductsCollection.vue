@@ -14,7 +14,7 @@
       </div>
       <div class="md:px-6 md:pb-[28px] flex justify-center pb-10">
         <router-link
-          to="/productList"
+          to="/productList/all"
           class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
         hover:bg-black-color-opacity ease-in-out duration-300"
         >
@@ -30,9 +30,16 @@
 const productsStore = useProductsStore()
 const { getProductCollection } = productsStore
 
+const currentProduct = computed(() => productsStore.product)
+
 async function getProducts () {
+  const type = currentProduct.value?.type
+  const getCollection = currentProduct.value?.type
+    ? `&type=fts.%27${currentProduct.value?.type}%27&offset=0&limit=4`
+    : '&type=fts.%27chairs%27&offset=0&limit=4'
+  console.log(type)
   try {
-    await getProductCollection('&category=fts.%27$bedroom%27&offset=0&limit=4')
+    await getProductCollection(`${getCollection}`)
   } catch (error) {
     console.log(error)
   }

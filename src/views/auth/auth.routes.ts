@@ -6,9 +6,7 @@ export const authRouteNames = {
   login: 'login',
   registration: 'registration',
   accessDenied: 'accessDenied',
-  error: 'error',
   forgotPassword: 'forgotPassword'
-  // adminPanel: 'adminPanel'
 }
 
 export const authRoutes: RouteRecordRaw = {
@@ -28,11 +26,6 @@ export const authRoutes: RouteRecordRaw = {
       component: () => import('./Registration.vue')
     },
     {
-      path: '/error',
-      name: authRouteNames.error,
-      component: () => import('@/views/error-page/ErrorPage.vue')
-    },
-    {
       path: '/accessDenied',
       name: authRouteNames.accessDenied,
       component: () => import('@/views/access-denied/AccessDenied.vue')
@@ -42,10 +35,5 @@ export const authRoutes: RouteRecordRaw = {
       name: authRouteNames.forgotPassword,
       component: () => import('./ForgotPassword.vue')
     }
-    // {
-    //   path: '/adminPanel',
-    //   name: authRouteNames.adminPanel,
-    //   component: () => import('@/views/admin-panel/AdminPanel.vue')
-    // }
   ]
 }

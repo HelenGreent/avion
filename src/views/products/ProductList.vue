@@ -33,15 +33,6 @@
         </div>
 
         <div class="flex flex-row py-2">
-          <div class="pt-[6px] pr-4 font-normal text-sm">
-            <el-button
-              v-if="user?.user_role === 'admin'"
-              class="h-[20px] p-4 text-link-color"
-              @click="createNewProduct"
-            >
-              + Add Product
-            </el-button>
-          </div>
           <label for="date" class="md:hidden py-[14px] pr-4 font-normal text-sm">Sorting by:</label>
           <el-select
             v-model="queryParams.dateSort"
@@ -60,13 +51,12 @@
           </el-select>
         </div>
       </div>
-      <div class="grid-card">
+      <div v-loading="pending" class="grid-card">
         <template
           v-for="(product, index) in products"
           :key="product.id"
         >
           <Product
-            v-loading="pending"
             :product="product"
             :product-detail-route="{
               name: $routeNames.productDetail,
@@ -83,6 +73,7 @@
           </Product>
         </template>
       </div>
+
       <div v-if="paginationStep < productLength" class="flex justify-center items-center mb-10">
         <div
           class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
@@ -100,13 +91,12 @@ import type { IProduct, IFilterParams, IQueryParams } from '@/types/products.typ
 import { Delete } from '@element-plus/icons-vue'
 
 const route = useRoute()
+const router = useRouter()
 const productsStore = useProductsStore()
 const { user } = useAuthStore()
-const { pending, deleteProduct } = productsStore
-const router = useRouter()
-const { $routeNames } = useGlobalProperties()
 
-const paginationStep = 10
+const pending = ref(false)
+let paginationStep = 10
 const productLength = computed(() => productsStore.productsListLength)
 
 const bannerTitles = {
@@ -191,21 +181,28 @@ watch(() => route.params.type as string, async (val) => {
 })
 
 async function filterProducts () {
+  paginationStep = 10
   try {
-    await productsStore.filterProducts(`${calculateQuery()}&offset=0&limit=${paginationStep}`)
+    pending.value = true
+    await productsStore.getProducts(`${calculateQuery()}&offset=0&limit=10`)
     await productsStore.getProductsListLength(calculateQuery())
   } catch (error) {
     console.warn(error)
+  } finally {
+    pending.value = false
   }
 }
 
 async function getMoreProducts () {
-  const step = paginationStep + 10
-  const query = `${calculateQuery()}&offset=0&limit=${step}`
+  paginationStep += 10
+  const query = `${calculateQuery()}&offset=0&limit=${paginationStep}`
   try {
+    pending.value = true
     await productsStore.getProducts(query)
   } catch (error) {
     console.log(error)
+  } finally {
+    pending.value = false
   }
 }
 
@@ -240,26 +237,34 @@ const sortByDate = computed<IProduct[]>(() => {
   return sortArray
 })
 
-async function getProductsListLength () {
+async function onDelete (index: number) {
   try {
-    await productsStore.getProductsListLength(productsStore.searchValue)
-  } catch (error) {
-    console.log(error)
+    pending.value = true
+    const currentProductId = products.value.find((_, idx) => idx === index)?.id as string
+    await productsService.deleteProduct(currentProductId)
+    router.go(0)
+  } catch (err) {
+    console.error(err)
+  } finally {
+    pending.value = false
   }
 }
 
-function createNewProduct () {
-  router.push({ name: $routeNames.addProduct, params: { adminProductsId: 'new' } })
+async function getProducts () {
+  try {
+    pending.value = true
+    await Promise.all([
+      productsStore.getProducts(`${calculateQuery()}&offset=0&limit=10`),
+      productsStore.getProductsListLength(productsStore.searchValue)
+    ])
+  } catch (error) {
+    console.log(error)
+  } finally {
+    pending.value = false
+  }
 }
 
-function onDelete (index: number) {
-  const currentProductId = products.value.find((_, idx) => idx === index)?.id as string
-  deleteProduct(currentProductId)
-  router.go(0)
-  // products.value.splice(currentProductId as any, 1)
-}
-
-onMounted(getProductsListLength)
+onMounted(getProducts)
 </script>
 
 <style lang="scss" scoped>

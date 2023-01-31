@@ -17,13 +17,18 @@ const defaultLayoutRoutes: RouteRecordRaw = {
     },
     {
       name: routeNames.productList,
-      path: '/productList:type',
+      path: '/productList/:type',
       component: () => import('@/views/products/ProductList.vue')
     },
     {
       name: routeNames.productDetail,
       path: '/productDetail/:id',
       component: () => import('@/views/products/ProductDetail.vue')
+    },
+    {
+      path: '/productDetail/*',
+      name: routeNames.error,
+      component: () => import('@/views/error-page/ErrorPage.vue')
     },
     {
       name: routeNames.aboutUs,
@@ -46,7 +51,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:pathMatch(.*)*',
     redirect: '/'
   },
-
   authRoutes,
   adminRoutes,
   defaultLayoutRoutes
