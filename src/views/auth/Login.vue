@@ -29,11 +29,6 @@
               placeholder="Please enter password" show-password
               class="h-[52px] bg-auth-input"
             />
-            <router-link :to="{ name: $routeNames.forgotPassword }">
-              <p class="text-sm text-link-color hover:underline ease-in-out duration-300">
-                Forgot password?
-              </p>
-            </router-link>
           </el-form-item>
 
           <p class="pb-2.5 text-sm font-normal">
