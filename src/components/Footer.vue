@@ -74,7 +74,6 @@ import { ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import { ElNotification } from 'element-plus/es'
 
-// #TODO fix it
 const ruleFormRef = ref<FormInstance>()
 const formRules: FormRules = {
   email: [
