@@ -33,8 +33,9 @@
               > {{ basketStore.totalProductsCount }} </span>
             </router-link>
           </div>
+
           <el-dropdown trigger="click" :hide-on-click="false">
-            <a href="#">
+            <a href="#" @click.prevent>
               <img src="@/assets/icons/user.svg" alt="user" class="mt-1">
             </a>
             <template #dropdown>
