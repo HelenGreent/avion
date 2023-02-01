@@ -4,45 +4,41 @@
       What makes our brand different
     </h3>
     <div class="grid-card">
-      <div v-for="(item, index) in aboutBrands" :key="index" class="md:px-6 md:py-9 bg-light-grey p-12">
-        <div>
-          <img :src="item.img" :alt="item.alt" class="block mb-3">
+      <div class="md:px-6 md:py-9 bg-light-grey p-12">
+        <div class="block mb-3">
+          <IconDelivery />
         </div>
-        <h4 class="mb-3 text-xl"> {{ item.title }}</h4>
-        <span class="text-base"> {{ item.description }}</span>
+        <h4 class="mb-3 text-xl">Next day as standard</h4>
+        <span class="text-base">Order before 3pm and get your order the next day as standard</span>
+      </div>
+
+      <div class="md:px-6 md:py-9 bg-light-grey p-12">
+        <div class="block mb-3">
+          <IconCheck />
+        </div>
+        <h4 class="mb-3 text-xl">Made by true artisans</h4>
+        <span class="text-base">Handmade crafted goods made with real passion and craftsmanship
+        </span>
+      </div>
+
+      <div class="md:px-6 md:py-9 bg-light-grey p-12">
+        <div class="block mb-3">
+          <IconPurchase />
+        </div>
+        <h4 class="mb-3 text-xl">Unbeatable prices</h4>
+        <span class="text-base">For our materials and quality you won’t find better prices anywhere</span>
+      </div>
+
+      <div class="md:px-6 md:py-9 bg-light-grey p-12">
+        <div class="block mb-3">
+          <IconPlant />
+        </div>
+        <h4 class="mb-3 text-xl">Recycled packaging</h4>
+        <span class="text-base">We use 100% recycled to ensure our footprint is more manageable</span>
       </div>
     </div>
   </section>
 </template>
-
-<script setup lang="ts">
-
-const aboutBrands = [{
-  img: '/src/assets/icons/delivery.svg',
-  alt: 'delivery icon',
-  title: 'Next day as standard',
-  description: 'Order before 3pm and get your order the next day as standard'
-},
-{
-  img: '/src/assets/icons/checkmark.svg',
-  alt: 'checkmark icon',
-  title: 'Made by true artisans',
-  description: 'Handmade crafted goods made with real passion and craftsmanship'
-},
-{
-  img: '/src/assets/icons/purchase.svg',
-  alt: 'purchase icon',
-  title: 'Unbeatable prices',
-  description: 'For our materials and quality you won’t find better prices anywhere'
-},
-{
-  img: '/src/assets/icons/plant.svg',
-  alt: 'plant icon',
-  title: 'Recycled packaging',
-  description: 'We use 100% recycled to ensure our footprint is more manageable'
-}
-]
-</script>
 
 <style lang="scss" scoped>
 .grid-card {

@@ -60,7 +60,7 @@
               </span>
             </div>
             <div
-              class="mt-3 py-[2px] px-3 text-sm cursor-pointer"
+              class="md:flex md:justify-end w-full mt-3 py-[2px] px-3 text-sm cursor-pointer"
             >
               <img
                 src="@/assets/icons/delete-basket.svg"

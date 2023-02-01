@@ -18,7 +18,7 @@
           class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
         hover:bg-black-color-opacity ease-in-out duration-300"
         >
-          <p class="text-violet-color">View collection</p>
+          <p class="text-violet-color">View products</p>
         </router-link>
       </div>
     </section>

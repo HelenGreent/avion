@@ -5,35 +5,29 @@
         <div class="footer-menu">
           <div>
             <span class="menu-title">Menu</span>
-            <router-link to="/" class="menu__link">New arrivals</router-link>
-            <router-link to="/" class="menu__link">Best sellers</router-link>
-            <router-link to="/" class="menu__link">Recently viewed</router-link>
-            <router-link to="/" class="menu__link">Popular this week</router-link>
-            <router-link to="/" class="menu__link">All products</router-link>
+            <router-link to="/productList/all" class="menu__link">All products</router-link>
           </div>
           <div>
             <span class="menu-title">Categories</span>
-            <router-link to="/" class="menu__link">Crockery</router-link>
-            <router-link to="/" class="menu__link">Homeware</router-link>
-            <router-link to="/" class="menu__link">Plant pots</router-link>
-            <router-link to="/" class="menu__link">Chairs</router-link>
-            <router-link to="/" class="menu__link">Crockery</router-link>
-          </div>
-          <div>
-            <span class="menu-title">Our company</span>
-            <router-link to="/aboutUs" class="menu__link">About us</router-link>
-            <router-link to="/" class="menu__link">Vacancies</router-link>
-            <router-link to="/" class="menu__link">Contact us</router-link>
-            <router-link to="/" class="menu__link">Privacy</router-link>
-            <router-link to="/" class="menu__link">Returns policy</router-link>
+            <router-link to="/productList/crockery" class="menu__link">Crockery</router-link>
+            <router-link to="/productList/tables" class="menu__link">Tables</router-link>
+            <router-link to="/productList/plant-pots" class="menu__link">Plant pots</router-link>
+            <router-link to="/productList/chairs" class="menu__link">Chairs</router-link>
           </div>
         </div>
         <div class="md:mt-10">
           <span class="font-clash">Join our mailing list</span>
-          <div class="w-full flex justify-start mt-4 pb-[54px]">
+          <el-form
+            ref="ruleFormRef"
+            label-position="top"
+            :rules="formRules"
+            :model="formModel"
+            class="w-full flex justify-start mt-4 pb-[54px]"
+          >
             <el-input
-              v-model="input"
-              type="text"
+              v-model="formModel.email"
+              prop="email"
+              type="email"
               placeholder="your@email.com"
               class="md:w-full md:max-w-[350px] h-[53px] grow bg-white-opacity  text-base  border-none"
             />
@@ -45,7 +39,7 @@
             >
               Sign up
             </el-button>
-          </div>
+          </el-form>
         </div>
       </div>
       <div class="md:block md:text-center md:pt-5 flex justify-between pt-6">
@@ -77,15 +71,33 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import type { FormRules, FormInstance } from 'element-plus'
 import { ElNotification } from 'element-plus/es'
 
-const input = ref('')
+// #TODO fix it
+const ruleFormRef = ref<FormInstance>()
+const formRules: FormRules = {
+  email: [
+    { required: true, message: 'This field is required', trigger: 'change' },
+    { type: 'email', message: 'Email is invalid', trigger: 'change' }
+  ]
+}
+
+const formModel = reactive({
+  email: ''
+})
 
 const onSent = () => {
-  ElNotification({
-    title: 'Your email has been sent',
-    message: 'Welcome to the club. Sincerely yours, Avion',
-    type: 'success'
+  ruleFormRef.value?.validate((valid) => {
+    if (valid) {
+      ElNotification({
+        title: 'Your email has been sent',
+        message: 'Welcome to the club. Sincerely yours, Avion',
+        type: 'success'
+      })
+    } else {
+      console.warn('error submit!')
+    }
   })
 }
 </script>

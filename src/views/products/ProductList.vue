@@ -5,8 +5,10 @@
       bg-[url('@/assets/image/productListHero.jpg')] h-[209px] bg-cover"
     >
       <div class="container">
-        <h2 class="font-clash text-4xl text-white-color pl-20 pt-[121px] pb-9">
-          {{ bannerTitles[route.params.type as string] }}
+        <h2 class="title pl-20 pt-[121px] pb-9">
+          <span class="title-word title-first inline-block font-clash text-4xl text-white-color">
+            {{ bannerTitles[route.params.type as string] }}
+          </span>
         </h2>
       </div>
     </div>
@@ -268,6 +270,31 @@ onMounted(getProducts)
 </script>
 
 <style lang="scss" scoped>
+.title {
+  transform: scale(0.94);
+  animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
+
+  @keyframes scale {
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes fade-in {
+    100% {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  .title-word{
+    opacity: 0;
+    filter: blur(4px);
+  }
+
+  .title-first {
+    animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+  }
+}
 .grid-card {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
