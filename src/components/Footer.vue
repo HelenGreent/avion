@@ -30,7 +30,7 @@
         </div>
         <div class="md:mt-10">
           <span class="font-clash">Join our mailing list</span>
-          <div class="w-full flex justify-center mt-4 pb-[54px]">
+          <div class="w-full flex justify-start mt-4 pb-[54px]">
             <el-input
               v-model="input"
               type="text"

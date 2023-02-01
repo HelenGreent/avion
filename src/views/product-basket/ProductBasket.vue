@@ -6,7 +6,10 @@
           Your basket is empty 😔
         </span>
         <span class="block">
-          <router-link to="/productList" class="text-link-color font-medium hover:underline">shopping</router-link>
+          <router-link
+            :to="{ name: $routeNames.productList, params: { type: 'all' }}"
+            class="text-link-color font-medium hover:underline"
+          >shopping</router-link>
           is always a good idea...</span>
       </div>
     </template>
@@ -60,7 +63,7 @@
               class="mt-3 py-[2px] px-3 text-sm cursor-pointer"
             >
               <img
-                src="@/assets/icons/basket.svg"
+                src="@/assets/icons/delete_basket.svg"
                 alt="basket"
                 class="cursor-pointer"
                 @click="basketStore.deleteProduct(index)"

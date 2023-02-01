@@ -9,8 +9,8 @@ module.exports = {
   ],
   theme: {
     screens: {
-      '2xl': { max: '1535px' },
-      // => @media (max-width: 1535px) { ... }
+      '1xlmin': { min: '1449px' },
+      // => @media (min-width: 1449px) { ... }
 
       '1xl': { max: '1449px' },
       // => @media (max-width: 1449px) { ... }

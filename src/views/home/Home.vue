@@ -1,7 +1,8 @@
 <template>
-  <section class="container">
+  <section class="1x:container">
     <div
-      class="md:h-auto md:bg-none md:p-0 md:justify-center bg-[url('@/assets/image/hero.jpg')] h-[704px] bg-cover
+      class="md:h-auto md:bg-none md:p-0 md:justify-center 1xlmin:justify-center
+       bg-[url('@/assets/image/hero.jpg')] h-[704px] bg-cover
     pr-20 flex items-center justify-end"
     >
       <div
@@ -31,7 +32,6 @@
       </div>
     </div>
   </section>
-
   <AboutBrand />
   <div class="container">
     <div class="md:px-0 px-20">
