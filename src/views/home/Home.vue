@@ -1,14 +1,13 @@
 <template>
-  <section class="1xl:container">
+  <section class="1x:container">
     <div
-      class="md:h-auto md:bg-none md:p-0 md:justify-center bg-[url('@/assets/image/hero.jpg')] h-[704px] bg-cover
-    pr-20 flex items-center justify-end
-  "
+      class="md:h-auto md:bg-none md:p-0 md:justify-center 1xlmin:justify-center
+       bg-[url('@/assets/image/hero.jpg')] h-[704px] bg-cover
+    pr-20 flex items-center justify-end"
     >
       <div
-        class="sm:px-6 md:pb-8 md:pt-0 md:min-h-0 md:block  md:p-0
-        first-letter:flex flex-col justify-between items-start
-        h-[444px] max-w-[630px] pl-[56px] pr-[61px] py-[47px] bg-white-color"
+        class="sm:px-6 md:pb-8 md:pt-0 md:min-h-0 md:block  md:p-0 flex flex-col justify-between items-start
+      h-[444px] max-w-[630px] pl-[56px] pr-[61px] py-[47px] bg-white-color"
       >
         <div class="md:mb-5">
           <h2 class="mb-5 md:text-2xl font-clash font-normal text-dark-violet text-[32px] leading-10">
@@ -33,7 +32,6 @@
       </div>
     </div>
   </section>
-
   <AboutBrand />
   <div class="container">
     <div class="md:px-0 px-20">
