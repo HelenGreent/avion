@@ -1,7 +1,7 @@
 <template>
   <section class="bg-[url('@/assets/image/authBG.jpeg')] h-full bg-no-repeat bg-cover bg-center">
     <div class="relative w-full h-full flex justify-center items-center max-w-[500px] m-auto">
-      <el-card v-loading="loading" class="w-full shadow-none">
+      <el-card v-loading="loading" class="md:w-[90%] w-full shadow-none">
         <template #header>
           <p class="font-clash font-medium text-3xl text-center text-violet-color">Login</p>
         </template>
@@ -41,14 +41,24 @@
             </router-link>
           </p>
 
-          <el-button
-            native-type="submit"
-            :type="$elComponentType.primary"
-            class="md:w-full font-satoshi font-normal text-base"
-            @click="submitForm()"
-          >
-            Login
-          </el-button>
+          <div class="md:flex-col md:space-x-0 flex items-center space-x-2">
+            <el-button
+              native-type="submit"
+              :type="$elComponentType.primary"
+              class="md:w-full font-satoshi font-normal text-base"
+              @click="submitForm()"
+            >
+              Login
+            </el-button>
+            <router-link
+              class=" md:w-full md:mt-4 h-[53px] w-[140px] flex items-center justify-center px-8 py-6
+            font-medium leading-5 bg-[#bbbbbb]
+          text-white-color cursor-pointer hover:bg-[#8bbeaa]  active:bg-[#8bbeaac3] ease-in-out duration-300"
+              :to="{ name: $routeNames.home }"
+            >
+              Go Home
+            </router-link>
+          </div>
         </el-form>
       </el-card>
     </div>
