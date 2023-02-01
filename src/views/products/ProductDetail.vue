@@ -223,19 +223,11 @@ const input = ref('')
 const editMode = ref(false)
 
 const changeQuantity = (type: string) => {
-  if (accessToken) {
-    if (type === 'minus') {
-      quantity.value === 1 ? (quantity.value = 1) : quantity.value--
-    }
-    if (type === 'plus') {
-      quantity.value === product.value?.qty ? (quantity.value = product.value?.qty) : quantity.value++
-    }
-  } else {
-    ElNotification({
-      title: 'Not allow action',
-      message: 'Please Log in. Sincerely yours, Avion',
-      type: 'warning'
-    })
+  if (type === 'minus') {
+    quantity.value === 1 ? (quantity.value = 1) : quantity.value--
+  }
+  if (type === 'plus') {
+    quantity.value === product.value?.qty ? (quantity.value = product.value?.qty) : quantity.value++
   }
 }
 
