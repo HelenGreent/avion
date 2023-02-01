@@ -5,7 +5,7 @@
   >
     <el-card
       v-loading="pending"
-      class="w-[500px] h-90vh flex flex-col m-auto
+      class="md:w-[90%] w-[500px] h-90vh flex flex-col m-auto
        bg-white text-violet-color rounded-sm"
     >
       <div>

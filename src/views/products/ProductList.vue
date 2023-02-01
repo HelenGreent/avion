@@ -6,7 +6,7 @@
     >
       <div class="container">
         <h2 class="title pl-20 pt-[121px] pb-9">
-          <span class="title__word title__word1 inline-block font-clash text-4xl text-white-color">
+          <span class="title-word title-first inline-block font-clash text-4xl text-white-color">
             {{ bannerTitles[route.params.type as string] }}
           </span>
         </h2>
@@ -286,12 +286,12 @@ onMounted(getProducts)
     }
   }
 
-  .title__word{
+  .title-word{
     opacity: 0;
     filter: blur(4px);
   }
 
-  .title__word1 {
+  .title-first {
     animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
   }
 }

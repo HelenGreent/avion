@@ -16,8 +16,7 @@
             class="md:text-6 font-clash text-4xl leading-[44px] text-violet-color"
           >
         </div>
-        <h2 v-else class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color">
-          {{ product?.title }}
+        <div v-else>
           <span>
             <img
               v-if="user?.user_role === 'admin'"
@@ -34,7 +33,10 @@
               @click="createNewProduct"
             >
           </span>
-        </h2>
+          <h2 class="md:text-6 font-clash text-4xl leading-[44px] mb-4 text-violet-color">
+            {{ product?.title }}
+          </h2>
+        </div>
 
         <div v-if="editMode" class="flex justify-start items-center mb-7 md:text-[20px] text-2xl ">
           <img src="@/assets/icons/pencil.svg" class="w-[15px] mr-3" alt="edit">
