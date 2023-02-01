@@ -5,7 +5,7 @@
     </h3>
     <div class="grid-card">
       <div v-for="(item, index) in aboutBrands" :key="index" class="md:px-6 md:py-9 bg-light-grey p-12">
-        <div>
+        <div class="block mb-3">
           <img :src="item.img" :alt="item.alt" class="block mb-3">
         </div>
         <h4 class="mb-3 text-xl"> {{ item.title }}</h4>
