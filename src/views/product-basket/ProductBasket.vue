@@ -63,9 +63,9 @@
               class="mt-3 py-[2px] px-3 text-sm cursor-pointer"
             >
               <img
-                src="@/assets/icons/delete_basket.svg"
+                src="@/assets/icons/delete-basket.svg"
                 alt="basket"
-                class="cursor-pointer"
+                class="w-4 cursor-pointer"
                 @click="basketStore.deleteProduct(index)"
               >
             </div>
