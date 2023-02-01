@@ -14,8 +14,12 @@ export {
   routes
 }
 
-router.beforeEach((to, from, next) => {
-  const { accessToken } = useAuthStore()
+router.beforeEach(async (to, from, next) => {
+  const { accessToken, user, setUser, userId } = useAuthStore()
+
+  if (accessToken && !user && userId) {
+    await setUser()
+  }
 
   if (!accessToken && to.meta.isProtected) {
     return ElNotification({
