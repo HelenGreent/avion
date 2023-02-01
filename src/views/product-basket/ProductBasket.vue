@@ -6,7 +6,10 @@
           Your basket is empty 😔
         </span>
         <span class="block">
-          <router-link to="/productList" class="text-link-color font-medium hover:underline">shopping</router-link>
+          <router-link
+            :to="{ name: $routeNames.productList, params: { type: 'all' }}"
+            class="text-link-color font-medium hover:underline"
+          >shopping</router-link>
           is always a good idea...</span>
       </div>
     </template>

@@ -134,7 +134,11 @@
           <el-button
             :type="$elComponentType.primary"
             class="sm:w-full w-[143px] h-[56px] font-satoshi font-normal text-base cursor-pointer"
-            @click="basketStore.addProducts(product as IBasketProduct, quantity)"
+            @click=" accessToken ? basketStore.addProducts(product as IBasketProduct, quantity) : ElNotification({
+              title: 'Not allow action',
+              message: 'Please Log in. Sincerely yours, Avion',
+              type: 'warning'
+            })"
           >
             Add to cart
           </el-button>
@@ -196,6 +200,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ElNotification } from 'element-plus/es'
 import type { IBasketProduct, IUpdateProduct } from '@/types/products.types'
 import { routeNames } from '@/router/route-names'
 import { ref } from 'vue'
@@ -206,6 +211,7 @@ const route = useRoute()
 const { $routeNames } = useGlobalProperties()
 const productsStore = useProductsStore()
 const basketStore = useBasketStore()
+const { accessToken } = useAuthStore()
 const { user } = useAuthStore()
 
 const pending = ref(false)
@@ -215,12 +221,21 @@ const product = computed(() => productsStore.product)
 const quantity = ref<number>(1)
 const input = ref('')
 const editMode = ref(false)
+
 const changeQuantity = (type: string) => {
-  if (type === 'minus') {
-    quantity.value === 1 ? (quantity.value = 1) : quantity.value--
-  }
-  if (type === 'plus') {
-    quantity.value === product.value?.qty ? (quantity.value = product.value?.qty) : quantity.value++
+  if (accessToken) {
+    if (type === 'minus') {
+      quantity.value === 1 ? (quantity.value = 1) : quantity.value--
+    }
+    if (type === 'plus') {
+      quantity.value === product.value?.qty ? (quantity.value = product.value?.qty) : quantity.value++
+    }
+  } else {
+    ElNotification({
+      title: 'Not allow action',
+      message: 'Please Log in. Sincerely yours, Avion',
+      type: 'warning'
+    })
   }
 }
 

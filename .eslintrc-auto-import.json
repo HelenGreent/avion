@@ -1,6 +1,7 @@
 {
   "globals": {
     "EffectScope": true,
+    "ElNotification": true,
     "acceptHMRUpdate": true,
     "asyncComputed": true,
     "authService": true,
