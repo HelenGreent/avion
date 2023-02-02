@@ -55,7 +55,7 @@
           <p class="pb-2.5 text-sm font-normal">
             Back to
             <router-link
-              class="text-link-color uppercase hover:underline ease-in-out duration-300"
+              class="text-link-color hover:underline ease-in-out duration-300"
               :to="{ name: $routeNames.home }"
             >
               Home
