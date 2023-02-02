@@ -32,7 +32,7 @@
            text-violet-color pt-[20px] pb-8"
           >
             <div class="flex items-start">
-              <img :src="item.image_url" :alt="item.brand" class="w-full min-h-[150px] max-w-[133px]">
+              <img :src="item.image_url" :alt="item.brand" class="md:min-h-[180px] w-full max-w-[133px]">
               <div class="max-w-[201px] flex flex-col pl-5 pt-3 space-y-2">
                 <span class="font-clash text-[20px]">{{ item.title }}</span>
                 <p class="md:truncate text-sm">
