@@ -14,7 +14,7 @@
             Luxury homeware for people who love timeless design quality
           </h2>
           <span class="md:mb-8 md:text-base text-[18px] text-middle-violet">
-            Shop the new Spring 2022 collection today
+            Shop the new Spring 2023 collection today
           </span>
         </div>
         <router-link

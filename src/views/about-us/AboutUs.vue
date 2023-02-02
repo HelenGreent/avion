@@ -7,7 +7,7 @@
       </h2>
     </div>
     <div>
-      <div class="container 1xl:flex-col 1xl:items-center flex justify-between">
+      <div class="container 1xl:flex-col 1xl:items-center flex">
         <div
           class="sm:pt-6 sm:px-6 1xl:pt-12 1xl:pl-6 1xl:pb-[36px] flex flex-col justify-between
           items-start max-w-[721px] pt-[72px] pl-[84px] pr-[100px] pb-[54px]"
@@ -27,12 +27,6 @@
               community.
             </p>
           </div>
-          <el-button
-            :type="$elComponentType.info"
-            class="sm:w-full 1xl:mt-[64px] w-[150px] h-[56px] font-satoshi font-normal text-base"
-          >
-            Get in touch
-          </el-button>
         </div>
         <div class="overflow-hidden max-w-[720px]">
           <img src="@/assets/image/interior1.jpg" alt="interior" class="w-[720px] scale-img">
@@ -62,12 +56,6 @@
               community.
             </p>
           </div>
-          <el-button
-            :type="$elComponentType.info"
-            class="sm:w-full 1xl:mt-[64px] w-[150px] h-[56px] font-satoshi font-normal text-base"
-          >
-            Get in touch
-          </el-button>
         </div>
       </div>
     </div>

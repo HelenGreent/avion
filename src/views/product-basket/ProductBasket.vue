@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="container">
     <template v-if="basketStore.basketProducts.length === 0">
       <div class="h-[60vh] p-6 text-center my-16 text-[20px] text-violet-saturated">
         <span class="block mb-4">
@@ -60,7 +60,7 @@
               </span>
             </div>
             <div
-              class="md:flex md:justify-end w-full mt-3 py-[2px] px-3 text-sm cursor-pointer"
+              class="md:flex md:justify-end md:w-full mt-3 py-[2px] px-3 text-sm cursor-pointer"
             >
               <img
                 src="@/assets/icons/delete-basket.svg"
