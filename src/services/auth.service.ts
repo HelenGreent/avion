@@ -4,7 +4,9 @@ class AuthService {
   }
 
   register (payload: ILoginPayload) {
-    return useHttp.post('auth/v1/signup', payload)
+    return useHttp.post('auth/v1/signup', payload, {
+      params: { redirect_to: `${window.location.origin}/login` }
+    })
   }
 
   forgotPassword (payload: IForgotPayload) {
