@@ -52,7 +52,15 @@
               Login
             </router-link>
           </p>
-
+          <p class="pb-2.5 text-sm font-normal">
+            Back to
+            <router-link
+              class="text-link-color uppercase hover:underline ease-in-out duration-300"
+              :to="{ name: $routeNames.home }"
+            >
+              Home
+            </router-link>
+          </p>
           <el-button
             native-type="submit"
             :type="$elComponentType.primary"
@@ -71,7 +79,6 @@
 import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
 import { router } from '@/router'
-import { routeNames } from '@/router/route-names'
 const { register } = useAuthStore()
 
 const ruleFormRef = ref<FormInstance>()
@@ -126,7 +133,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
       loading.value = true
 
       register(formModel)
-        .then(() => { router.push(window.location.origin) })
+        .then(() => { router.push(window.location.origin + '/login') })
         .finally(() => (loading.value = false))
     } else {
       console.warn('error submit!')

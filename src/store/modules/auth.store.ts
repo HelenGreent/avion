@@ -50,7 +50,6 @@ export const useAuthStore = defineStore('authStore', () => {
     localStorage.removeItem('si-token')
     localStorage.removeItem('ref-token')
     localStorage.removeItem('user-id')
-    localStorage.removeItem('user')
     window.location.href = router.resolve({ name: routeNames.home }).href
   }
 

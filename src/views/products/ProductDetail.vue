@@ -166,7 +166,7 @@ e<template>
   </section>
 
   <div class="container md:p-6 pt-20 px-20">
-    <div class="md:text-[20px] mb-[33px] font-clash text-violet-color text-3xl">You might also like</div>
+    <div class="md:text-[20px] mb-[33px] font-clash text-violet-color text-3xl">You might also view</div>
     <ProductsCollection />
   </div>
   <AboutBrand />
