@@ -126,7 +126,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
       loading.value = true
 
       register(formModel)
-        .then(() => { router.push({ name: routeNames.login }) })
+        .then(() => { router.push(window.location.origin) })
         .finally(() => (loading.value = false))
     } else {
       console.warn('error submit!')
