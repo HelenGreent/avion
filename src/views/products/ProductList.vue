@@ -80,8 +80,9 @@
         <div
           class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-light-grey cursor-pointer
          hover:bg-black-color-opacity ease-in-out duration-300"
+          @click="getMoreProducts"
         >
-          <span class="text-violet-color" @click="getMoreProducts">View collection</span>
+          <span class="text-violet-color">View collection</span>
         </div>
       </div>
     </div>
