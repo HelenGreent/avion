@@ -55,7 +55,7 @@
           <p class="pb-2.5 text-sm font-normal">
             Back to
             <router-link
-              class="text-link-color uppercase hover:underline ease-in-out duration-300"
+              class="text-link-color hover:underline ease-in-out duration-300"
               :to="{ name: $routeNames.home }"
             >
               Home
@@ -78,6 +78,7 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
+import { ElNotification } from 'element-plus/es'
 import { router } from '@/router'
 import { routeNames } from '@/router/route-names'
 const { register } = useAuthStore()
@@ -134,7 +135,14 @@ const submitForm = (formEl: FormInstance | undefined) => {
       loading.value = true
 
       register(formModel)
-        .then(() => { router.push({ name: routeNames.home }) })
+        .then(() => {
+          router.push({ name: routeNames.home })
+          ElNotification({
+            title: 'Email has been sent',
+            message: 'Please, check your email to complete registration',
+            type: 'success'
+          })
+        })
         .finally(() => (loading.value = false))
     } else {
       console.warn('error submit!')

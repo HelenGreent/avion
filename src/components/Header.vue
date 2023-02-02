@@ -77,14 +77,28 @@
         </router-link>
       </div>
       <div class="md:inline-block md:absolute md:top-[23px] md:right-[85px] hidden">
-        <button type="submit">
-          <svg
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#726E8D"
-            class="w-6 h-6"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-        </button>
+        <nav class="relative">
+          <Transition name="fade" mode="out-in">
+            <IconBurger v-if="!show" key="open" @click="show = !show" />
+            <IconCross v-else key="close" @click="show = !show" />
+          </Transition>
+          <Transition name="fade">
+            <div
+              v-if="show" class="bg-white border shadow-xl rounded-sm
+              min-w-[260px] absolute top-[35px] right-[-56px]
+               py-3 flex flex-col space-y-2"
+            >
+              <router-link
+                v-for="(item, index) in menu"
+                :key="index"
+                :to="{ name: $routeNames.productList, params: { type: item.type }}"
+                class="m-auto text-light-violet hover:underline"
+              >
+                {{ item.name }}
+              </router-link>
+            </div>
+          </Transition>
+        </nav>
       </div>
     </div>
   </header>
@@ -94,6 +108,8 @@
 import { router } from '@/router'
 import { routeNames } from '@/router/route-names'
 import { debounce } from '@/composables/useDebounce'
+
+const show = ref(false)
 
 const basketStore = useBasketStore()
 const { user, logout, accessToken } = useAuthStore()
@@ -141,3 +157,15 @@ const menu = [
     type: 'crockery'
   }]
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
