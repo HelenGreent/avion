@@ -109,7 +109,7 @@ async function searchByTitle () {
   } catch (error) {
     console.warn(error)
   } finally {
-    await router.push({ name: routeNames.productList })
+    await router.push({ name: routeNames.productList, params: { type: 'all' } })
   }
 }
 
