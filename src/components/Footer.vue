@@ -29,7 +29,9 @@
               prop="email"
               type="email"
               placeholder="your@email.com"
-              class="md:w-full md:max-w-[350px] h-[53px] grow bg-white-opacity  text-base  border-none"
+              class="md:w-full md:max-w-[350px] el-input__inner-custom text-white
+              h-[53px] grow bg-white-opacity  border-none"
+              :input-style="{ color: 'white' }"
             />
             <el-button
               :type="$elComponentType.primary"
