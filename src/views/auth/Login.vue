@@ -40,25 +40,23 @@
               Sign Up
             </router-link>
           </p>
-
-          <div class="md:flex-col md:space-x-0 flex items-center space-x-2">
-            <el-button
-              native-type="submit"
-              :type="$elComponentType.primary"
-              class="md:w-full font-satoshi font-normal text-base"
-              @click="submitForm()"
-            >
-              Login
-            </el-button>
+          <p class="pb-2.5 text-sm font-normal">
+            Back to
             <router-link
-              class=" md:w-full md:mt-4 h-[53px] w-[140px] flex items-center justify-center px-8 py-6
-            font-medium leading-5 bg-[#bbbbbb]
-          text-white-color cursor-pointer hover:bg-[#8bbeaa]  active:bg-[#8bbeaac3] ease-in-out duration-300"
+              class="text-link-color uppercase hover:underline ease-in-out duration-300"
               :to="{ name: $routeNames.home }"
             >
-              Go Home
+              Home
             </router-link>
-          </div>
+          </p>
+          <el-button
+            native-type="submit"
+            :type="$elComponentType.primary"
+            class="md:w-full font-satoshi font-normal text-base"
+            @click="submitForm()"
+          >
+            Login
+          </el-button>
         </el-form>
       </el-card>
     </div>

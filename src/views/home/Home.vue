@@ -1,5 +1,5 @@
 <template>
-  <section class="1x:container">
+  <section class="md:mt-[70px] 1x:container">
     <div
       class="md:h-auto md:bg-none md:p-0 md:justify-center 1xlmin:justify-center
        bg-[url('@/assets/image/hero.jpg')] h-[704px] bg-cover

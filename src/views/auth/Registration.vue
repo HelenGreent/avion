@@ -52,7 +52,15 @@
               Login
             </router-link>
           </p>
-
+          <p class="pb-2.5 text-sm font-normal">
+            Back to
+            <router-link
+              class="text-link-color uppercase hover:underline ease-in-out duration-300"
+              :to="{ name: $routeNames.home }"
+            >
+              Home
+            </router-link>
+          </p>
           <el-button
             native-type="submit"
             :type="$elComponentType.primary"
