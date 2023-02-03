@@ -278,6 +278,8 @@ function createNewProduct () {
   router.push({ name: $routeNames.addProduct, params: { adminProductsId: 'new' } })
 }
 
+watch(() => route.params.id, () => getProduct())
+
 onMounted(getProduct)
 </script>
 
