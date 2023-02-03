@@ -4,9 +4,11 @@ export const useBasketStore = defineStore('basketStore', () => {
   const basketProducts = ref<IBasketProduct[]>([])
 
   function addProducts (product: IBasketProduct, count: number) {
-    basketProducts.value.push({ ...product, count })
+    const basketIndex = basketProducts.value.findIndex(el => el.id === product.id)
+    if (basketIndex === -1) {
+      basketProducts.value.push({ ...product, count })
+    }
   }
-
   function deleteProduct (index: number) {
     basketProducts.value.splice(index, 1)
   }
