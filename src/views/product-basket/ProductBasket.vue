@@ -83,6 +83,7 @@
             <el-button
               :type="$elComponentType.primary"
               class="md:mt-9 mt-4 w-[172px] h-[56px] font-satoshi font-normal text-base"
+              @click="clearBasket"
             >
               Go to checkout
             </el-button>
@@ -94,6 +95,8 @@
 </template>
 
 <script setup lang="ts">
+import { ElNotification } from 'element-plus/es'
+
 const basketStore = useBasketStore()
 
 const basketProducts = computed(() => basketStore.basketProducts)
@@ -101,4 +104,12 @@ const basketProducts = computed(() => basketStore.basketProducts)
 const productTotalCost = computed(() => basketProducts.value.reduce((total, product) => {
   return total + product.price * product.count
 }, 0))
+
+function clearBasket () {
+  basketStore.basketProducts = []
+  ElNotification({
+    title: 'Your order has been sent',
+    type: 'success'
+  })
+}
 </script>
