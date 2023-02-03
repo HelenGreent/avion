@@ -49,7 +49,7 @@
             It started with a small idea
           </h2>
           <span class="md:text-sm text-lg">A global brand with local beginnings,
-            our story begain in a small studio in South London in early 2014
+            our story began in a small studio in Lviv in early 2020
           </span>
         </div>
         <router-link
