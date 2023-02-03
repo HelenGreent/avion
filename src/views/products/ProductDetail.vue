@@ -136,11 +136,7 @@ e<template>
           <el-button
             :type="$elComponentType.primary"
             class="sm:w-full w-[143px] h-[56px] font-satoshi font-normal text-base cursor-pointer"
-            @click=" accessToken ? basketStore.addProducts(product as IBasketProduct, quantity) : ElNotification({
-              title: 'Not allow action',
-              message: 'Please Log in. Sincerely yours, Avion',
-              type: 'warning'
-            })"
+            @click="addToCart"
           >
             Add to cart
           </el-button>
@@ -299,6 +295,16 @@ async function handleUpdate (productId: string) {
   } finally {
     pending.value = false
   }
+}
+
+function addToCart () {
+  accessToken
+    ? basketStore.addProducts(product.value as IBasketProduct, quantity.value)
+    : ElNotification({
+      title: 'Not allow action',
+      message: 'Please Log in. Sincerely yours, Avion',
+      type: 'warning'
+    })
 }
 
 async function getProduct () {
