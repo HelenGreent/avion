@@ -90,13 +90,18 @@ const formModel = reactive({
 
 const onSent = () => {
   ruleFormRef.value?.validate((valid) => {
-    if (valid) {
+    if (valid && formModel.email) {
       ElNotification({
         title: 'Your email has been sent',
         message: 'Welcome to the club. Sincerely yours, Avion',
         type: 'success'
       })
     } else {
+      ElNotification({
+        title: 'Subscription failed!',
+        message: 'Please enter your email.',
+        type: 'warning'
+      })
       console.warn('error submit!')
     }
   })

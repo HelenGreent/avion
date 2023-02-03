@@ -21,20 +21,29 @@
         </div>
       </div>
       <div class="w-full flex justify-center">
-        <el-input
-          v-model="input"
-          type="email"
-          placeholder="your@email.com"
-          class="md:w-full md:max-w-[350px] h-[53px] grow bg-white-color  text-base  border-none"
-        />
-        <el-button
-          :type="$elComponentType.primary"
-          class="xs:w-[123px] w-[143px] flex-none bg-violet-color font-normal text-white-color text-base
-          hover:bg-middle-violet "
-          @click="onSent"
+        <el-form
+          ref="ruleFormRef"
+          label-position="top"
+          :rules="formRules"
+          :model="formModel"
+          class="w-full flex justify-start mt-4 pb-[54px]"
         >
-          Sign up
-        </el-button>
+          <el-input
+            v-model="formModel.email"
+            prop="email"
+            type="email"
+            placeholder="your@email.com"
+            class="md:w-full md:max-w-[350px] h-[53px] grow bg-white-color  text-base  border-none"
+          />
+          <el-button
+            :type="$elComponentType.primary"
+            class="xs:w-[123px] w-[143px] flex-none bg-violet-color font-normal text-white-color text-base
+            hover:bg-middle-violet "
+            @click="onSent"
+          >
+            Sign up
+          </el-button>
+        </el-form>
       </div>
     </div>
   </section>
@@ -43,14 +52,36 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ElNotification } from 'element-plus/es'
+import type { FormRules, FormInstance } from 'element-plus'
 
-const input = ref('')
+const ruleFormRef = ref<FormInstance>()
+const formRules: FormRules = {
+  email: [
+    { required: true, message: 'This field is required', trigger: 'change' },
+    { type: 'email', message: 'Email is invalid', trigger: 'change' }
+  ]
+}
+
+const formModel = reactive({
+  email: ''
+})
 
 const onSent = () => {
-  ElNotification({
-    title: 'Your email has been sent',
-    message: 'Thank you for joining to us and welcome to the club... Sincerely yours, Avion',
-    type: 'success'
+  ruleFormRef.value?.validate((valid) => {
+    if (valid && formModel.email) {
+      ElNotification({
+        title: 'Your email has been sent',
+        message: 'Welcome to the club. Sincerely yours, Avion',
+        type: 'success'
+      })
+    } else {
+      ElNotification({
+        title: 'Subscription failed!',
+        message: 'Please enter your email.',
+        type: 'warning'
+      })
+      console.warn('error submit!')
+    }
   })
 }
 </script>
