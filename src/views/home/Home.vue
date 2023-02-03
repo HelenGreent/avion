@@ -53,7 +53,7 @@
           </span>
         </div>
         <router-link
-          to="/aboutUs"
+          to="/about-us"
           class="md:w-full w-[170px] h-[56px] flex justify-center items-center bg-violet-opacity cursor-pointer
         hover:bg-middle-violet ease-in-out duration-300"
         >

@@ -5,10 +5,10 @@ export const routeNames = {
   rootPage: 'rootPage',
 
   home: 'home',
-  productList: 'productList',
-  productDetail: 'productDetail',
-  aboutUs: 'aboutUs',
-  productBasket: 'productBasket',
+  productList: 'product-list',
+  productDetail: 'product-detail',
+  aboutUs: 'about-us',
+  productBasket: 'product-basket',
   error: 'error',
   ...authRouteNames,
   ...adminRouteNames

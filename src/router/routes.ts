@@ -17,27 +17,27 @@ const defaultLayoutRoutes: RouteRecordRaw = {
     },
     {
       name: routeNames.productList,
-      path: '/productList/:type',
+      path: '/product-list/:type',
       component: () => import('@/views/products/ProductList.vue')
     },
     {
       name: routeNames.productDetail,
-      path: '/productDetail/:id',
+      path: '/product-detail/:id',
       component: () => import('@/views/products/ProductDetail.vue')
     },
     {
-      path: '/productDetail/*',
+      path: '/product-detail/*',
       name: routeNames.error,
       component: () => import('@/views/error-page/ErrorPage.vue')
     },
     {
       name: routeNames.aboutUs,
-      path: '/aboutUs',
+      path: '/about-us',
       component: () => import('@/views/about-us/AboutUs.vue')
     },
     {
       name: routeNames.productBasket,
-      path: '/productBasket',
+      path: '/product-basket',
       component: () => import('@/views/product-basket/ProductBasket.vue'),
       meta: {
         isProtected: true

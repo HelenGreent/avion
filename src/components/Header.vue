@@ -24,7 +24,7 @@
 
         <div class="ms:pl-0 flex items-center pl-[138px]">
           <div class="mr-4 relative">
-            <router-link to="/productBasket">
+            <router-link to="/product-basket">
               <img src="@/assets/icons/basket.svg" alt="basket">
               <span
                 v-if="basketStore.basketProducts.length"

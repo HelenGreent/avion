@@ -5,14 +5,15 @@
         <div class="footer-menu">
           <div>
             <span class="menu-title">Menu</span>
-            <router-link to="/productList/all" class="menu__link">All products</router-link>
+            <router-link to="/product-list/all" class="menu__link">All products</router-link>
+            <router-link to="/about-us" class="menu__link">About Us</router-link>
           </div>
           <div>
             <span class="menu-title">Categories</span>
-            <router-link to="/productList/crockery" class="menu__link">Crockery</router-link>
-            <router-link to="/productList/tables" class="menu__link">Tables</router-link>
-            <router-link to="/productList/plant-pots" class="menu__link">Plant pots</router-link>
-            <router-link to="/productList/chairs" class="menu__link">Chairs</router-link>
+            <router-link to="/product-list/crockery" class="menu__link">Crockery</router-link>
+            <router-link to="/product-list/tables" class="menu__link">Tables</router-link>
+            <router-link to="/product-list/plant-pots" class="menu__link">Plant pots</router-link>
+            <router-link to="/product-list/chairs" class="menu__link">Chairs</router-link>
           </div>
         </div>
         <div class="md:mt-10">
