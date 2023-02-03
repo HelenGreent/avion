@@ -136,11 +136,7 @@ e<template>
           <el-button
             :type="$elComponentType.primary"
             class="sm:w-full w-[143px] h-[56px] font-satoshi font-normal text-base cursor-pointer"
-            @click=" accessToken ? basketStore.addProducts(product as IBasketProduct, quantity) : ElNotification({
-              title: 'Not allow action',
-              message: 'Please Log in. Sincerely yours, Avion',
-              type: 'warning'
-            })"
+            @click="addToCart"
           >
             Add to cart
           </el-button>
@@ -183,19 +179,28 @@ e<template>
           <span class="md:inline block">Sign up for our newsletter and receive exclusive offers on new</span>
           ranges, sales, pop up stores and more
         </span>
-        <div class="w-full flex justify-center mt-[72px] pb-[54px]">
+        <el-form
+          ref="ruleFormRef"
+          label-position="top"
+          :rules="formRules"
+          :model="formModel"
+          class="w-full flex justify-center mt-[72px] pb-[54px]"
+        >
           <el-input
-            v-model="input"
+            v-model="formModel.email"
+            prop="email"
+            type="email"
             placeholder="your@email.com"
             class="w-full max-w-[354px] text-base bg-light-grey"
           />
           <el-button
             :type="$elComponentType.primary"
             class="xs:w-[123px] w-[143px] h-[56px] font-satoshi font-normal text-base"
+            @click="onSent"
           >
             Sign up
           </el-button>
-        </div>
+        </el-form>
       </div>
     </div>
   </section>
@@ -204,6 +209,7 @@ e<template>
 <script lang="ts" setup>
 import { ElNotification } from 'element-plus/es'
 import type { IBasketProduct, IUpdateProduct } from '@/types/products.types'
+import type { FormRules, FormInstance } from 'element-plus'
 import { routeNames } from '@/router/route-names'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -219,10 +225,39 @@ const { user } = useAuthStore()
 const pending = ref(false)
 
 const product = computed(() => productsStore.product)
-
 const quantity = ref<number>(1)
-const input = ref('')
 const editMode = ref(false)
+
+const ruleFormRef = ref<FormInstance>()
+const formRules: FormRules = {
+  email: [
+    { required: true, message: 'This field is required', trigger: 'change' },
+    { type: 'email', message: 'Email is invalid', trigger: 'change' }
+  ]
+}
+
+const formModel = reactive({
+  email: ''
+})
+
+const onSent = () => {
+  ruleFormRef.value?.validate((valid) => {
+    if (valid && formModel.email.match(/^[a-zA-z]+\W?[a-z]+@[a-zA-z]+\.[a-z]{2,3}$/g)) {
+      ElNotification({
+        title: 'Your email has been sent',
+        message: 'Welcome to the club. Sincerely yours, Avion',
+        type: 'success'
+      })
+    } else {
+      ElNotification({
+        title: 'Subscription failed!',
+        message: 'Please enter your email.',
+        type: 'warning'
+      })
+      console.warn('error submit!')
+    }
+  })
+}
 
 const changeQuantity = (type: string) => {
   if (type === 'minus') {
@@ -260,6 +295,16 @@ async function handleUpdate (productId: string) {
   } finally {
     pending.value = false
   }
+}
+
+function addToCart () {
+  accessToken
+    ? basketStore.addProducts(product.value as IBasketProduct, quantity.value)
+    : ElNotification({
+      title: 'Not allow action',
+      message: 'Please Log in. Sincerely yours, Avion',
+      type: 'warning'
+    })
 }
 
 async function getProduct () {
