@@ -90,7 +90,7 @@ const formModel = reactive({
 
 const onSent = () => {
   ruleFormRef.value?.validate((valid) => {
-    if (valid && formModel.email) {
+    if (valid && formModel.email.match(/^[a-zA-z]+\W?[a-z]+@[a-zA-z]+\.[a-z]{2,3}$/g)) {
       ElNotification({
         title: 'Your email has been sent',
         message: 'Welcome to the club. Sincerely yours, Avion',
