@@ -1,5 +1,9 @@
 # Avion
-## Softonix final project
+## Softonix final project 
+Frontend: Vue.js, TypeScript, Vite, Pinia, Tailwind, Element Plus
+Backend: Supabase
+[Product Presentation](https://pitch.com/public/b4d702b5-e998-430f-b2d4-0b3c8b2d3a63) 
+Deploy on Netlify: https://avionn.netlify.app/
 
 ### Softonix Frontend Guidelines
 Due to standardization purposes among our teams in Softonix, we would like to have a pretty strict standard project structure based on top of Vue.js.
